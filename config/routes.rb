@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "entries#index"
+  root "high_voltage/pages#show", id: "index"
 
   resources :posts
   resources :links
