@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316124259) do
+ActiveRecord::Schema.define(version: 20170404154506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,6 +33,46 @@ ActiveRecord::Schema.define(version: 20170316124259) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.string   "taxonomy_type"
+    t.integer  "taxonomy_id"
+    t.boolean  "published"
+    t.datetime "published_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["taxonomy_type", "taxonomy_id"], name: "index_entries_on_taxonomy_type_and_taxonomy_id", using: :btree
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "file"
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string   "url",            null: false
+    t.string   "summary"
+    t.string   "og_title"
+    t.string   "og_type"
+    t.string   "og_url"
+    t.string   "og_description"
+    t.string   "og_images"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "cover_img"
+    t.string   "title"
+    t.string   "summary"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

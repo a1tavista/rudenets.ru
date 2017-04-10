@@ -1,9 +1,12 @@
+
+
 body {
   color: $base-font-color;
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
 }
+
 
 h1,
 h2,
@@ -14,7 +17,20 @@ h6 {
   font-family: $heading-font-family;
   font-size: modular-scale(1);
   line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
+  margin-top: $small-spacing;
+  margin-bottom: $small-spacing / 2;
+}
+
+@for $i from 1 through 4 {
+  h#{$i} {
+    font-size: modular-scale(5 - $i);
+  }
+}
+
+@for $i from 1 through 3 {
+  h#{7 - $i} {
+    font-size: modular-scale(2) - (0.15em * (4 - $i));
+  }
 }
 
 p {
@@ -39,4 +55,10 @@ hr {
   border-right: 0;
   border-top: 0;
   margin: $base-spacing 0;
+}
+
+blockquote {
+  border-left: 0.5em solid $light-gray;
+  margin: 0 0 $small-spacing;
+  padding-left: 2.5em;
 }

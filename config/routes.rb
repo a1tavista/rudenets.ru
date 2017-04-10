@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root "high_voltage/pages#show", id: "index"
+  root "entries#index"
+
+  resources :posts
+  resources :links
 end
 #
 # [:admin].each do |route_file|

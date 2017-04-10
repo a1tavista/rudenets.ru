@@ -9,8 +9,10 @@ html lang="en"
     = stylesheet_link_tag :application, media: "all"
     = csrf_meta_tags
   body
-    = render "flashes"
-    = yield
+    main.container
+      = render "shared/header"
+      = yield
+      = render "shared/footer"
     = render "javascript"
     = render "css_overrides"
     = render "metrika"
