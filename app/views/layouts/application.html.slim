@@ -11,7 +11,8 @@ html lang="en"
   body
     main.container
       = render "shared/header"
-      = yield
+      .content
+        = yield
       = render "shared/footer"
     = render "javascript"
     = render "css_overrides"
