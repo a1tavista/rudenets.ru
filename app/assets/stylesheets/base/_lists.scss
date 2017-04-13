@@ -7,6 +7,10 @@ ol {
   }
 }
 
+li > ul {
+  margin-top: $small-spacing / 2;
+}
+
 dl {
   margin: 0;
 }

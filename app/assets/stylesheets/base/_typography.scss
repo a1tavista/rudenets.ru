@@ -15,7 +15,7 @@ h6 {
   font-family: $heading-font-family;
   font-size: modular-scale(1);
   line-height: $heading-line-height;
-  margin-top: $small-spacing;
+  margin-top: $small-spacing / 2;
   margin-bottom: $small-spacing / 2;
 }
 
@@ -58,5 +58,5 @@ hr {
 blockquote {
   border-left: 0.5em solid $light-gray;
   margin: 0 0 $small-spacing;
-  padding-left: 2.5em;
+  padding-left: $small-spacing * 2;
 }
