@@ -2,6 +2,9 @@ ul,
 ol {
   margin: 0 0 $small-spacing;
   //padding: 0;
+  li:not(:last-child) {
+    margin-bottom: 5px;
+  }
 }
 
 dl {
