@@ -21,6 +21,8 @@ module RudenetsRu
       generate.test_framework :rspec
       generate.view_specs false
     end
+    config.i18n.default_locale = :ru
+    config.i18n.available_locales = [:ru]
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_job.queue_adapter = :delayed_job
   end

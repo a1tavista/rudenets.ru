@@ -1,0 +1,6 @@
+a href=(post_path(post))
+  article.post-preview
+    .post-preview__date = l(post.created_at, format: :only_date)
+    .post-preview__content
+      h4.post-preview__title = post.title
+      p.post-preview__summary = post.summary

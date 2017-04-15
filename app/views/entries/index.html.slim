@@ -1,1 +1,7 @@
-.mda
+h1 Последние записи
+
+.entries-list
+  - @entries.each do |entry|
+    .entries-list__item
+      = render partial: entry.taxonomy_type.underscore, locals: { :post => entry.taxonomy }
+

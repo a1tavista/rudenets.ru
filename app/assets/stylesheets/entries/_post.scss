@@ -1,0 +1,55 @@
+.post
+{
+  &__header {
+    margin-bottom: $small-spacing * 2;
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: $small-spacing / 3;
+  }
+
+  &__meta {
+    font-size: 14px;
+    color: $medium-gray;
+  }
+
+  &__categories a {
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.post-preview {
+  display: flex;
+  flex-direction: row;
+
+  &__date {
+    flex: 1;
+    width: 15%;
+    max-width: 160px;
+    font-size: 13px;
+    color: $base-font-color;;
+  }
+
+  &__content {
+    flex: 3;
+  }
+
+  &__title {
+    color: $base-font-color;
+    margin-top: 0;
+  }
+
+  &__summary {
+    color: $base-font-color;
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+
+  &__cover {
+    flex: 3;
+  }
+}

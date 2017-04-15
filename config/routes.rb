@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root "high_voltage/pages#show", id: "index"
-
+  root "entries#index"
+  resources :entries
   resources :posts
   resources :links
 end

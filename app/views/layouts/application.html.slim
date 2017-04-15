@@ -9,11 +9,12 @@ html lang="en"
     = stylesheet_link_tag :application, media: "all"
     = csrf_meta_tags
   body
-    main.container
-      = render "shared/header"
-      .content
-        = yield
-      = render "shared/footer"
+    #application
+      main.container
+        = render "shared/header"
+        .content
+          = yield
+        = render "shared/footer"
     = render "javascript"
     = render "css_overrides"
     = render "metrika"

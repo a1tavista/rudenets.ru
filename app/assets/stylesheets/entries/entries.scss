@@ -1,0 +1,12 @@
+@import "post";
+
+.entries-list {
+  padding: $small-spacing 0;
+  &__item {
+    padding: $small-spacing * 3 0;
+    border-top: 1px solid lighten($light-gray, 7%);
+    &:last-child {
+      border-bottom: 1px solid lighten($light-gray, 7%);
+    }
+  }
+}
