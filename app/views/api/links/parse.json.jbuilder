@@ -8,4 +8,6 @@ if @success
     json.description @og.description
     json.image @og.images[0]
   end
+
+  json.images @og.images
 end

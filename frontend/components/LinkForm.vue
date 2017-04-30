@@ -13,7 +13,9 @@
           description: "",
           image: "",
           summary: ""
-        }
+        },
+        images: [],
+        imageSelected: 0
       }
     },
     watch: {
@@ -24,6 +26,11 @@
           this.tryParseURL();
         } else {
           this.answer = "Это не ссылка.";
+        }
+      },
+      imageSelected: function(newValue) {
+        if(this.images.length > newValue && newValue >= 0) {
+          this.opengraph.image = this.images[newValue];
         }
       }
     },
@@ -46,6 +53,10 @@
                 vm.answer = "";
                 vm.isURL = true;
                 vm.opengraph = Object.assign(vm.opengraph, response.data.opengraph);
+                vm.images = response.data.images;
+                vm.imageSelected = 0;
+              } else {
+                vm.answer = "Неудача!";
               }
             })
             .catch(function (error) {
@@ -78,8 +89,12 @@
       <pre class="entries-new__status">{{ answer }}</pre>
       <div class="entries-new__form" v-if="isURL">
         <div class="link">
+          <div class="link__image-picker">
+            <i class="material-icons md-48" @click="imageSelected -= 1">keyboard_arrow_up</i>
+            <i class="material-icons md-48" @click="imageSelected += 1">keyboard_arrow_down</i>
+          </div>
           <div class="link__image">
-            <img :src="opengraph.image">
+            <div><img :src="opengraph.image"></div>
           </div>
           <div class="link__content">
             <h4 class="link__title">

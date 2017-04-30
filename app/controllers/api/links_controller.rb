@@ -4,10 +4,12 @@ class Api::LinksController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :require_login
 
+  USERAGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5"
+
   def parse
     @url = params[:url]
     if is_url_correct?(@url)
-      @og = OpenGraph.new(@url)
+      @og = OpenGraph.new(@url, headers: {"User-Agent": USERAGENT})
       @success = true
     else
       @success = false
@@ -32,7 +34,7 @@ class Api::LinksController < ApplicationController
     req = Net::HTTP.new(url.host, url.port)
     req.use_ssl = (url.scheme == 'https')
     path = url.path if url.path.present?
-    res = req.request_head(path || '/')
+    res = req.request_get(path || '/', "User-Agent": USERAGENT)
     if res.kind_of?(Net::HTTPRedirection)
       is_url_correct?(res['location']) # Go after any redirect and make sure you can access the redirected URL
     else

@@ -36,6 +36,15 @@
     }
   }
 
+  &__image-picker {
+    margin-right: $small-spacing;
+    user-select: none;
+    i {
+      display: block;
+      cursor: pointer;
+    }
+  }
+
   &__content {
     flex: 1;
     padding: $small-spacing 0;
