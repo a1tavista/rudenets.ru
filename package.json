@@ -1,0 +1,37 @@
+{
+  "name": "rudenets-ru",
+  "version": "1.0.0",
+  "description": "Блог",
+  "main": "index.js",
+  "repository": "git@github.com:a1tavista/studios.sfedu.ru.git",
+  "author": "Andrew Rudenets <andrey.rudenets@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --watch --colors --display-error-details --display-cached --config ./config/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.config.js",
+    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
+  },
+  "engines": {
+    "node": "6.3.1"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "lodash": "^4.17.4",
+    "vue": "^2.1.0",
+    "vue-axios": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-latest": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-devtools": "^3.0.8",
+    "vue-loader": "^11.1.4",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
+  }
+}

@@ -1,0 +1,14 @@
+.entries-new {
+  margin: 2 * $small-spacing auto;
+  margin-bottom: 0;
+  width: 90%;
+
+  &__status {
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  &__actions {
+    text-align: right;
+  }
+}

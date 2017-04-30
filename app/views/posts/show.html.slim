@@ -8,4 +8,4 @@ article.post
         a href="#" #категорий
         a href="#" ##{"mda kek"}
       .post__time = l(@post.created_at)
-  .post__content = @post.text
+  .post__content = to_markdown(@post.text)

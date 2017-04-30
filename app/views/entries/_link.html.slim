@@ -1,20 +1,12 @@
-article.article
-  header.article__header
-    h1.article__title Страх и ненависть в ЮФУ
-    .article__meta
-      .article__time = Time.now
-  .article__content
-    p Sed tincidunt orci sit amet lacus condimentum efficitur. Pellentesque non tempus velit. Sed venenatis justo quis est
-      ornare tempus. Sed laoreet in nisi eget pulvinar. Etiam sed risus in erat rutrum luctus. Aenean lobortis leo quam, id
-      pretium lorem ultricies non. Etiam ullamcorper congue mollis. Praesent id convallis diam, eget volutpat est. Proin
-      turpis lectus, lacinia ut mauris quis, feugiat pharetra ipsum.
-    p Sed tincidunt orci sit amet lacus condimentum efficitur. Pellentesque non tempus velit. Sed venenatis justo quis est
-      ornare tempus. Sed laoreet in nisi eget pulvinar. Etiam sed risus in erat rutrum luctus. Aenean lobortis leo quam, id
-      pretium lorem ultricies non. Etiam ullamcorper congue mollis. Praesent id convallis diam, eget volutpat est. Proin
-      turpis lectus, lacinia ut mauris quis, feugiat pharetra ipsum.
-    p Sed tincidunt orci sit amet lacus condimentum efficitur. Pellentesque non tempus velit. Sed venenatis justo quis est
-      ornare tempus. Sed laoreet in nisi eget pulvinar. Etiam sed risus in erat rutrum luctus. Aenean lobortis leo quam, id
-      pretium lorem ultricies non. Etiam ullamcorper congue mollis. Praesent id convallis diam, eget volutpat est. Proin
-      turpis lectus, lacinia ut mauris quis, feugiat pharetra ipsum.
-  footer
-
+a.link href=(post.url) target="_blank"
+  .link__image
+    img src=(post.image.url)
+  .link__content
+    h4.link__title
+      .link__icon
+      span = post.title
+    p = post.description
+    - if post.summary
+      p.link__summary
+        b Комментарий: 
+        = to_smarty(post.summary)

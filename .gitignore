@@ -12,3 +12,5 @@
 /public/assets
 /tags
 /tmp/*
+/node_modules
+/public/uploads

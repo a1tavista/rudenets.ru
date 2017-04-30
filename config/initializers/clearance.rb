@@ -1,7 +1,6 @@
 Clearance.configure do |config|
   config.allow_sign_up = false
-  config.redirect_url = "/admin"
-  config.routes = false
+  config.routes = true
 end
 
 Clearance::PasswordsController.layout "admin"
