@@ -1,6 +1,5 @@
 .site-header {
-  border-bottom: 1px solid $light-gray;
-  padding: 1.5 * $small-spacing 0;
+  padding: 2 * $small-spacing 0 $small-spacing;
 
   display: flex;
   flex-direction: row;
@@ -9,7 +8,7 @@
   justify-content: space-between;
 
   &__logotype {
-    font-size: 1.7em;
+    font-size: 2.2em;
     font-weight: bold;
     min-width: 180px;
     a {
@@ -55,7 +54,6 @@
     display: block;
     @include size(35px);
     padding: 5px;
-    border: 2px solid black;
     border-radius: 50%;
     overflow: hidden;
     margin: 5px;

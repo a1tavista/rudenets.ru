@@ -27,11 +27,16 @@ main.container {
   min-height: 95%;
   padding: 0 30px;
   max-width: 1100px;
+  &-full {
+    max-width: none;
+    width: 95%;
+  }
   background: white;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
   > .content {
     flex: 1;
+    height: 100%;
   }
 
   > footer {
@@ -43,3 +48,7 @@ main.container {
   }
 }
 
+.page-title {
+  font-weight: normal !important;
+  font-size: 1.6em;
+}
