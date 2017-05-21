@@ -1,23 +1,20 @@
 source "https://rubygems.org"
 
-ruby "2.4.0"
+ruby "2.4.1"
 
 gem "active_link_to"
 gem "autoprefixer-rails"
 gem "cancancan"
 gem "clearance"
-gem "delayed_job_active_record"
 gem "jquery-rails"
 gem "jbuilder"
-
 gem "carrierwave"
 gem "fog-aws"
-
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 5.1.0"
 gem "redcarpet"
 gem "recipient_interceptor"
 gem "responders"
@@ -44,7 +41,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.5.0.beta4"
+  gem "rspec-rails"
 end
 
 group :development, :staging do
