@@ -9,8 +9,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --watch --colors --display-error-details --display-cached --config ./config/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.config.js",
-    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.config.js"
   },
   "engines": {
     "node": "6.3.1"
