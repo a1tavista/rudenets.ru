@@ -19,4 +19,4 @@ html lang="en"
     = render "javascript"
     = render "css_overrides"
     = render "metrika"
-    script src=(root_path + "dist/build.js")
+    = javascript_pack_tag 'application'

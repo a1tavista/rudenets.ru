@@ -23,14 +23,11 @@ gem "opengraph_parser"
 gem "sass-rails", "~> 5.0"
 gem "slim-rails"
 gem "sprockets", ">= 3.0.0"
+gem "webpacker"
 gem "uglifier"
 
 group :development do
-  gem "better_errors"
   gem "listen"
-  gem "spring"
-  gem "spring-commands-rspec"
-  gem "web-console"
 end
 
 group :development, :test do

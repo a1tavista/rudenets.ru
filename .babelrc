@@ -1,14 +1,17 @@
 {
   "presets": [
-    ["env", { "modules": false }],
-    "stage-2"
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": "> 1%",
+        "uglify": true
+      },
+      "useBuiltIns": true
+    }]
   ],
-  "plugins": ["transform-runtime"],
-  "comments": false,
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"],
-      "plugins": [ "istanbul" ]
-    }
-  }
+
+  "plugins": [
+    "syntax-dynamic-import",
+    ["transform-class-properties", { "spec": true }]
+  ]
 }
