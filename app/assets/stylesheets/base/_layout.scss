@@ -11,7 +11,7 @@ html {
 html,
 body {
   height: 100%;
-  background: #f0f0f0;
+  background: #F0F0F0;
 }
 
 #application {
@@ -19,36 +19,61 @@ body {
   min-height: 100%;
 }
 
-main.container {
+.container {
   display: flex;
-  flex-direction: column;
-  margin: 0 auto 15px;
-  width: 100%;
-  min-height: 95%;
-  padding: 0 30px;
-  max-width: 1100px;
-  &-full {
-    max-width: none;
-    width: 95%;
-  }
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  flex-direction: row;
+  min-height: 100%;
+  width: auto;
 
-  > .content {
-    flex: 1;
-    height: 100%;
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 
-  > footer {
-    border-top: 1px solid $light-gray;
-    margin-top: 2 * $small-spacing;
-    padding: 1.5 * $small-spacing 0;
-    text-align: center;
-    color: $medium-gray;
+  &__main {
+    display: flex;
+    flex-direction: column;
+    padding: 4 * $small-spacing 2.5 * $small-spacing 2 * $small-spacing;
+    width: 100%;
+    max-width: 1400px;
+
+    @media screen and (min-width: 800px) {
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    &--with-sidebar {
+      margin-left: 2.5 * $small-spacing;
+      padding-left: 320px;
+      @media screen and (max-width: 800px) {
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    @media screen and (max-width: 800px) {
+      padding-left: 1.5 * $small-spacing;
+      padding-right: 1.5 * $small-spacing;
+    }
+
+    > .content {
+      flex: 1;
+
+    }
+
+    > footer {
+      border-top: 1px solid $light-gray;
+      margin-top: 2 * $small-spacing;
+      padding: 1.5 * $small-spacing 0;
+      text-align: center;
+      color: $medium-gray;
+    }
   }
 }
 
 .page-title {
+  margin-top: 0;
   font-weight: normal !important;
   font-size: 1.6em;
 }

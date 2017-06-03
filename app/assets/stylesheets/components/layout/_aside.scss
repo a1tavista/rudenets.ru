@@ -1,0 +1,71 @@
+.aside {
+  @media screen and (min-width: 800px) {
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    background: white;
+    width: 320px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  &__content {
+    padding: 4 * $small-spacing 2 * $small-spacing 0;
+    @media screen and (max-width: 800px) {
+      padding: 2 * $small-spacing 2 * $small-spacing;
+    }
+  }
+
+  &__photo {
+    border-radius: 5px;
+    border: 2px solid black;
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: bold;
+    min-width: 180px;
+    a {
+      color: black;
+      &:focus, &:hover, &:active { color: lighten($dark-gray, 3%); }
+    }
+  }
+
+  &__navigation {
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+    padding-top: $small-spacing * 0.5;
+    padding-bottom: $small-spacing;
+
+    .navigation__links {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      a {
+        display: block;
+        padding: $small-spacing / 2;
+        &:hover {
+          background-color: lighten($blue, 25%);
+          color: white;
+        }
+      }
+    }
+  }
+
+  &__habitat {
+    min-width: 180px;
+    justify-content: center;
+  }
+}

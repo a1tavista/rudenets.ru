@@ -1,2 +1,2 @@
 rails-server: rails server
-webpack: npm run dev
+webpack: ./bin/webpack-dev-server

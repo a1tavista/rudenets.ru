@@ -11,11 +11,11 @@ html lang="en"
     = csrf_meta_tags
   body
     #application
-      main.container
-        = render "shared/header"
-        .content
-          = yield
-        = render "shared/footer"
+      .container
+        = render "shared/aside"
+        main.container__main.container__main--with-sidebar
+          .content
+            = yield
     = render "javascript"
     = render "css_overrides"
     = render "metrika"

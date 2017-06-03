@@ -1,0 +1,39 @@
+.habitat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &__link {
+    &:hover, &:active, &:focus {
+      color: transparent;
+      background-color: #EEEEEE;
+    }
+
+    display: block;
+    @include size(35px);
+    padding: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 5px;
+    color: transparent;
+    background-size: 55%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.vk {
+      background-image: image_url("vk.svg");
+    }
+
+    &.instagram {
+      background-image: image_url("instagram.svg");
+    }
+
+    &.twitter {
+      background-image: image_url("twitter.svg");
+    }
+
+    &.github {
+      background-image: image_url("github.svg");
+    }
+  }
+}
