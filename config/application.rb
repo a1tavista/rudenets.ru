@@ -1,4 +1,5 @@
 require_relative 'boot'
+
 require "rails"
 require "active_model/railtie"
 require "active_job/railtie"
@@ -8,6 +9,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
+
 Bundler.require(*Rails.groups)
 module RudenetsRu
   class Application < Rails::Application
@@ -24,6 +26,5 @@ module RudenetsRu
     config.i18n.default_locale = :ru
     config.i18n.available_locales = [:ru]
     config.action_controller.action_on_unpermitted_parameters = :raise
-    config.active_job.queue_adapter = :delayed_job
   end
 end
