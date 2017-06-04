@@ -4,8 +4,8 @@ import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios);
 
-import LinkForm from './components/LinkForm.vue';
-import PostForm from './components/PostForm.vue';
+import LinkForm from '../components/LinkForm.vue';
+import PostForm from '../components/PostForm.vue';
 
 const app = new Vue({
   el: '#application',

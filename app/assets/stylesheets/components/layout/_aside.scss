@@ -1,14 +1,22 @@
 .aside {
-  @media screen and (min-width: 800px) {
-    position: fixed;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
 
-    background: white;
-    width: 320px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background: white;
+  width: 320px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  @media screen and (max-width: 1279px) {
+    width: 240px;
+  }
+
+  @media screen and (max-width: 800px) {
+    position: static;
+    width: auto;
+    box-shadow: none;
   }
 
   &__content {
@@ -34,6 +42,10 @@
     a {
       color: black;
       &:focus, &:hover, &:active { color: lighten($dark-gray, 3%); }
+    }
+
+    @media screen and (min-width: 800px) and (max-width: 1279px) {
+      font-size: 2em;
     }
   }
 

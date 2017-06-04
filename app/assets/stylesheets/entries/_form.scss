@@ -1,6 +1,10 @@
 .entries-new {
-  margin: $small-spacing auto 3 * $small-spacing;
-  width: 90%;
+  margin: 2 * $small-spacing auto;
+  width: 100%;
+
+  input {
+    margin-bottom: 0;
+  }
 
   &__status {
     font-family: monospace;
