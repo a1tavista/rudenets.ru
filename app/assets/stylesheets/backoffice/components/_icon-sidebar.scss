@@ -1,0 +1,40 @@
+.icon-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+
+  padding: $small-spacing 1.5 * $small-spacing;
+  background: #F5F5F5;
+  border-right: 1px solid #C9C9C9;
+
+  &__group {
+    margin-top: 4 * $small-spacing;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include size(45px);
+    margin-bottom: $small-spacing;
+
+    background: #FFFFFF;
+    border: 1px solid #C9C9C9;
+    border-radius: 50%;
+    transition: background 0.25s ease-in-out, border .25s ease-in-out;
+
+    .material-icons {
+      color: $blue;
+      transition: color 0.25s ease-in-out;
+    }
+
+    &:hover {
+      background: $blue;
+      border-color: $blue;
+      .material-icons {
+        color: white;
+      }
+    }
+  }
+}

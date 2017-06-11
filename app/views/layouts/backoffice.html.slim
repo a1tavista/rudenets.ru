@@ -1,0 +1,14 @@
+doctype html
+html lang="en"
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="NOODP" name="ROBOTS" /
+    meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
+    title A. Rudenets
+    = stylesheet_link_tag :backoffice, media: "all"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+    = csrf_meta_tags
+  body
+    #application.container
+    = javascript_pack_tag 'backoffice'
