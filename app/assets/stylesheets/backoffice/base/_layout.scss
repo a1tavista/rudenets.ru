@@ -32,3 +32,7 @@ body {
     align-items: stretch;
   }
 }
+
+.content-container {
+  padding: 2 * $small-spacing 1.5 * $small-spacing;
+}
