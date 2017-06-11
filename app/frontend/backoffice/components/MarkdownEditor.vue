@@ -35,8 +35,6 @@
 
 <template lang="pug">
   div
-    article.post
-      div.post-form
-        textarea.post-form__editor(v-model="text")
-        div(v-html="compiledMarkdown")
+    textarea(v-model="text")
+    div(v-html="compiledMarkdown")
 </template>

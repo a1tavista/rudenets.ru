@@ -14,4 +14,37 @@
       .widget__item Ссылка на метку
       .widget__item Ссылка на метку
       .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
+      .widget__item Ссылка на метку
 </template>

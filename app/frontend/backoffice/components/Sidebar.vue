@@ -18,16 +18,16 @@
   .sidebar
     .icon-sidebar
       div.icon-sidebar__group
-        router-link.icon-sidebar__item(to="/")
+        router-link.icon-sidebar__item(to="/bo/notes/new")
           i.material-icons note_add
         .icon-sidebar__item
           i.material-icons add_a_photo
         .icon-sidebar__item
           i.material-icons playlist_add
       div.icon-sidebar__group
-        router-link.icon-sidebar__item(to="/bo/published-notes")
+        router-link.icon-sidebar__item(to="/bo/notes/published")
           i.material-icons language
-        router-link.icon-sidebar__item(to="/bo/published-links")
+        router-link.icon-sidebar__item(to="/bo/links/published")
           i.material-icons link
       div.icon-sidebar__group
         button.icon-sidebar__item(@click="currentWidget = 'NotesWidget'")

@@ -4,6 +4,7 @@ Vue.use(Router);
 
 import LinksListView from '../views/LinksListView.vue';
 import NotesListView from '../views/NotesListView.vue';
+import NoteFormView from '../views/NoteFormView.vue';
 
 export default new Router({
   mode: 'history',
@@ -15,7 +16,9 @@ export default new Router({
     // { path: '/ask/:page(\\d+)?', component: createListView('ask') },
     // { path: '/job/:page(\\d+)?', component: createListView('job') },
     // { path: '/item/:id(\\d+)', component: ItemView },
-    { path: '/bo/published-links', component: LinksListView },
-    { path: '/bo/published-notes', component: NotesListView },
+    { path: '/bo/notes/new', component: NoteFormView },
+    { path: '/bo/media/new', component: NoteFormView },
+    { path: '/bo/links/published', component: LinksListView },
+    { path: '/bo/notes/published', component: NotesListView },
   ]
 })
