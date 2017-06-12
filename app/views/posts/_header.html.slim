@@ -1,9 +1,7 @@
 header.post__header
   h1.post__title = post.title
   .post__meta
-    /.post__categories
-        a href="#" #нет
-        a href="#" #никаких
-        a href="#" #категорий
-        a href="#" ##{"mda kek"}
+    .post__categories
+      - post.tags.each do |tag|
+        a(href="#") ##{tag}
     .post__time = l(post.created_at)

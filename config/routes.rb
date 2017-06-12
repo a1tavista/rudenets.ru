@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       end
     end
     resources :posts
+    resources :labels, only: [:index]
   end
 
   resources :entries

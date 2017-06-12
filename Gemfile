@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.4.1"
 
 gem "active_link_to"
+gem 'acts-as-taggable-on'
 gem "autoprefixer-rails"
 gem "cancancan"
 gem "clearance"

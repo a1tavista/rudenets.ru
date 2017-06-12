@@ -1,7 +1,14 @@
 <script>
   export default {
     data() {
-      return {};
+      return {
+        labels: []
+      };
+    },
+    mounted() {
+      this.axios.get('/api/labels.json').then((response) => {
+        this.labels = response.data;
+      });
     }
   }
 </script>
@@ -11,40 +18,5 @@
     header.widget__header
       h1.widget__title Метки
     .widget__list
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
-      .widget__item Ссылка на метку
+      router-link.widget__item(v-for="label in labels" :to="'/bo/labels/' + label.id" :key="label.id") {{ label.name }}
 </template>
