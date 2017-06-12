@@ -10,7 +10,8 @@
 @import "buttons";
 @import "forms";
 @import "layout";
-@import "lists";
-@import "media";
-@import "tables";
-@import "typography";
+@import "../../application/base/lists";
+@import "../../application/base/media";
+@import "../../application/base/tables";
+@import "../../application/base/typography";
+@import "mixins";

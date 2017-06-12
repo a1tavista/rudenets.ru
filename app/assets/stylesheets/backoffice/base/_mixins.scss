@@ -1,0 +1,13 @@
+@mixin good-scroll() {
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #e5e5e5;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #b7b7b7;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: 0 0 0 #808080 inset;
+  }
+}
