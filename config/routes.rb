@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         get :parse
       end
     end
-    resources :posts, only: [:create]
+    resources :posts
   end
 
   resources :entries

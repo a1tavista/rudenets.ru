@@ -1,9 +1,6 @@
 require 'open-uri'
 
-class Api::LinksController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :require_login
-
+class Api::LinksController < Api::BaseController
   USERAGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5"
 
   def parse
