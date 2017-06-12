@@ -1,0 +1,93 @@
+.editor {
+  $root: ".editor";
+
+  height: 40vh;
+  margin-bottom: $small-spacing;
+
+  &--fullscreen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 100% !important;
+  }
+
+  &--large {
+    height: 70vh;
+  }
+
+  &__toolbar {
+    background: white;
+    border: 1px solid $light-gray;
+    border-bottom: 0;
+    padding: $small-spacing;
+    min-height: 50px;
+
+    button {
+      &:focus {
+        box-shadow: none;
+        outline: none;
+        background: #EFEFEF;
+      }
+      &:not(:last-child) {
+        margin-right: $small-spacing / 2;
+      }
+      padding: 0;
+      margin: 0;
+      background: none;
+      color: black;
+      line-height: 0.8;
+    }
+  }
+
+  &__workspace {
+    display: flex;
+    height: calc(100% - 55px);
+    flex-direction: row;
+  }
+
+  &__text-input, &__preview {
+    flex: 1;
+    height: 100%;
+    border: 1px solid $light-gray;
+    padding: $small-spacing $small-spacing;
+    resize: none;
+    overflow-y: scroll;
+    @include good-scroll();
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__text-input {
+    font-family: monospace;
+    font-size: $base-font-size + 0.05em;
+    border-right: 0;
+
+    &, &:focus, &:active, &:hover {
+      box-shadow: none;
+      border: 1px solid $light-gray;
+      outline: none !important;
+    }
+  }
+
+  &__preview {
+
+    &--hidden {
+      display: none;
+    }
+
+    border-left: 0;
+    background-color: #FCFCFC;
+    word-wrap: break-word;
+  }
+
+  &__status-bar {
+    border: 1px solid $light-gray;
+    border-top: 0;
+    font-size: 13px;
+    background: #EEE;
+    padding: $small-spacing / 2;
+  }
+}

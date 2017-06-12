@@ -1,40 +1,61 @@
 <script>
   import _ from 'lodash';
   import marked from 'marked';
+  import SyncScrollMixin from './editor/SyncScrollMixin';
+  import Toolbar from './editor/Toolbar.vue';
 
   export default {
     data() {
       return {
-        text: ""
-      }
-    },
-    computed: {
-      compiledMarkdown: function () {
-        if (this.text) {
-          return marked(this.text, {sanitize: true});
-        } else {
-          return "";
+        markdown: "",
+        editorState: {
+          isFullscreen: false,
+          isPreviewHidden: false
+        },
+        stats: {
+          chars: 0,
+          words: 0,
+          lines: 0
         }
       }
     },
+    computed: {
+      html() {
+        return this.markdown ? marked(this.markdown, {sanitize: true}) : "";
+      }
+    },
     methods: {
-      update: _.debounce(function (e) {
-        this.text = e.target.value
-      }, 300)
+      updateValue(value) {
+        this.markdown = value;
+        this.calcStats();
+        this.$emit('input', value);
+      },
+      calcStats() {
+        this.stats.chars = this.markdown.length;
+        this.stats.words = this.markdown.split(/\S+/g).length - 1;
+        this.stats.lines = this.markdown.replace(/[^\n]/g, "").length + 1;
+      }
     },
     mounted() {
-      marked.setOptions({
-        smartLists: true,
-        smartypants: true
+      marked.setOptions({smartLists: true, smartypants: true});
+      this.markdown = this.value;
+      this.calcStats();
+      this.$on('stateChanging', function(payload) {
+        debugger;
+        this.editorState[payload.option] = payload.value;
       });
-      this.text = this.mdText;
     },
-    props: ["mdText"]
+    mixins: [SyncScrollMixin],
+    components: {Toolbar},
+    props: ["value", "placeholder"]
   }
 </script>
 
 <template lang="pug">
-  div
-    textarea(v-model="text")
-    div(v-html="compiledMarkdown")
+  .editor(v-bind:class="{ 'editor--fullscreen': editorState.isFullscreen }")
+    toolbar.editor__toolbar(:state="editorState")
+    .editor__workspace
+      textarea.editor__text-input(@scroll="syncScroll" @input="updateValue($event.target.value)" :placeholder="placeholder" ref="editor") {{ value }}
+      .editor__preview(v-html="html" ref="preview" v-bind:class="{ 'editor__preview--hidden': editorState.isPreviewHidden }")
+    .editor__status-bar Символов: {{ stats.chars }}, слов: {{ stats.words }}, строк: {{ stats.lines }}
 </template>
