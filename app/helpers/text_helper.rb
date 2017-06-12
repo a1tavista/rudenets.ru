@@ -1,7 +1,7 @@
 module TextHelper
   def to_markdown(text)
     return nil if text.nil?
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, footnotes: true, tables: true)
+    markdown = Redcarpet::Markdown.new(::Redcarpet::RenderWithFencedCode, autolink: true, footnotes: true, tables: true, fenced_code_blocks: true)
     html = markdown.render(text)
     to_smarty(html)
   end
