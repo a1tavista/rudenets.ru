@@ -6,7 +6,7 @@
       };
     },
     mounted() {
-      this.axios.get('/api/posts/private.json').then((response) => {
+      this.axios.get('/api/posts/published.json').then((response) => {
         this.posts = response.data;
       });
     }
@@ -16,7 +16,7 @@
 <template lang="pug">
   div
     header.widget__header
-      h1.widget__title Заметки
+      h1.widget__title Опубликованные
     .widget__list
       router-link.widget__item(v-for="post in posts" :to="'/bo/notes/' + post.id" :key="post.id")
         h6 {{ post.title }}

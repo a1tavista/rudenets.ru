@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612205541) do
+ActiveRecord::Schema.define(version: 20170704100349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170612205541) do
   create_table "entries", id: :serial, force: :cascade do |t|
     t.string "taxonomy_type"
     t.integer "taxonomy_id"
-    t.boolean "published"
+    t.boolean "published", default: false
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

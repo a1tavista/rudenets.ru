@@ -6,6 +6,16 @@ class Api::PostsController < Api::BaseController
     respond_with(@posts)
   end
 
+  def published
+    @posts = Post.refreshed_order.published
+    respond_with(@posts)
+  end
+
+  def private
+    @posts = Post.refreshed_order.unpublished
+    respond_with(@posts)
+  end
+
   def create
     @post = Post.create!(post_params)
     Entry.create!(taxonomy: @post)

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       end
     end
     resources :posts do
+      get :published, on: :collection
+      get :private, on: :collection
       put :publish, on: :member
     end
     resources :labels, only: [:index]

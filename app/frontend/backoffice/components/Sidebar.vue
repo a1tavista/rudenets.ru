@@ -3,6 +3,7 @@
   import MediaWidget from '../widgets/MediaWidget.vue';
   import LabelsWidget from '../widgets/LabelsWidget.vue';
   import NotesWidget from '../widgets/NotesWidget.vue';
+  import PostsWidget from '../widgets/PostsWidget.vue';
 
   export default {
     data() {
@@ -10,7 +11,7 @@
         currentWidget: "NotesWidget"
       };
     },
-    components: {InteractiveWidget, MediaWidget, NotesWidget, LabelsWidget}
+    components: {InteractiveWidget, MediaWidget, NotesWidget, PostsWidget, LabelsWidget}
   }
 </script>
 
@@ -25,13 +26,13 @@
         //.icon-sidebar__item
           i.material-icons playlist_add
       //div.icon-sidebar__group
-        router-link.icon-sidebar__item(to="/bo/notes/published")
-          i.material-icons language
         router-link.icon-sidebar__item(to="/bo/links/published")
           i.material-icons link
       div.icon-sidebar__group
         button.icon-sidebar__item(@click="currentWidget = 'NotesWidget'")
           i.material-icons description
+        button.icon-sidebar__item(@click="currentWidget = 'PostsWidget'")
+          i.material-icons public
         //button.icon-sidebar__item(@click="currentWidget = 'MediaWidget'")
           i.material-icons insert_photo
         button.icon-sidebar__item(@click="currentWidget = 'LabelsWidget'")
