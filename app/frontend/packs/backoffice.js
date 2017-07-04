@@ -5,6 +5,8 @@ import store from '../backoffice/store';
 import router from '../backoffice/router';
 import {sync} from 'vuex-router-sync';
 
+sync(store, router);
+
 Vue.use(VueAxios, axios);
 
 import App from '../backoffice/App.vue';

@@ -3,4 +3,5 @@ a href=(post_path(post))
     .post-preview__date = l(post.created_at, format: :only_date)
     .post-preview__content
       h4.post-preview__title = post.title
-      p.post-preview__summary = to_smarty(post.summary)
+      - if post.summary.present?
+        p.post-preview__summary = to_smarty(post.summary)

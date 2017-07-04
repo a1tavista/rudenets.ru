@@ -2,7 +2,9 @@
   export default {
     methods: {
       changeState(option, value) {
-        this.$emit('stateChanging', { param: option, value: value });
+        var payload = {};
+        payload[option] = value;
+        this.$emit('stateChanging', payload);
       }
     },
     props: ['state']
@@ -17,6 +19,10 @@
     &__group {
     }
 
+    &__spacer {
+      flex: 1;
+    }
+
     &__separator {
       margin: 0.4em 0.6em 0.2em;
       border-left: 1px solid black;
@@ -27,17 +33,14 @@
 <template lang="pug">
   div.toolbar
     .toolbar__group
-      button(@click="")
-        i.material-icons {{ state.isFullscreen ? 'edit' : 'visibility' }}
-      button(@click="")
+    .toolbar__spacer
+    slot(name="actions")
+    .toolbar__separator
+    .toolbar__group
+      button(@click="changeState('isInputHidden', !state.isInputHidden)")
+        i.material-icons {{ state.isInputHidden ? 'edit' : 'visibility' }}
+      button(@click="changeState('isPreviewHidden', !state.isPreviewHidden)")
         i.material-icons {{ state.isPreviewHidden ? 'chrome_reader_mode' : 'web_asset' }}
       button(@click="changeState('isFullscreen', !state.isFullscreen)")
         i.material-icons {{ state.isFullscreen ? 'fullscreen_exit' : 'fullscreen' }}
-    .toolbar__separator
-    .toolbar__group
-      button(@click="")
-        i.material-icons {{ state.isPreviewHidden ? 'chrome_reader_mode' : 'web_asset' }}
-      button(@click="")
-        i.material-icons {{ state.isFullscreen ? 'fullscreen_exit' : 'fullscreen' }}
-    .toolbar__separator
 </template>

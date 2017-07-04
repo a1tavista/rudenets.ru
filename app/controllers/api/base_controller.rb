@@ -1,6 +1,11 @@
-class Api::BaseController < ActionController::Base
+class Api::BaseController < ActionController::API
   include Clearance::Controller
-  respond_to :json
+  include CanCan::ControllerAdditions
+  include ActionView::Rendering
+  include AbstractController::Translation
+
   before_action :require_login
   before_action :verify_requested_format!
+
+  respond_to :json
 end

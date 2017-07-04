@@ -20,11 +20,11 @@
       div.icon-sidebar__group
         router-link.icon-sidebar__item(to="/bo/notes/new")
           i.material-icons note_add
-        .icon-sidebar__item
+        //.icon-sidebar__item
           i.material-icons add_a_photo
-        .icon-sidebar__item
+        //.icon-sidebar__item
           i.material-icons playlist_add
-      div.icon-sidebar__group
+      //div.icon-sidebar__group
         router-link.icon-sidebar__item(to="/bo/notes/published")
           i.material-icons language
         router-link.icon-sidebar__item(to="/bo/links/published")
@@ -32,11 +32,11 @@
       div.icon-sidebar__group
         button.icon-sidebar__item(@click="currentWidget = 'NotesWidget'")
           i.material-icons description
-        button.icon-sidebar__item(@click="currentWidget = 'MediaWidget'")
+        //button.icon-sidebar__item(@click="currentWidget = 'MediaWidget'")
           i.material-icons insert_photo
         button.icon-sidebar__item(@click="currentWidget = 'LabelsWidget'")
           i.material-icons label
-        button.icon-sidebar__item(@click="currentWidget = 'InteractiveWidget'")
+        //button.icon-sidebar__item(@click="currentWidget = 'InteractiveWidget'")
           i.material-icons code
     aside.widget(:is="currentWidget")
 </template>

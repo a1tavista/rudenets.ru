@@ -1,16 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Light');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 // Breakpoints
 $medium-screen: 600px;
 $large-screen: 900px;
 
 // Typography
-$base-font-family: "Roboto", sans-serif;
+$base-font-family: "Open Sans Light", sans-serif;
 $heading-font-family: "Open Sans", sans-serif;
 
 // Font Sizes
 $base-font-size: 1em;
 
 // Line height
-$base-line-height: 1.6;
+$base-line-height: 1.75;
 $heading-line-height: 1.2;
 
 // Other Sizes

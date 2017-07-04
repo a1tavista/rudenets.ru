@@ -10,7 +10,9 @@ Rails.application.routes.draw do
         get :parse
       end
     end
-    resources :posts
+    resources :posts do
+      put :publish, on: :member
+    end
     resources :labels, only: [:index]
   end
 

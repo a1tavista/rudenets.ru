@@ -86,7 +86,7 @@
   <div>
     <div class="entries-new">
       <input type="text" placeholder="Вставь URL или впиши название нового поста..." v-model="textInput">
-      <pre class="entries-new__status">{{ answer }}</pre>
+      <pre class="entries-new__status" v-if="answer">{{ answer }}</pre>
       <div class="entries-new__form" v-if="isURL">
         <div class="link">
           <div class="link__image-picker">

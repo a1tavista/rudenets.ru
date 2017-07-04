@@ -44,8 +44,22 @@
 
   &__workspace {
     display: flex;
-    height: calc(100% - 55px);
+    height: calc(100% - 100px);
     flex-direction: row;
+
+    &--preview-hidden {
+      #{$root}__preview { display: none; }
+    }
+
+    &--input-hidden {
+      #{$root}__text-input {
+        display: none;
+      }
+
+      #{$root}__preview {
+        border-left-width: 1px;
+      }
+    }
   }
 
   &__text-input, &__preview {
@@ -73,17 +87,14 @@
   }
 
   &__preview {
-
-    &--hidden {
-      display: none;
-    }
-
-    border-left: 0;
+    border-left-width: 0;
     background-color: #FCFCFC;
     word-wrap: break-word;
   }
 
   &__status-bar {
+    display: flex;
+    justify-content: space-between;
     border: 1px solid $light-gray;
     border-top: 0;
     font-size: 13px;
