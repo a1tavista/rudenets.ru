@@ -23,6 +23,14 @@
     overflow-y: scroll;
   }
 
+  &__spinner {
+    flex: 1;
+    border-top: 1px solid #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__item {
     display: block;
     padding: $small-spacing 1.5 * $small-spacing;
