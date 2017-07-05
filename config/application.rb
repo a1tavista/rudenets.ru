@@ -24,6 +24,7 @@ module RudenetsRu
       generate.view_specs false
     end
     config.autoload_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << "#{Rails.root}/lib"
     config.i18n.default_locale = :ru
     config.i18n.available_locales = [:ru]
     config.action_controller.action_on_unpermitted_parameters = :raise
