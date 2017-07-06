@@ -68,7 +68,7 @@
       saveLink: function () {
         this.answer = "Saving...";
         var vm = this;
-        this.axios.post('/api/links', {
+        this.axios.post('/api/links.json', {
             link: vm.opengraph
           })
           .then(function (response) {
