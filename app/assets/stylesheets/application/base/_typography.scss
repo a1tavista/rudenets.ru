@@ -79,3 +79,7 @@ code:not([class]) {
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   background: #272822;
 }
+
+pre {
+  margin: 0 0 $small-spacing !important;
+}
