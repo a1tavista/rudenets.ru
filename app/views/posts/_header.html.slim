@@ -1,7 +1,0 @@
-header.post__header
-  h1.post__title = post.title
-  .post__meta
-    .post__categories
-      - post.tag_list.each do |tag|
-        a(href="#") ##{tag.to_s.gsub(/( )/, '_').downcase}
-    .post__time = l(post.created_at)

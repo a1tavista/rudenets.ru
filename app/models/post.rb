@@ -3,6 +3,19 @@ class Post < ApplicationRecord
   has_one :entry, as: :taxonomy, dependent: :destroy
   has_many :images, as: :imageable
 
+  include FriendlyId
+  friendly_id :canonical_url, use: [:slugged, :history]
+
+  def should_generate_new_friendly_id?
+    title_changed? || super
+  end
+
+  def canonical_url
+    "#{I18n.l(created_at, format: :slug)} #{Russian.translit(title)}"
+  end
+
+
+
   def self.published
     includes(:entry).where(entries: { published: true })
   end

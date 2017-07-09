@@ -1,3 +1,9 @@
-article.post
-  = render partial: "posts/header", locals: {post: @post}
+article.post(itemscope itemtype="http://schema.org/Blog")
+  header.post__header
+    h1.post__title = title @post.title
+    .post__meta
+      .post__categories
+        - @post.tag_list.each do |tag|
+          a(href="#") ##{tag.to_s.gsub(/( )/, '_').downcase}
+      .post__time = l(@post.created_at)
   .post__content = to_markdown(@post.text)
