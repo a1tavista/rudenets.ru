@@ -1,20 +1,21 @@
 class Post < ApplicationRecord
+  include FriendlyId
+
   acts_as_taggable
+  friendly_id :slug
+
   has_one :entry, as: :taxonomy, dependent: :destroy
   has_many :images, as: :imageable
 
-  include FriendlyId
-  friendly_id :canonical_url, use: [:slugged, :history]
+  after_touch :update_canonical_url
+  before_save :update_canonical_url
 
-  def should_generate_new_friendly_id?
-    title_changed? || super
+  def update_canonical_url
+    return if entry&.published_at.nil?
+    slug_date = I18n.l(entry.published_at, format: :slug)
+    slug_title = Russian.translit(title).parameterize.downcase
+    update_columns(slug: "#{slug_date}-#{slug_title}")
   end
-
-  def canonical_url
-    "#{I18n.l(created_at, format: :slug)} #{Russian.translit(title)}"
-  end
-
-
 
   def self.published
     includes(:entry).where(entries: { published: true })

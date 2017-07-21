@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  belongs_to :taxonomy, polymorphic: true, dependent: :destroy
+  belongs_to :taxonomy, polymorphic: true, dependent: :destroy, touch: true
 
   def self.published
     where(published: true)
