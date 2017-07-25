@@ -6,5 +6,5 @@ h1.page-title Последние записи
 .entries-list
   - @entries.each do |entry|
     .entries-list__item
-      = render partial: entry.taxonomy_type.underscore, locals: { :post => entry.taxonomy }
+      = render partial: "entries/#{entry.taxonomy_type.underscore}", locals: { post: entry.taxonomy }
 
