@@ -2,7 +2,11 @@ class EntriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @entries = Entry.includes(:taxonomy).published.sorted_by_creation_time
+    @entries = Entry
+                 .includes(:taxonomy)
+                 .published
+                 .sorted_by_creation_time
+                 .page(params[:page])
   end
 
   def show; end

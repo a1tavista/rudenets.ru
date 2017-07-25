@@ -8,3 +8,4 @@ h1.page-title Последние записи
     .entries-list__item
       = render partial: "entries/#{entry.taxonomy_type.underscore}", locals: { post: entry.taxonomy }
 
+= will_paginate @entries

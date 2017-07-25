@@ -7,6 +7,7 @@ class PostsController < ApplicationController
                .published
                .sorted_by_creation_time
                .where('taxonomy_type = ?', Post)
+               .page(params[:page])
     render 'entries/index'
   end
 

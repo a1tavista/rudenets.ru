@@ -28,6 +28,7 @@ gem "sass-rails", "~> 5.0"
 gem "slim-rails"
 gem "sprockets", ">= 3.0.0"
 gem "webpacker"
+gem "will_paginate"
 gem "uglifier"
 
 group :development do

@@ -1,6 +1,8 @@
 class Entry < ApplicationRecord
   belongs_to :taxonomy, polymorphic: true, dependent: :destroy, touch: true
 
+  self.per_page = 10
+
   def self.published
     where('"entries"."published"', true)
   end
