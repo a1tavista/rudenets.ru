@@ -48,7 +48,7 @@
       calcStats() {
         this.stats.chars = this.markdown.length;
         this.stats.words = this.markdown.split(/\S+/g).length - 1;
-        this.stats.lines = this.markdown.replace(/[^\n]/g, "").length + 1;
+        this.stats.lines = this.markdown.replace(/[^\n\n]/g, "").length + 1;
       }
     },
     mounted() {
@@ -73,10 +73,10 @@
       .toolbar__group(slot="actions")
         slot(name="actions")
     .editor__workspace(:class='workspaceClasses')
-      textarea.editor__text-input(@scroll='syncScroll' v-on:input='updateValue($event.target.value)' v-bind:placeholder='placeholder' ref='editor') {{ markdown }}
+      textarea.editor__text-input(@scroll='syncScroll' v-on:input='updateValue($event.target.value)' v-model='markdown' v-bind:placeholder='placeholder' ref='editor')
       .editor__preview(v-html='html' ref='preview')
     .editor__status-bar
-      div Символов: {{ stats.chars }}, слов: {{ stats.words }}, строк: {{ stats.lines }}
+      div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}
       slot(name="status")
 </template>
 
