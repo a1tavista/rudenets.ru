@@ -44,16 +44,20 @@ p {
   margin: 0 0 $small-spacing;
 }
 
-a {
-  color: $action-color;
+@mixin styled-link($color, $hover-color: $color) {
+  color: $color;
   text-decoration: none;
   transition: color $base-duration $base-timing;
 
   &:active,
   &:focus,
   &:hover {
-    color: shade($action-color, 25%);
+    color: shade($hover-color, 25%);
   }
+}
+
+a {
+  @include styled-link($action-color);
 }
 
 hr {

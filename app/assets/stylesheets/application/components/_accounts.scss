@@ -6,7 +6,7 @@
   &__link {
     &:hover, &:active, &:focus {
       color: transparent;
-      background-color: #EEEEEE;
+      background-color: shade(#2E3948, 15%);
     }
 
     display: block;

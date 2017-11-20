@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
 
-  background: white;
+  background: #2E3948;
   width: 320px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
@@ -17,6 +17,7 @@
     position: static;
     width: auto;
     box-shadow: none;
+    margin-bottom: 2 * $small-spacing;
   }
 
   &__content {
@@ -28,7 +29,7 @@
 
   &__photo {
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid white;
     @media screen and (max-width: 800px) {
       display: none;
     }
@@ -39,10 +40,7 @@
     font-size: 2.2em;
     font-weight: bold;
     min-width: 180px;
-    a {
-      color: black;
-      &:focus, &:hover, &:active { color: lighten($dark-gray, 3%); }
-    }
+    a { @include styled-link(#F1F1F1); }
 
     @media screen and (min-width: 800px) and (max-width: 1279px) {
       font-size: 2em;
@@ -66,12 +64,9 @@
       justify-content: flex-start;
 
       a {
+        @include styled-link(white);
         display: block;
         padding: $small-spacing / 2;
-        &:hover {
-          background-color: lighten($blue, 25%);
-          color: white;
-        }
       }
     }
   }
