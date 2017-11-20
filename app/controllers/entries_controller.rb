@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
     @entries = Entry
                  .includes(:taxonomy)
                  .published
-                 .sorted_by_creation_time
+                 .sorted_by_publishing_time
                  .page(params[:page])
   end
 
