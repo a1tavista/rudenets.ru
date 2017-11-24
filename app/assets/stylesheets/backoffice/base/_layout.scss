@@ -19,6 +19,7 @@ body {
   min-height: 100%;
   width: 100%;
   padding-left: $sidebar-width;
+  transition: padding .1s ease-out;
 
   .sidebar {
     position: fixed;
@@ -28,6 +29,8 @@ body {
     right: 0;
 
     width: $sidebar-width;
+
+    transition: width .1s ease-out;
 
     display: flex;
     flex-direction: row;
@@ -39,6 +42,10 @@ body {
 
     .sidebar {
       width: $icon-sidebar-width;
+    }
+
+    .widget {
+      opacity: 0;
     }
   }
 }
