@@ -1,11 +1,12 @@
 .icon-sidebar {
   display: flex;
+  width: 100px;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   text-align: center;
 
   padding: $small-spacing 1.5 * $small-spacing;
-  background: #F5F5F5;
+  background: #33393d;
   border-right: 1px solid #C9C9C9;
 
   &__group {
@@ -17,25 +18,32 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    @include size(45px);
+    background: transparent;
     margin-bottom: $small-spacing;
-
-    background: #FFFFFF;
-    border: 1px solid #C9C9C9;
     border-radius: 50%;
-    transition: background 0.25s ease-in-out, border .25s ease-in-out;
+    transition: background 0.25s ease-in-out, border .25s ease-in-out, box-shadow;
+    @include size(55px);
 
     .material-icons {
-      color: $blue;
+      color: white;
       transition: color 0.25s ease-in-out;
     }
 
-    &:hover, &:focus, &.router-link-exact-active {
-      background: $blue;
-      border-color: $blue;
+    &:hover, &:focus, &.router-link-exact-active, &.active {
       outline: 0;
+      box-shadow: 5px 5px 10px -4px rgba(0,0,0,0.25);
+      background: #056dc3;
       .material-icons {
         color: white;
+      }
+    }
+
+    &--widget {
+      &:hover, &:focus, &.router-link-exact-active, &.active {
+        background: #F2D200;
+        .material-icons {
+          color: black;
+        }
       }
     }
   }

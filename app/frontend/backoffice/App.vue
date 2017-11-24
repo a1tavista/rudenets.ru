@@ -1,17 +1,27 @@
 <script>
-  import Sidebar from './components/Sidebar.vue';
+  import AppSidebar from './components/AppSidebar.vue';
+  import {mapActions, mapGetters} from 'vuex';
 
   export default {
     data() {
       return {};
     },
-    components: {Sidebar}
+    computed: {
+      ...mapGetters(['isWidgetOpened'])
+    },
+    methods: {
+      ...mapActions(['initializeApplicationData'])
+    },
+    mounted() {
+      this.initializeApplicationData();
+    },
+    components: {AppSidebar}
   }
 </script>
 
 <template lang="pug">
-  .container
-    sidebar
+  .container(:class="[!isWidgetOpened && 'container--tight']")
+    app-sidebar
     transition(name="fade" mode="out-in")
       main.content-container
         router-view

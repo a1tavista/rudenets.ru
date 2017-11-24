@@ -1,29 +1,17 @@
-<script>
-  import Spinner from 'vue-simple-spinner';
+<template lang="pug">
+  sidebar-widget(:items="getLabels.items", :is-loading="getLabels.isLoading")
+    template(slot="title") Метки
+    template(slot="item" slot-scope="{ item }")
+      router-link.widget__item(:to="'/bo/notes/' + item.id") {{ item.name }}
+</template>
 
+<script>
+  import SidebarWidget from '../components/SidebarWidget.vue';
+  import {mapGetters, mapState} from "vuex";
   export default {
-    data() {
-      return {
-        labels: [],
-        loading: true
-      };
+    computed: {
+      ...mapGetters(['getLabels'])
     },
-    mounted() {
-      this.axios.get('/api/labels.json').then((response) => {
-        this.loading = false;
-        this.labels = response.data;
-      });
-    },
-    components: { Spinner }
+    components: { SidebarWidget }
   }
 </script>
-
-<template lang="pug">
-  div
-    header.widget__header
-      h1.widget__title Метки
-    .widget__spinner(v-if="loading")
-      spinner(size="huge")
-    .widget__list(v-else)
-      router-link.widget__item(v-for="label in labels" :to="'/bo/labels/' + label.id" :key="label.id") {{ label.name }}
-</template>

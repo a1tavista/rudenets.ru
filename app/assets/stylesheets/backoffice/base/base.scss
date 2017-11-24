@@ -3,6 +3,7 @@
 // Copyright 2013-2015 thoughtbot, inc.
 // MIT License
 @import "../../application/base/variables";
+@import "variables";
 
 @import "buttons";
 @import "forms";
@@ -11,4 +12,3 @@
 @import "../../application/base/media";
 @import "../../application/base/tables";
 @import "../../application/base/typography";
-@import "mixins";

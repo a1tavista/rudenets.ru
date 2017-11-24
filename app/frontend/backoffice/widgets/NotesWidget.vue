@@ -1,34 +1,22 @@
-<script>
-  import Spinner from 'vue-simple-spinner';
+<template lang="pug">
+  sidebar-widget(:items="getDrafts.items", :is-loading="getDrafts.isLoading")
+    template(slot="title") Черновики
+    template(slot="item" slot-scope="{ item }")
+      router-link.widget__item(:to="'/bo/notes/' + item.id")
+        h6 {{ item.title }}
+        p(v-html="item.summary" v-show="item.summary")
+</template>
 
+<script>
+  import SidebarWidget from '../components/SidebarWidget.vue';
+  import {mapGetters} from "vuex";
   export default {
-    data() {
-      return {
-        posts: [],
-        loading: true
-      };
+    computed: {
+      ...mapGetters(['getDrafts'])
     },
-    mounted() {
-      this.axios.get('/api/posts/private.json').then((response) => {
-        this.loading = false;
-        this.posts = response.data;
-      });
-    },
-    components: { Spinner }
+    components: { SidebarWidget }
   }
 </script>
-
-<template lang="pug">
-  div
-    header.widget__header
-      h1.widget__title Заметки
-    .widget__spinner(v-if="loading")
-      spinner(size="huge")
-    .widget__list(v-else)
-      router-link.widget__item(v-for="post in posts" :to="'/bo/notes/' + post.id" :key="post.id")
-        h6 {{ post.title }}
-        p(v-html="post.summary" v-show="post.summary")
-</template>
 
 <style lang="scss">
   .widget__item {

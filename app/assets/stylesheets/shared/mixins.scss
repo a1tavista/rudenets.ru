@@ -11,3 +11,15 @@
     box-shadow: 0 0 0 #808080 inset;
   }
 }
+
+@mixin styled-link($color, $hover-color: $color) {
+  color: $color;
+  text-decoration: none;
+  transition: color $base-duration $base-timing;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: shade($hover-color, 25%);
+  }
+}

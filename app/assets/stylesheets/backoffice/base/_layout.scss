@@ -1,3 +1,5 @@
+$sidebar-width: 500px;
+
 html {
   box-sizing: border-box;
 }
@@ -16,7 +18,7 @@ body {
 .container {
   min-height: 100%;
   width: 100%;
-  padding-left: 350px + 85px;
+  padding-left: $sidebar-width;
 
   .sidebar {
     position: fixed;
@@ -25,11 +27,19 @@ body {
     left: 0;
     right: 0;
 
-    width: 350px + 85px;
+    width: $sidebar-width;
 
     display: flex;
     flex-direction: row;
     align-items: stretch;
+  }
+
+  &--tight {
+    padding-left: $icon-sidebar-width;
+
+    .sidebar {
+      width: $icon-sidebar-width;
+    }
   }
 }
 
