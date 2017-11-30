@@ -2,7 +2,7 @@
   sidebar-widget(:items="getDrafts.items", :is-loading="getDrafts.isLoading")
     template(slot="title") Черновики
     template(slot="item" slot-scope="{ item }")
-      router-link.widget__item(:to="'/bo/notes/' + item.id")
+      router-link.widget__item(:to="'/notes/' + item.id")
         h6(v-html="item.title || unnamed")
         p(v-html="item.summary" v-show="item.summary")
 </template>

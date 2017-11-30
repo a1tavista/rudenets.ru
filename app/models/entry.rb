@@ -18,4 +18,8 @@ class Entry < ApplicationRecord
   def publish!
     update(published: true, published_at: Time.current)
   end
+
+  def unpublish!
+    update(published: false, published_at: nil)
+  end
 end

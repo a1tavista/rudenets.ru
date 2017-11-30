@@ -9,7 +9,8 @@ const state = {
     title: null,
     text: null,
     summary: null,
-    tagList: []
+    tagList: [],
+    entry: {}
   },
   currentNoteSaving: false,
   notes: {
@@ -75,7 +76,8 @@ const actions = {
       title: null,
       text: null,
       summary: null,
-      tagList: []
+      tagList: [],
+      entry: {}
     });
   },
 
@@ -107,12 +109,25 @@ const actions = {
     }
   }, 500),
 
-  publishNote({dispatch}, payload) {
-    notesService.publish(state.currentNote.id).then(_ => fetchNote({id: state.currentNote.id}));
+  publishNote({dispatch, commit}, payload) {
+    notesService.publish(state.currentNote.id).then(response => {
+      commit('updateNote', response.data);
+      dispatch('fetchNotes');
+    });
   },
 
-  unpublishNote({commit}, payload) {
+  unpublishNote({dispatch, commit}, payload) {
+    notesService.unpublish(state.currentNote.id).then(response => {
+      commit('updateNote', response.data);
+      dispatch('fetchNotes');
+    });
+  },
 
+  deleteNote({dispatch}) {
+    notesService.remove(state.currentNote.id).then(_ => {
+      dispatch('newNote');
+      dispatch('fetchNotes');
+    });
   }
 };
 

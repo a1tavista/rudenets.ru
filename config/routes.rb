@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get :published, on: :collection
       get :private, on: :collection
       put :publish, on: :member
+      put :unpublish, on: :member
     end
     resources :labels, only: [:index]
   end

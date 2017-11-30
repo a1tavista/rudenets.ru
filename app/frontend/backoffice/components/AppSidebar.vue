@@ -22,7 +22,10 @@
   .sidebar
     .icon-sidebar
       div.icon-sidebar__group
-        router-link.icon-sidebar__item(to="/bo/notes/new")
+        router-link.icon-sidebar__item(to="/")
+          i.material-icons note
+      div.icon-sidebar__group
+        router-link.icon-sidebar__item(to="/notes/new")
           i.material-icons note_add
       div.icon-sidebar__group
         button.icon-sidebar__item.icon-sidebar__item--widget(

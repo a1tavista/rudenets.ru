@@ -11,6 +11,7 @@ import createNoteFormView from "../views/createNoteFormView";
 
 export default new Router({
   mode: 'history',
+  base: '/bo',
   scrollBehavior: () => ({y: 0}),
   routes: [
     // { path: '/top/:page(\\d+)?', component: createListView('top') },
@@ -19,11 +20,11 @@ export default new Router({
     // { path: '/ask/:page(\\d+)?', component: createListView('ask') },
     // { path: '/job/:page(\\d+)?', component: createListView('job') },
     // { path: '/item/:id(\\d+)', component: ItemView },
-    { path: '/bo', component: CommonNoteView },
-    { path: '/bo/notes/:id(\\d+)', component: NoteFormView },
-    { path: '/bo/notes/new', component: createNoteFormView("new") },
-    { path: '/bo/media/new', component: NoteFormView },
-    { path: '/bo/links/published', component: LinksListView },
-    { path: '/bo/notes/published', component: NotesListView },
+    { path: '/', component: CommonNoteView },
+    { path: '/notes/:id(\\d+)', component: NoteFormView },
+    { path: '/notes/new', component: createNoteFormView("new") },
+    { path: '/media/new', component: NoteFormView },
+    { path: '/links/published', component: LinksListView },
+    { path: '/notes/published', component: NotesListView },
   ]
 })

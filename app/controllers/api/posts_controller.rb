@@ -14,10 +14,20 @@ class Api::PostsController < Api::BaseController
 
   def publish
     @post.entry.publish!
+    render :show
+  end
+
+  def unpublish
+    @post.entry.unpublish!
+    render :show
   end
 
   def update
     @post.update(post_params)
+  end
+
+  def destroy
+    @post.destroy
   end
 
   private

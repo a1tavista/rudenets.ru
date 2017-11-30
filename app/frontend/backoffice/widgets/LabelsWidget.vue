@@ -2,7 +2,7 @@
   sidebar-widget(:items="getLabels.items", :is-loading="getLabels.isLoading")
     template(slot="title") Метки
     template(slot="item" slot-scope="{ item }")
-      router-link.widget__item(:to="'/bo/notes/' + item.id") {{ item.name }}
+      router-link.widget__item(:to="'/notes/' + item.id") {{ item.name }}
 </template>
 
 <script>
