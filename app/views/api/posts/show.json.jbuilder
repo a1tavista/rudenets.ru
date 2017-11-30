@@ -1,12 +1,10 @@
-json.post do
-  json.id @post.id
-  json.title @post.title
-  json.summary @post.summary
-  json.text @post.text
+json.id @post.id
+json.title @post.title
+json.summary @post.summary
+json.text @post.text
 
-  json.set! :tag_list do
-    json.array! @post.tag_list
-  end
+json.set! :tag_list do
+  json.array! @post.tag_list
 end
 
 json.entry do

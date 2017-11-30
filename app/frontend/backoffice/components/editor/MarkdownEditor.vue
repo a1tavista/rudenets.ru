@@ -7,7 +7,7 @@
   export default {
     data() {
       return {
-        markdown: "",
+        markdown: null,
         editorState: {
           isFullscreen: false,
           isPreviewHidden: false,
@@ -46,6 +46,7 @@
         this.editorState = Object.assign({}, this.editorState, payload);
       },
       calcStats() {
+        if(this.markdown === null) return;
         this.stats.chars = this.markdown.length;
         this.stats.words = this.markdown.split(/\S+/g).length - 1;
         this.stats.lines = this.markdown.replace(/[^\n\n]/g, "").length + 1;

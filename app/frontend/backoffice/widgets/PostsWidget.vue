@@ -3,7 +3,7 @@
     template(slot="title") Опубликованные
     template(slot="item" slot-scope="{ item }")
       router-link.widget__item(:to="'/bo/notes/' + item.id")
-        h6 {{ item.title }}
+        h6(v-html="item.title || unnamed")
         p(v-html="item.summary" v-show="item.summary")
 </template>
 
@@ -12,7 +12,8 @@
   import {mapGetters} from "vuex";
   export default {
     computed: {
-      ...mapGetters(['getPublished'])
+      ...mapGetters(['getPublished']),
+      unnamed: () => '<i>(без названия)</i>'
     },
     components: { SidebarWidget }
   }

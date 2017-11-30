@@ -28,4 +28,8 @@ class Post < ApplicationRecord
   def self.refreshed_order
     order("posts.updated_at DESC")
   end
+
+  def is_published
+    entry.published?
+  end
 end

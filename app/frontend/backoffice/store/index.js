@@ -2,18 +2,16 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import backofficeLayout from './modules/backofficeLayout';
-import data from './modules/data';
+import posts from './modules/posts';
 
 const debug = process.env.NODE_ENV !== 'production';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  // actions,
   modules: {
-    data,
+    posts,
     backofficeLayout,
-  //   currentNote
   },
   strict: debug
 });
