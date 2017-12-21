@@ -13,6 +13,7 @@ h5,
 h6 {
   font-family: $heading-font-family;
   font-size: 1.25em;
+  font-weight: lighter;
   line-height: $heading-line-height;
   margin-top: 0;
   margin-bottom: $small-spacing / 2;
@@ -36,7 +37,7 @@ h3 {
   font-size: 1.777em;
 }
 
-h4 {
+h4, h5, h6 {
   font-size: 1.333em;
 }
 
