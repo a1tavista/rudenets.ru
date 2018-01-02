@@ -22,7 +22,6 @@ ENV NODE_ENV production
 ENV RAILS_ENV production
 ENV RACK_ENV production
 ENV RAILS_ROOT /app
-# ENV RAILS_SERVE_STATIC_FILES 1
 ARG SECRET_KEY_BASE
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 ARG APPLICATION_HOST
@@ -30,7 +29,8 @@ ENV APPLICATION_HOST $APPLICATION_HOST
 
 COPY . ./
 
-RUN yarn install --production=false
+RUN yarn install --production
 RUN ./bin/webpack
+RUN rails assets:precompile
 
 EXPOSE 3000
