@@ -76,3 +76,13 @@ code:not([class]) {
 pre {
   margin: 0 0 $small-spacing !important;
 }
+
+dl {
+  dt {
+    color: #272822;
+    font-weight: normal;
+    font-size: 1.5em;
+    border-bottom: 1px solid #272822;
+    margin-bottom: $small-spacing / 2;
+  }
+}

@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :entries
   resources :posts
   resources :links
+
+  get '/(:id)', to: 'pages#show', as: :page
 end

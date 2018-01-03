@@ -31,6 +31,5 @@ COPY . ./
 
 RUN yarn install --production
 RUN ./bin/webpack
-RUN rails assets:precompile
 
 EXPOSE 3000

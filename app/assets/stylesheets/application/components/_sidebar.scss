@@ -40,11 +40,14 @@
     font-size: 2.2em;
     font-weight: bold;
     min-width: 180px;
-    a { @include styled-link(#F1F1F1); }
 
     @media screen and (min-width: 800px) and (max-width: 1279px) {
       font-size: 2em;
     }
+  }
+
+  &__root-link {
+    @include styled-link(#F1F1F1);
   }
 
   &__navigation {
