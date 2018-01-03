@@ -23,6 +23,7 @@
           mode: 'text/x-markdown',
           theme: 'elegant',
           extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"},
+          lineWrapping: true,
           tabSize: 2,
         },
         stats: {
@@ -54,6 +55,9 @@
         this.calcStats();
         this.$emit('input', this.code);
       },
+      kek(event) {
+        console.log(this.$refs.preview.scrollHeight, this.$refs.preview.offsetHeight, this.$refs.preview.scrollTop);
+      },
       changeState(payload) {
         this.editorState = Object.assign({}, this.editorState, payload);
       },
@@ -70,11 +74,7 @@
     },
     watch: {
       value() {
-        if(!this.watched)
-        {
-          this.watched = true;
-          this.code = this.value;
-        }
+        this.code = this.value;
       }
     },
     mixins: [SyncScrollMixin],
@@ -92,9 +92,11 @@
       codemirror(
         :value='code'
         @input='updateValue($event)'
+        @viewportChange='syncScroll'
+        ref='editor'
         :options='codeMirrorOptions'
       )
-      .editor__preview(v-html='html' ref='preview')
+      .editor__preview(v-html='html' ref='preview' @scroll='kek')
     .editor__status-bar
       div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}
       slot(name="status")
