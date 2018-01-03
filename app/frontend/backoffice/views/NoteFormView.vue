@@ -40,7 +40,7 @@
     markdown-editor.editor--large(
       placeholder='Полный текст заметки'
       :value="note.text"
-      @input.native="update('text', $event.target.value)"
+      @input="update('text', $event)"
     )
       div(slot="status")
         a(href="#!" v-if="savingInProgress") Сохранение изменений...
@@ -93,7 +93,7 @@
         return this.note.id ? 'Редактирование заметки' : 'Новая заметка';
       },
       savingInProgress() {
-        return this.$store.state.posts.currentNoteSaving;
+        return this.$store.state.backofficeContent.saving.note;
       }
     },
 

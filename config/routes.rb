@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get '/bo(/*kek)' => 'backoffice#index'
 
   namespace :api do
-    resources :links, only: [:create] do
-      collection do
-        get :parse
-      end
+    resources :links do
+      get :parse, on: :collection
+      put :publish, on: :member
+      put :unpublish, on: :member
     end
     resources :posts do
       get :published, on: :collection
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       put :unpublish, on: :member
     end
     resources :labels, only: [:index]
+    resources :pages, only: %i(index show update)
   end
 
   resources :entries

@@ -3,15 +3,27 @@
   import marked from 'marked';
   import SyncScrollMixin from './SyncScrollMixin';
   import Toolbar from './Toolbar.vue';
+  import 'codemirror/mode/markdown/markdown.js'
+  import 'codemirror/addon/edit/continuelist.js'
+  import 'codemirror/addon/fold/foldcode.js'
+  import 'codemirror/addon/fold/foldgutter.js'
+  import 'codemirror/addon/fold/markdown-fold.js'
 
   export default {
     data() {
       return {
-        markdown: null,
+        code: null,
+        watched: false,
         editorState: {
           isFullscreen: false,
           isPreviewHidden: false,
           isInputHidden: false
+        },
+        codeMirrorOptions: {
+          mode: 'text/x-markdown',
+          theme: 'elegant',
+          extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"},
+          tabSize: 2,
         },
         stats: {
           chars: 0,
@@ -22,7 +34,7 @@
     },
     computed: {
       html() {
-        return this.markdown ? marked(this.markdown, {sanitize: true}) : '';
+        return this.code ? marked(this.code, {sanitize: true}) : '';
       },
       generalClasses() {
         return {
@@ -38,28 +50,31 @@
     },
     methods: {
       updateValue(value) {
-        this.markdown = value;
+        this.code = value;
         this.calcStats();
-        this.$emit('input', value);
+        this.$emit('input', this.code);
       },
       changeState(payload) {
         this.editorState = Object.assign({}, this.editorState, payload);
       },
       calcStats() {
-        if(this.markdown === null) return;
-        this.stats.chars = this.markdown.length;
-        this.stats.words = this.markdown.split(/\S+/g).length - 1;
-        this.stats.lines = this.markdown.replace(/[^\n\n]/g, "").length + 1;
+        if(this.code === null) return;
+        this.stats.chars = this.code.length;
+        this.stats.words = this.code.split(/\S+/g).length - 1;
+        this.stats.lines = this.code.replace(/[^\n\n]/g, "").length + 1;
       }
     },
     mounted() {
       marked.setOptions({smartLists: true, smartypants: true});
-      this.markdown = this.value;
       this.calcStats();
     },
     watch: {
       value() {
-        this.markdown = this.value;
+        if(!this.watched)
+        {
+          this.watched = true;
+          this.code = this.value;
+        }
       }
     },
     mixins: [SyncScrollMixin],
@@ -74,7 +89,11 @@
       .toolbar__group(slot="actions")
         slot(name="actions")
     .editor__workspace(:class='workspaceClasses')
-      textarea.editor__text-input(@scroll='syncScroll' v-on:input='updateValue($event.target.value)' v-model='markdown' v-bind:placeholder='placeholder' ref='editor')
+      codemirror(
+        :value='code'
+        @input='updateValue($event)'
+        :options='codeMirrorOptions'
+      )
       .editor__preview(v-html='html' ref='preview')
     .editor__status-bar
       div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}

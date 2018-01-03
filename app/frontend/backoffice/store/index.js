@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import backofficeLayout from './modules/backofficeLayout';
-import posts from './modules/posts';
+import backofficeContent from './modules/backofficeContent';
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -10,7 +10,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-    posts,
+    backofficeContent,
     backofficeLayout,
   },
   strict: debug

@@ -1,3 +1,7 @@
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/elegant.css';
+@import 'codemirror/addon/fold/foldgutter.css';
+
 .editor {
   $root: ".editor";
 
@@ -44,7 +48,7 @@
 
   &__workspace {
     display: flex;
-    height: calc(100% - 100px);
+    height: calc(100% - 91px);
     flex-direction: row;
 
     &--preview-hidden {
@@ -62,34 +66,34 @@
     }
   }
 
-  &__text-input, &__preview {
+  .vue-codemirror, &__preview {
     flex: 1;
+    width: 100%;
     height: 100%;
     border: 1px solid $light-gray;
-    padding: $small-spacing $small-spacing;
     resize: none;
-    overflow-y: scroll;
-    @include good-scroll();
     margin: 0;
     transition: all 0.3s ease-in-out;
   }
 
-  &__text-input {
-    font-family: monospace;
-    font-size: $base-font-size + 0.05em;
-    border-right: 0;
+  .CodeMirror {
+    height: 100% !important;
 
-    &, &:focus, &:active, &:hover {
-      box-shadow: none;
-      border: 1px solid $light-gray;
-      outline: none !important;
+    pre {
+      margin: 0 !important;
+    }
+    &-scroll, &-vscrollbar, &-hscrollbar {
+      @include good-scroll();
     }
   }
 
   &__preview {
     border-left-width: 0;
+    overflow-y: scroll;
     background-color: #FCFCFC;
     word-wrap: break-word;
+    padding: $small-spacing;
+    @include good-scroll();
   }
 
   &__status-bar {
