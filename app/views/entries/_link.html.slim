@@ -6,8 +6,8 @@ article.link
       h4.link__title
         .link__icon
         span = post.title
-    p = post.description
+    .link__description = post.description
     - if post.summary
-      p.link__summary
-        b Комментарий: 
-        = to_smarty(post.summary)
+      blockquote.link__summary
+        h6 Комментарий:
+        p = to_smarty(post.summary)

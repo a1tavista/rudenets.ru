@@ -50,10 +50,16 @@
     padding: $small-spacing 0;
   }
 
-  &__summary {
+  &__description {
+    font-size: 14px;
     color: $base-font-color;
-    margin: 0;
-    font-style: italic;
+  }
+
+  &__summary {
+    h6 {
+      font-size: 1.1em;
+    }
+    margin-top: $small-spacing;
   }
 }
 
