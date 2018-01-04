@@ -15,21 +15,28 @@ RUN apk update \
   && apk del curl tar binutils
 
 WORKDIR /app
+
 COPY Gemfile Gemfile.lock ./
 RUN bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development test
+
+COPY yarn.lock package.json ./
+RUN yarn install --production
 
 ENV NODE_ENV production
 ENV RAILS_ENV production
 ENV RACK_ENV production
 ENV RAILS_ROOT /app
+
 ARG SECRET_KEY_BASE
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
+
 ARG APPLICATION_HOST
 ENV APPLICATION_HOST $APPLICATION_HOST
 
 COPY . ./
-
-RUN yarn install --production
 RUN ./bin/webpack
+
+# The good one, but how to disable webpacker:compile?
+# RUN RAILS_ENV=production DATABASE_URL=postgresql:does_not_exist ./bin/rails assets:precompile
 
 EXPOSE 3000
