@@ -22,10 +22,10 @@
       textInput: function (newInput) {
         this.isURL = false;
         if (this.isUrl(newInput)) {
-          this.answer = "Это ссылка.";
+          this.answer = "Обнаружена ссылка. Подготовка к получению содержимого...";
           this.tryParseURL();
         } else {
-          this.answer = "Это не ссылка.";
+          this.answer = "Пожалуйста, укажите ссылку на ресурс.";
         }
       },
       imageSelected: function(newValue) {
@@ -41,8 +41,8 @@
       },
       tryParseURL: _.debounce(
         function () {
-          this.answer = "Обрабатываем информацию...";
-          var vm = this;
+          this.answer = "Получение содержимого ссылки...";
+          const vm = this;
           this.axios.get('/api/links/parse.json', {
               params: {
                 url: vm.textInput
@@ -67,7 +67,7 @@
       ),
       saveLink: function () {
         this.answer = "Saving...";
-        var vm = this;
+        const vm = this;
         this.axios.post('/api/links.json', {
             link: vm.opengraph
           })
@@ -85,7 +85,7 @@
 <template>
   <div>
     <div class="entries-new">
-      <input type="text" placeholder="Вставь URL или впиши название нового поста..." v-model="textInput">
+      <input type="text" placeholder="Вставьте URL для быстрой публикации" v-model="textInput">
       <pre class="entries-new__status" v-if="answer">{{ answer }}</pre>
       <div class="entries-new__form" v-if="isURL">
         <div class="link">
@@ -101,8 +101,11 @@
               <div class="link__icon"></div>
               <span>{{ opengraph.title }}</span>
             </h4>
-            <p>{{ opengraph.description }}</p>
-            <textarea placeholder="Комментарий" v-model="opengraph.summary"></textarea>
+            <textarea placeholder="Краткое описание" class="link__description" v-model="opengraph.description"></textarea>
+            <blockquote class="link__summary">
+              <h6>Комментарий:</h6>
+              <textarea placeholder="Комментарий" v-model="opengraph.summary"></textarea>
+            </blockquote>
           </div>
         </div>
         <div class="entries-new__actions">
