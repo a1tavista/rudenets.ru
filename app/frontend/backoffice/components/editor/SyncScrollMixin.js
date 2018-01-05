@@ -16,13 +16,11 @@ export default {
 
       this.editorScrollHeight = element.height;
 
-      console.log((element.height - element.top), element.clientHeight);
       if((element.height - element.top) === element.clientHeight) {
         const self = this;
         setTimeout(function() {
           self.$refs.preview.scrollTop = self.$refs.preview.scrollHeight;
-        }, 500);
-        return;
+        }, 300);
       }
 
       if (this.$refs.preview.scrollHeight >= this.$refs.preview.offsetHeight) {

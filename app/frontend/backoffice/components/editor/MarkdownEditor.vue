@@ -35,7 +35,7 @@
     },
     computed: {
       html() {
-        return this.code ? marked(this.code, {sanitize: true}) : '';
+        return this.code ? marked(this.code) : '';
       },
       generalClasses() {
         return {
@@ -54,9 +54,6 @@
         this.code = value;
         this.calcStats();
         this.$emit('input', this.code);
-      },
-      kek(event) {
-        console.log(this.$refs.preview.scrollHeight, this.$refs.preview.offsetHeight, this.$refs.preview.scrollTop);
       },
       changeState(payload) {
         this.editorState = Object.assign({}, this.editorState, payload);
@@ -92,11 +89,11 @@
       codemirror(
         :value='code'
         @input='updateValue($event)'
-        @viewportChange='syncScroll'
+        @scroll='syncScroll'
         ref='editor'
         :options='codeMirrorOptions'
       )
-      .editor__preview(v-html='html' ref='preview' @scroll='kek')
+      .editor__preview(v-html='html' ref='preview')
     .editor__status-bar
       div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}
       slot(name="status")
