@@ -30,4 +30,8 @@
       }
     }
   }
+
+  &__wrapper {
+    margin: -$small-spacing -1.5 * $small-spacing;
+  }
 }

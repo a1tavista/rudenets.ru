@@ -1,13 +1,34 @@
+<template lang="pug">
+  .editor(:class='generalClasses')
+    toolbar.editor__toolbar(:state="editorState" v-on:stateChanging="changeState")
+      .toolbar__group(slot="actions")
+        slot(name="actions")
+    .editor__workspace(:class='workspaceClasses')
+      codemirror(
+      :value='code'
+        @input='updateValue($event)'
+          @scroll='syncScroll'
+      ref='editor'
+        :options='codeMirrorOptions'
+      )
+      .editor__preview(v-html='html' ref='preview')
+    .editor__status-bar
+      div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}
+      slot(name="status")
+</template>
+
 <script>
   import _ from 'lodash';
   import marked from 'marked';
+  import highlight from 'highlight.js';
   import SyncScrollMixin from './SyncScrollMixin';
   import Toolbar from './Toolbar.vue';
-  import 'codemirror/mode/markdown/markdown.js'
+  import 'codemirror/mode/gfm/gfm.js'
   import 'codemirror/addon/edit/continuelist.js'
   import 'codemirror/addon/fold/foldcode.js'
   import 'codemirror/addon/fold/foldgutter.js'
   import 'codemirror/addon/fold/markdown-fold.js'
+
 
   export default {
     data() {
@@ -20,7 +41,11 @@
           isInputHidden: false
         },
         codeMirrorOptions: {
-          mode: 'text/x-markdown',
+          mode: 'gfm',
+          gitHubSpice: false,
+          taskLists: true,
+          strikethrough: true,
+          emoji: false,
           theme: 'elegant',
           extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"},
           lineWrapping: true,
@@ -62,12 +87,22 @@
         if(this.code === null) return;
         this.stats.chars = this.code.length;
         this.stats.words = this.code.split(/\S+/g).length - 1;
-        this.stats.lines = this.code.replace(/[^\n\n]/g, "").length + 1;
+        this.stats.lines = this.code.split(/\n{2,}/g).length;
       }
     },
     mounted() {
-      marked.setOptions({smartLists: true, smartypants: true});
+      marked.setOptions({
+        smartLists: true,
+        smartypants: true,
+        highlight: function (code) {
+          return highlight.highlightAuto(code).value;
+        }
+      });
       this.calcStats();
+
+      this.editorState.isFullscreen = this.isFullscreen;
+      this.editorState.isPreviewHidden = this.isPreviewHidden;
+      this.editorState.isInputHidden = this.isInputHidden;
     },
     watch: {
       value() {
@@ -76,26 +111,29 @@
     },
     mixins: [SyncScrollMixin],
     components: {Toolbar},
-    props: ['value', 'placeholder']
+    props: {
+      value: {
+        required: true
+      },
+      placeholder: {
+        required: false,
+        type: String
+      },
+      isFullscreen: {
+        required: false,
+        type: Boolean,
+        default: false
+      },
+      isPreviewHidden: {
+        required: false,
+        type: Boolean,
+        default: false
+      },
+      isInputHidden: {
+        required: false,
+        type: Boolean,
+        default: false
+      },
+    }
   }
 </script>
-
-<template lang="pug">
-  .editor(:class='generalClasses')
-    toolbar.editor__toolbar(:state="editorState" v-on:stateChanging="changeState")
-      .toolbar__group(slot="actions")
-        slot(name="actions")
-    .editor__workspace(:class='workspaceClasses')
-      codemirror(
-        :value='code'
-        @input='updateValue($event)'
-        @scroll='syncScroll'
-        ref='editor'
-        :options='codeMirrorOptions'
-      )
-      .editor__preview(v-html='html' ref='preview')
-    .editor__status-bar
-      div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}
-      slot(name="status")
-</template>
-

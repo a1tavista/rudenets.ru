@@ -22,6 +22,14 @@
     height: 70vh;
   }
 
+  &--x-large {
+    height: 88vh;
+  }
+
+  &--single {
+    margin-bottom: 0;
+  }
+
   &__toolbar {
     background: white;
     border: 1px solid $light-gray;
@@ -53,15 +61,19 @@
 
     &--preview-hidden {
       #{$root}__preview { display: none; }
+      .vue-codemirror {
+        max-width: 100% !important;
+      }
     }
 
     &--input-hidden {
-      #{$root}__text-input {
+      .vue-codemirror {
         display: none;
       }
 
       #{$root}__preview {
         border-left-width: 1px;
+        max-width: 100% !important;
       }
     }
   }
