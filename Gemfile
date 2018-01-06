@@ -5,6 +5,7 @@ ruby "2.4.3"
 gem "active_link_to"
 gem 'acts-as-taggable-on'
 gem "autoprefixer-rails"
+gem 'bourbon', '~> 5.0.0.beta.7'
 gem "cancancan"
 gem "clearance"
 gem "jquery-rails"
@@ -20,9 +21,9 @@ gem "rails", "~> 5.1.0"
 gem "redcarpet"
 gem "recipient_interceptor"
 gem "responders"
-gem "rollbar"
 gem "russian"
 gem "meta-tags"
+gem 'neat', '~> 2.0.0.beta.1'
 gem "opengraph_parser"
 gem "sass-rails", "~> 5.0"
 gem "slim-rails"
@@ -40,7 +41,7 @@ group :development, :test do
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "dotenv-rails"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails"
@@ -62,10 +63,5 @@ end
 
 group :staging, :production do
   gem "rack-timeout"
-  gem "rails_12factor"
   gem "rails_stdout_logging"
 end
-
-gem 'bourbon', '~> 5.0.0.beta.7'
-gem 'neat', '~> 2.0.0.beta.1'
-gem 'refills', group: [:development, :test]

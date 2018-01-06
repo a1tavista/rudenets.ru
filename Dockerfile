@@ -20,7 +20,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development test
 
 COPY yarn.lock package.json ./
-RUN yarn install --production
+RUN yarn install --production=false
 
 ENV NODE_ENV production
 ENV RAILS_ENV production
@@ -34,9 +34,7 @@ ARG APPLICATION_HOST
 ENV APPLICATION_HOST $APPLICATION_HOST
 
 COPY . ./
-RUN ./bin/webpack
 
-# The good one, but how to disable webpacker:compile?
-# RUN RAILS_ENV=production DATABASE_URL=postgresql:does_not_exist ./bin/rails assets:precompile
+RUN RAILS_ENV=production DATABASE_URL=postgresql:does_not_exist ./bin/rails assets:precompile
 
 EXPOSE 3000
