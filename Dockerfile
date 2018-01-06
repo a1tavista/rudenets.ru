@@ -18,9 +18,9 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development test
-
-COPY yarn.lock package.json ./
-RUN yarn install --production=false
+#
+# COPY yarn.lock package.json ./
+# RUN yarn install --production=false
 
 ENV NODE_ENV production
 ENV RAILS_ENV production
