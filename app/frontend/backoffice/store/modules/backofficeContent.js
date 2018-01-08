@@ -4,6 +4,7 @@ import * as _ from "lodash";
 // Services
 import labelsService from '../../services/labelsService';
 import notesService from '../../services/notesService';
+import notepadsService from '../../services/notepadsService';
 import linksService from "../../services/linksService";
 import pagesService from "../../services/pagesService";
 
@@ -11,17 +12,24 @@ import pagesService from "../../services/pagesService";
 import Note from '../../models/note';
 import Link from '../../models/link';
 import Page from '../../models/page';
+import Notepad from "../../models/notepad";
 
 const state = {
   current: {
     note: new Note(),
     link: new Link(),
-    page: new Page()
+    page: new Page(),
+    notepad: new Notepad()
   },
   saving: {
     note: false,
+    notepad: false,
     link: false,
     page: false
+  },
+  notepads: {
+    isLoading: false,
+    items: [],
   },
   notes: {
     isLoading: false,
@@ -43,6 +51,7 @@ const state = {
 
 const getters = {
   getLabels: ({labels}) => labels,
+  getNotepads: ({notepads}) => notepads.items,
   getDrafts: ({notes}) => {
     return {
       isLoading: notes.isLoading,
@@ -57,6 +66,9 @@ const getters = {
   },
   getLinks: ({links}) => links,
   getPages: ({pages}) => pages,
+  getCurrentNotepad: ({current}) => {
+    return current.notepad;
+  },
   getCurrentNote: ({current}) => {
     return current.note;
   },
@@ -88,6 +100,13 @@ const actions = {
     dispatch('fetchCollection', {
       serviceMethod: notesService.index,
       collection: 'notes'
+    });
+  },
+
+  fetchNotepads({dispatch}, payload) {
+    dispatch('fetchCollection', {
+      serviceMethod: notepadsService.index,
+      collection: 'notepads'
     });
   },
 
@@ -222,6 +241,44 @@ const actions = {
       .then(_ => {
         commit('updateSavingStatus', { entry: 'page', saving: false });
         dispatch('fetchPages');
+      });
+  }, 500),
+  // ------------------------------- [Notepads] -------------------------------
+  fetchNotepad({commit}, {id}) {
+    notepadsService.get(id).then((response) => {
+      commit('updateEntry', {
+        entry: 'notepad',
+        collection: 'notepads',
+        content: response.data
+      });
+    });
+  },
+
+  fetchCurrentNotepad({commit}) {
+    notepadsService.getCurrent().then((response) => {
+      commit('updateEntry', {
+        entry: 'notepad',
+        collection: 'notepads',
+        content: response.data
+      });
+    });
+  },
+
+  updateNotepadField({commit, dispatch}, {field, value}) {
+    commit('updateEntry', {
+      entry: 'notepad',
+      collection: 'notepads',
+      content: {[field]: value}
+    });
+    dispatch('saveNotepad');
+  },
+
+  saveNotepad: _.debounce(function ({commit, dispatch}) {
+    commit('updateSavingStatus', { entry: 'notepad', saving: true });
+    notepadsService
+      .update(state.current.notepad.id, state.current.notepad)
+      .then(_ => {
+        commit('updateSavingStatus', { entry: 'notepad', saving: false });
       });
   }, 500),
   // ------------------------------- [Links] -------------------------------

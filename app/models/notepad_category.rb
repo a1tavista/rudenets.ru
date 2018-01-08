@@ -1,0 +1,2 @@
+class NotepadCategory < ApplicationRecord
+end

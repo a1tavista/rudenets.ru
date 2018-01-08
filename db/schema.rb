@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103100647) do
+ActiveRecord::Schema.define(version: 20180108081751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,22 @@ ActiveRecord::Schema.define(version: 20180103100647) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notepad_categories", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notepads", force: :cascade do |t|
+    t.string "name"
+    t.string "text"
+    t.bigint "notepad_category_id"
+    t.boolean "is_current"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notepad_category_id"], name: "index_notepads_on_notepad_category_id"
   end
 
   create_table "pages", force: :cascade do |t|

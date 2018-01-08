@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     end
     resources :labels, only: [:index]
     resources :pages, only: %i(index show update)
+    resources :notepads, only: %i(index show update) do
+      get :current, on: :collection
+    end
   end
 
   resources :entries

@@ -33,8 +33,8 @@
 <template lang="pug">
   div.toolbar
     .toolbar__group
+      slot(name="actions")
     .toolbar__spacer
-    slot(name="actions")
     .toolbar__group
       button(@click="changeState('isInputHidden', !state.isInputHidden)")
         i.material-icons {{ state.isInputHidden ? 'edit' : 'visibility' }}

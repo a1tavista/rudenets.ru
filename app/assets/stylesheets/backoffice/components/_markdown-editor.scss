@@ -23,7 +23,7 @@
   }
 
   &--x-large {
-    height: 88vh;
+    height: 98vh;
   }
 
   &--single {
@@ -76,6 +76,11 @@
         max-width: 100% !important;
       }
     }
+  }
+
+  select {
+    margin-bottom: 0;
+    max-width: 300px;
   }
 
   .vue-codemirror, &__preview {
