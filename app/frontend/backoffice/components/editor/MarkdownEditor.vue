@@ -1,7 +1,7 @@
 <template lang="pug">
   .editor(:class='generalClasses')
     toolbar.editor__toolbar(:state="editorState" v-on:stateChanging="changeState")
-      .toolbar__group(slot="actions")
+      .toolbar__group.toolbar__spacer(slot="actions")
         slot(name="actions")
     .editor__workspace(:class='workspaceClasses')
       codemirror(

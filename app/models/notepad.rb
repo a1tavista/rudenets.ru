@@ -11,7 +11,7 @@ class Notepad < ApplicationRecord
     self.arrange_serializable do |parent, children|
       {
         id: parent.id,
-        label: parent.name,
+        label: "#{parent.name} (ID: #{parent.id})",
         children: (children if children.present?)
       }.compact
     end

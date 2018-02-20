@@ -6,20 +6,24 @@
         @input="update('text', $event)"
         :is-preview-hidden="true"
       )
-        template(slot="actions")
+        template.toolbar__spacer(slot="actions")
           .toolbar__group(v-show='!showEditForm && !showAddForm')
             button(@click="showAddNoteForm")
               i.material-icons add
             button(@click="showEditNoteForm")
               i.material-icons edit
-            treeselect(
-              :loadRootOptions='getTree'
-              :show-count="true"
-              v-model='currentID'
-              :multiple='false'
-              :clearable='false'
-              ref="ts0"
-            )
+          .toolbar__spacer
+          treeselect.treeselect--fullwidth(
+            :loadRootOptions='getTree'
+            :show-count="true"
+            v-model='currentID'
+            :multiple='false'
+            :clearable='false'
+            :autofocus='true'
+            ref="ts0"
+          )
+          .toolbar__spacer
+
           .toolbar__group(v-show='showAddForm')
             input.toolbar__input(v-model='newNotepad.name')
             treeselect(
@@ -27,11 +31,11 @@
               :show-count="true"
               v-model='newNotepad.ancestry'
               :multiple='false'
-              :clearable='false'
               ref="ts1"
             )
             button(@click="closeForm")
               i.material-icons done
+
           .toolbar__group(v-show='showEditForm')
             input.toolbar__input(:value="notepad.name" @input="update('name', $event.target.value)")
             treeselect(
@@ -40,7 +44,6 @@
               :value='notepad.ancestry'
               @input="update('ancestry', $event)"
               :multiple='false'
-              :clearable='false'
               ref="ts2"
             )
             button(@click="closeForm")
@@ -89,11 +92,14 @@
         if(this.showAddForm && this.newNotepad.name) {
           this.createNotepad(this.newNotepad);
         }
+        this.reloadTree();
+        this.showAddForm = false;
+        this.showEditForm = false;
+      },
+      reloadTree() {
         this.$refs.ts0.loadOptions(true);
         this.$refs.ts1.loadOptions(true);
         this.$refs.ts2.loadOptions(true);
-        this.showAddForm = false;
-        this.showEditForm = false;
       },
       update(field, value) {
         this.updateNotepadField({ field, value });
@@ -117,11 +123,11 @@
     mounted() {
       this.fetchNotepads();
       this.fetchCurrentNotepad();
-      setTimeout(() => {
-        this.$refs.ts0.loadOptions(true);
-        this.$refs.ts1.loadOptions(true);
-        this.$refs.ts2.loadOptions(true);
-      }, 1000);
+
+      // Mda, eto pizdec
+      setTimeout(() => this.reloadTree(), 400);
+      setTimeout(() => this.reloadTree(), 600);
+      setTimeout(() => this.reloadTree(), 800);
     },
 
     watch: {
@@ -153,6 +159,10 @@
     display: inline-block;
     width: 400px;
     margin-right: 0.4375em;
+  }
+
+  .treeselect--fullwidth {
+    width: 80%;
   }
 
   .vue-treeselect__control {
