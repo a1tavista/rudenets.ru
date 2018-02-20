@@ -26,7 +26,7 @@
             .toolbar__spacer
 
           .toolbar__group(v-show='showAddForm')
-            input.toolbar__input(v-model='newNotepad.name' placeholder='ke')
+            input.toolbar__input(v-model='newNotepad.name')
             treeselect(
               :loadRootOptions='getTree'
               :show-count="true"
