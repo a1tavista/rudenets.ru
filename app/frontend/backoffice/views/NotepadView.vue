@@ -8,24 +8,25 @@
       )
         template.toolbar__spacer(slot="actions")
           .toolbar__group(v-show='!showEditForm && !showAddForm')
-            button(@click="showAddNoteForm")
-              i.material-icons add
-            button(@click="showEditNoteForm")
-              i.material-icons edit
-          .toolbar__spacer
-          treeselect.treeselect--fullwidth(
-            :loadRootOptions='getTree'
-            :show-count="true"
-            v-model='currentID'
-            :multiple='false'
-            :clearable='false'
-            :autofocus='true'
-            ref="ts0"
-          )
-          .toolbar__spacer
+            .toolbar__group
+              button(@click="showAddNoteForm")
+                i.material-icons add
+              button(@click="showEditNoteForm")
+                i.material-icons edit
+            .toolbar__spacer
+            treeselect.treeselect--fullwidth(
+              :loadRootOptions='getTree'
+              :show-count="true"
+              v-model='currentID'
+              :multiple='false'
+              :clearable='false'
+              :autofocus='true'
+              ref="ts0"
+            )
+            .toolbar__spacer
 
           .toolbar__group(v-show='showAddForm')
-            input.toolbar__input(v-model='newNotepad.name')
+            input.toolbar__input(v-model='newNotepad.name' placeholder='ke')
             treeselect(
               :loadRootOptions='getTree'
               :show-count="true"
@@ -65,8 +66,9 @@
         showEditForm: false,
         showAddForm: false,
         editCurrentNote: false,
+
         newNotepad: {
-          name: null,
+          name: '',
           ancestry: null
         }
       }
@@ -89,17 +91,19 @@
         this.showAddForm = false;
       },
       closeForm() {
-        if(this.showAddForm && this.newNotepad.name) {
+        if(this.showAddForm && this.newNotepad.name.length > 0) {
           this.createNotepad(this.newNotepad);
         }
-        this.reloadTree();
         this.showAddForm = false;
         this.showEditForm = false;
+        setTimeout(() => { this.reloadTree() }, 400);
+        setTimeout(() => { this.reloadTree() }, 600);
+        setTimeout(() => { this.reloadTree() }, 800);
       },
       reloadTree() {
-        this.$refs.ts0.loadOptions(true);
-        this.$refs.ts1.loadOptions(true);
-        this.$refs.ts2.loadOptions(true);
+        this.$refs.ts0 && this.$refs.ts0.loadOptions(true);
+        this.$refs.ts1 && this.$refs.ts1.loadOptions(true);
+        this.$refs.ts2 && this.$refs.ts2.loadOptions(true);
       },
       update(field, value) {
         this.updateNotepadField({ field, value });
@@ -125,9 +129,9 @@
       this.fetchCurrentNotepad();
 
       // Mda, eto pizdec
-      setTimeout(() => this.reloadTree(), 400);
-      setTimeout(() => this.reloadTree(), 600);
-      setTimeout(() => this.reloadTree(), 800);
+      setTimeout(() => { this.reloadTree() }, 400);
+      setTimeout(() => { this.reloadTree() }, 600);
+      setTimeout(() => { this.reloadTree() }, 800);
     },
 
     watch: {

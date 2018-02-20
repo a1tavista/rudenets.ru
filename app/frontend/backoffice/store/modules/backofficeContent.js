@@ -1,13 +1,11 @@
 // Utils
 import * as _ from "lodash";
-
 // Services
 import labelsService from '../../services/labelsService';
 import notesService from '../../services/notesService';
 import notepadsService from '../../services/notepadsService';
 import linksService from "../../services/linksService";
 import pagesService from "../../services/pagesService";
-
 // Models
 import Note from '../../models/note';
 import Link from '../../models/link';
@@ -173,7 +171,7 @@ const actions = {
   },
 
   saveNote: _.debounce(function ({commit, dispatch}) {
-    commit('updateSavingStatus', { entry: 'note', saving: true });
+    commit('updateSavingStatus', {entry: 'note', saving: true});
     if (state.current.note.id === null) {
       notesService.create(state.current.note).then(response => {
         commit('updateEntry', {
@@ -183,7 +181,7 @@ const actions = {
             id: response.data.id
           }
         });
-        commit('updateSavingStatus', { entry: 'note', saving: false });
+        commit('updateSavingStatus', {entry: 'note', saving: false});
         dispatch('fetchNotes');
         dispatch('fetchLabels');
       });
@@ -191,7 +189,7 @@ const actions = {
       notesService
         .update(state.current.note.id, state.current.note)
         .then(_ => {
-          commit('updateSavingStatus', { entry: 'note', saving: false });
+          commit('updateSavingStatus', {entry: 'note', saving: false});
           dispatch('fetchLabels');
         });
     }
@@ -247,18 +245,25 @@ const actions = {
   },
 
   savePage: _.debounce(function ({commit, dispatch}) {
-    commit('updateSavingStatus', { entry: 'page', saving: true });
+    commit('updateSavingStatus', {entry: 'page', saving: true});
     pagesService
       .update(state.current.page.id, state.current.page)
       .then(_ => {
-        commit('updateSavingStatus', { entry: 'page', saving: false });
+        commit('updateSavingStatus', {entry: 'page', saving: false});
         dispatch('fetchPages');
       });
   }, 500),
   // ------------------------------- [Notepads] -------------------------------
 
-  createNotepad({dispatch}, payload) {
-    dispatch('saveNotepad', { newNotepad: payload });
+  createNotepad({dispatch, commit}, payload) {
+    notepadsService
+      .create(payload)
+      .then(_ => {
+        dispatch('fetchNotepads');
+        dispatch('fetchNotepadsTree');
+        dispatch('fetchCurrentNotepad');
+        commit('updateSavingStatus', {entry: 'notepad', saving: false});
+      });
   },
 
   fetchNotepad({commit}, {id}) {
@@ -287,27 +292,18 @@ const actions = {
       collection: 'notepads',
       content: {[field]: value}
     });
-    dispatch('saveNotepad', { newNotepad: false });
+    dispatch('saveNotepad', {newNotepad: false});
   },
 
-  saveNotepad: _.debounce(function ({commit, dispatch}, { newNotepad }) {
-    commit('updateSavingStatus', { entry: 'notepad', saving: true });
-    if(newNotepad)
-      notepadsService
-        .create(newNotepad)
-        .then(_ => {
-          dispatch('fetchNotepadsTree');
-          dispatch('fetchCurrentNotepad');
-          commit('updateSavingStatus', { entry: 'notepad', saving: false });
-        });
-    else {
-      notepadsService
-        .update(state.current.notepad.id, state.current.notepad)
-        .then(_ => {
-          dispatch('fetchNotepadsTree');
-          commit('updateSavingStatus', { entry: 'notepad', saving: false });
-        });
-    }
+  saveNotepad: _.debounce(function ({commit, dispatch}, {newNotepad}) {
+    commit('updateSavingStatus', {entry: 'notepad', saving: true});
+    notepadsService
+      .update(state.current.notepad.id, state.current.notepad)
+      .then(_ => {
+        dispatch('fetchNotepadsTree');
+        commit('updateSavingStatus', {entry: 'notepad', saving: false});
+      });
+
   }, 500),
   // ------------------------------- [Links] -------------------------------
   fetchLink({commit}, {id}) {
@@ -330,11 +326,11 @@ const actions = {
   },
 
   saveLink: _.debounce(function ({commit, dispatch}) {
-    commit('updateSavingStatus', { entry: 'link', saving: true });
+    commit('updateSavingStatus', {entry: 'link', saving: true});
     linksService
       .update(state.current.link.id, state.current.link)
       .then(_ => {
-        commit('updateSavingStatus', { entry: 'link', saving: false });
+        commit('updateSavingStatus', {entry: 'link', saving: false});
         dispatch('fetchLinks');
       });
   }, 500),

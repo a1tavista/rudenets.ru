@@ -16,6 +16,7 @@ class Api::NotepadsController < Api::BaseController
   end
 
   def create
+    @notepad.text = ''
     @notepad.save
   end
 
