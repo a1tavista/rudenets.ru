@@ -30,6 +30,7 @@ const state = {
   notepads: {
     isLoading: false,
     items: [],
+    tree: {}
   },
   notes: {
     isLoading: false,
@@ -52,6 +53,7 @@ const state = {
 const getters = {
   getLabels: ({labels}) => labels,
   getNotepads: ({notepads}) => notepads.items,
+  getNotepadsTree: ({notepads}) => notepads.tree,
   getDrafts: ({notes}) => {
     return {
       isLoading: notes.isLoading,
@@ -87,6 +89,8 @@ const actions = {
     dispatch('fetchNotes');
     dispatch('fetchPages');
     dispatch('fetchLinks');
+    dispatch('fetchNotepads');
+    dispatch('fetchNotepadsTree');
   },
 
   fetchLabels({dispatch}, payload) {
@@ -107,6 +111,14 @@ const actions = {
     dispatch('fetchCollection', {
       serviceMethod: notepadsService.index,
       collection: 'notepads'
+    });
+  },
+
+  fetchNotepadsTree({commit}, payload) {
+    commit('updateLoadingStatus', {collection: 'notepads', isLoading: true});
+    notepadsService.tree().then(response => {
+      commit('setTree', {collection: 'notepads', tree: response.data.tree});
+      commit('updateLoadingStatus', {collection: 'notepads', isLoading: false});
     });
   },
 
@@ -343,6 +355,10 @@ const actions = {
 const mutations = {
   setItems(state, {collection, items}) {
     state[collection].items = items;
+  },
+
+  setTree(state, {collection, tree}) {
+    state[collection].tree = tree;
   },
 
   updateLoadingStatus(state, {collection, isLoading}) {

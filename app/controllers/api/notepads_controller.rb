@@ -5,6 +5,10 @@ class Api::NotepadsController < Api::BaseController
     respond_with(@notepads)
   end
 
+  def tree
+    @notepads = Notepad.tree_hash
+  end
+
   def current
     @notepad = Notepad.current
     @notepad = Notepad.create(name: 'Новый блокнот') unless @notepad.present?

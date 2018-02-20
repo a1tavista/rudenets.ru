@@ -6,19 +6,31 @@
         @input="update('text', $event)"
         :is-preview-hidden="true"
       )
-        select(slot="actions" v-model="currentID")
-          option(v-for="option in notepads" :value="option.id") {{ option.name }}
+        template(slot="actions")
+          button
+            i.material-icons add
+          button
+            i.material-icons edit
+          treeselect(
+            :loadRootOptions='getTree'
+            :show-count="true"
+            v-model='currentID'
+            :multiple='false'
+            :clearable='false'
+          )
 
 </template>
 
 <script>
   import MarkdownEditor from '../components/editor/MarkdownEditor.vue';
+  import Treeselect from '@riophae/vue-treeselect'
   import {mapActions, mapGetters, mapState} from "vuex";
 
   export default {
     data() {
       return {
-        currentID: null
+        currentID: null,
+
       }
     },
 
@@ -31,6 +43,9 @@
       ]),
       update(field, value) {
         this.updateNotepadField({ field, value });
+      },
+      getTree(callback) {
+        return callback(null, this.tree);
       }
     },
 
@@ -38,6 +53,7 @@
       ...mapGetters({
         notepad: 'getCurrentNotepad',
         notepads: 'getNotepads',
+        tree: 'getNotepadsTree'
       }),
       savingInProgress() {
         return this.$store.state.backofficeContent.saving.notepad;
@@ -51,13 +67,30 @@
 
     watch: {
       currentID(to, from) {
-        this.fetchNotepad({ id: this.currentID });
+        if(this.currentID)
+          this.fetchNotepad({ id: this.currentID });
       },
       'notepad.id'() {
         this.currentID = this.notepad.id;
       }
     },
 
-    components: {MarkdownEditor}
+    components: {MarkdownEditor, Treeselect}
   }
 </script>
+
+<style src="@riophae/vue-treeselect/dist/vue-treeselect.min.css"></style>
+
+<style>
+  .vue-treeselect {
+    display: inline-block;
+  }
+  .vue-treeselect__control {
+    width: 600px;
+    z-index: 500;
+  }
+
+  .vue-treeselect__menu {
+    z-index: 500;
+  }
+</style>

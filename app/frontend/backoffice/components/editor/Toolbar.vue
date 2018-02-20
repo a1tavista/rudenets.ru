@@ -17,6 +17,9 @@
     flex-direction: row;
 
     &__group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
 
     &__spacer {

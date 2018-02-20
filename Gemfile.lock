@@ -45,6 +45,8 @@ GEM
       activerecord (>= 4.2.8)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ancestry (3.0.1)
+      activerecord (>= 3.2.0)
     arel (8.0.0)
     autoprefixer-rails (7.2.4)
       execjs
@@ -307,6 +309,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   acts-as-taggable-on
+  ancestry
   autoprefixer-rails
   awesome_print
   bourbon (~> 5.0.0.beta.7)

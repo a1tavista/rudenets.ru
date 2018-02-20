@@ -25,7 +25,7 @@
     .icon-sidebar
       div.icon-sidebar__group
         router-link.icon-sidebar__item(to="/")
-          i.material-icons note
+          i.material-icons share
       div.icon-sidebar__group
         router-link.icon-sidebar__item(to="/notes/new")
           i.material-icons note_add
