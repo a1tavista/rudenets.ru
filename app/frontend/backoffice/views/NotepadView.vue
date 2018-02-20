@@ -7,17 +7,46 @@
         :is-preview-hidden="true"
       )
         template(slot="actions")
-          button
-            i.material-icons add
-          button
-            i.material-icons edit
-          treeselect(
-            :loadRootOptions='getTree'
-            :show-count="true"
-            v-model='currentID'
-            :multiple='false'
-            :clearable='false'
-          )
+          .toolbar__group(v-show='!showEditForm && !showAddForm')
+            button(@click="showAddNoteForm")
+              i.material-icons add
+            button(@click="showEditNoteForm")
+              i.material-icons edit
+            treeselect(
+              :loadRootOptions='getTree'
+              :show-count="true"
+              v-model='currentID'
+              :multiple='false'
+              :clearable='false'
+              ref="ts0"
+            )
+          .toolbar__group(v-show='showAddForm')
+            input.toolbar__input(v-model='newNotepad.name')
+            treeselect(
+              :loadRootOptions='getTree'
+              :show-count="true"
+              v-model='newNotepad.ancestry'
+              :multiple='false'
+              :clearable='false'
+              ref="ts1"
+            )
+            button(@click="closeForm")
+              i.material-icons done
+          .toolbar__group(v-show='showEditForm')
+            input.toolbar__input(:value="notepad.name" @input="update('name', $event.target.value)")
+            treeselect(
+              :loadRootOptions='getTree'
+              :show-count="true"
+              :value='notepad.ancestry'
+              @input="update('ancestry', $event)"
+              :multiple='false'
+              :clearable='false'
+              ref="ts2"
+            )
+            button(@click="closeForm")
+              i.material-icons done
+
+
 
 </template>
 
@@ -30,7 +59,13 @@
     data() {
       return {
         currentID: null,
-
+        showEditForm: false,
+        showAddForm: false,
+        editCurrentNote: false,
+        newNotepad: {
+          name: null,
+          ancestry: null
+        }
       }
     },
 
@@ -40,7 +75,26 @@
         'fetchNotepads',
         'fetchCurrentNotepad',
         'updateNotepadField',
+        'createNotepad'
       ]),
+      showAddNoteForm() {
+        this.showAddForm = true;
+        this.showEditForm = false;
+      },
+      showEditNoteForm() {
+        this.showEditForm = true;
+        this.showAddForm = false;
+      },
+      closeForm() {
+        if(this.showAddForm && this.newNotepad.name) {
+          this.createNotepad(this.newNotepad);
+        }
+        this.$refs.ts0.loadOptions(true);
+        this.$refs.ts1.loadOptions(true);
+        this.$refs.ts2.loadOptions(true);
+        this.showAddForm = false;
+        this.showEditForm = false;
+      },
       update(field, value) {
         this.updateNotepadField({ field, value });
       },
@@ -63,6 +117,11 @@
     mounted() {
       this.fetchNotepads();
       this.fetchCurrentNotepad();
+      setTimeout(() => {
+        this.$refs.ts0.loadOptions(true);
+        this.$refs.ts1.loadOptions(true);
+        this.$refs.ts2.loadOptions(true);
+      }, 1000);
     },
 
     watch: {
@@ -82,11 +141,21 @@
 <style src="@riophae/vue-treeselect/dist/vue-treeselect.min.css"></style>
 
 <style>
+  .toolbar__input {
+    margin: 0 !important;
+    margin-right: 0.4375em !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    max-width: 300px;
+  }
+
   .vue-treeselect {
     display: inline-block;
+    width: 400px;
+    margin-right: 0.4375em;
   }
+
   .vue-treeselect__control {
-    width: 600px;
     z-index: 500;
   }
 

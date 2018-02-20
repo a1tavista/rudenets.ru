@@ -256,6 +256,11 @@ const actions = {
       });
   }, 500),
   // ------------------------------- [Notepads] -------------------------------
+
+  createNotepad({dispatch}, payload) {
+    dispatch('saveNotepad', { newNotepad: payload });
+  },
+
   fetchNotepad({commit}, {id}) {
     notepadsService.get(id).then((response) => {
       commit('updateEntry', {
@@ -282,16 +287,27 @@ const actions = {
       collection: 'notepads',
       content: {[field]: value}
     });
-    dispatch('saveNotepad');
+    dispatch('saveNotepad', { newNotepad: false });
   },
 
-  saveNotepad: _.debounce(function ({commit, dispatch}) {
+  saveNotepad: _.debounce(function ({commit, dispatch}, { newNotepad }) {
     commit('updateSavingStatus', { entry: 'notepad', saving: true });
-    notepadsService
-      .update(state.current.notepad.id, state.current.notepad)
-      .then(_ => {
-        commit('updateSavingStatus', { entry: 'notepad', saving: false });
-      });
+    if(newNotepad)
+      notepadsService
+        .create(newNotepad)
+        .then(_ => {
+          dispatch('fetchNotepadsTree');
+          dispatch('fetchCurrentNotepad');
+          commit('updateSavingStatus', { entry: 'notepad', saving: false });
+        });
+    else {
+      notepadsService
+        .update(state.current.notepad.id, state.current.notepad)
+        .then(_ => {
+          dispatch('fetchNotepadsTree');
+          commit('updateSavingStatus', { entry: 'notepad', saving: false });
+        });
+    }
   }, 500),
   // ------------------------------- [Links] -------------------------------
   fetchLink({commit}, {id}) {

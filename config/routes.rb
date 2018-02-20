@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
     resources :labels, only: [:index]
     resources :pages, only: %i(index show update)
-    resources :notepads, only: %i(index show update) do
+    resources :notepads, only: %i(index show create update) do
       get :current, on: :collection
       get :tree, on: :collection
     end

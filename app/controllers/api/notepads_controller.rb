@@ -15,6 +15,10 @@ class Api::NotepadsController < Api::BaseController
     render :show
   end
 
+  def create
+    @notepad.save
+  end
+
   def update
     @notepad.update(notepad_params)
   end
@@ -22,6 +26,6 @@ class Api::NotepadsController < Api::BaseController
   private
 
   def notepad_params
-    params.require(:notepad).except(:category, :is_current).permit(:id, :name, :text)
+    params.require(:notepad).except(:category, :is_current).permit(:id, :name, :text, :ancestry)
   end
 end
