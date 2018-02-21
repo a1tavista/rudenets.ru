@@ -103,8 +103,9 @@
         this.$refs.ts2 && this.$refs.ts2.loadOptions(true);
       },
       update(field, value) {
-        if(value !== undefined)
-          this.updateNotepadField({ field, value });
+        if(this.notepad[field] === value) return;
+        if(value === undefined) return;
+        this.updateNotepadField({ field, value });
       },
       getTree(callback) {
         return callback(null, this.tree);
@@ -133,8 +134,8 @@
         if(this.currentID)
           this.fetchNotepad({ id: this.currentID });
       },
-      timestamp() {
-        this.reloadTree()
+      timestamp(to, from) {
+        this.reloadTree();
       },
       'notepad.id'() {
         this.currentID = this.notepad.id;
