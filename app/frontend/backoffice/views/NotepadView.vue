@@ -96,9 +96,6 @@
         }
         this.showAddForm = false;
         this.showEditForm = false;
-        setTimeout(() => { this.reloadTree() }, 400);
-        setTimeout(() => { this.reloadTree() }, 600);
-        setTimeout(() => { this.reloadTree() }, 800);
       },
       reloadTree() {
         this.$refs.ts0 && this.$refs.ts0.loadOptions(true);
@@ -117,7 +114,8 @@
       ...mapGetters({
         notepad: 'getCurrentNotepad',
         notepads: 'getNotepads',
-        tree: 'getNotepadsTree'
+        tree: 'getNotepadsTree',
+        timestamp: 'getNotepadsTimestamp'
       }),
       savingInProgress() {
         return this.$store.state.backofficeContent.saving.notepad;
@@ -127,17 +125,15 @@
     mounted() {
       this.fetchNotepads();
       this.fetchCurrentNotepad();
-
-      // Mda, eto pizdec
-      setTimeout(() => { this.reloadTree() }, 400);
-      setTimeout(() => { this.reloadTree() }, 600);
-      setTimeout(() => { this.reloadTree() }, 800);
     },
 
     watch: {
       currentID(to, from) {
         if(this.currentID)
           this.fetchNotepad({ id: this.currentID });
+      },
+      timestamp() {
+        this.reloadTree()
       },
       'notepad.id'() {
         this.currentID = this.notepad.id;

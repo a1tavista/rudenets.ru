@@ -28,7 +28,8 @@ const state = {
   notepads: {
     isLoading: false,
     items: [],
-    tree: {}
+    tree: [],
+    timestamp: 0
   },
   notes: {
     isLoading: false,
@@ -52,6 +53,7 @@ const getters = {
   getLabels: ({labels}) => labels,
   getNotepads: ({notepads}) => notepads.items,
   getNotepadsTree: ({notepads}) => notepads.tree,
+  getNotepadsTimestamp: ({notepads}) => notepads.timestamp,
   getDrafts: ({notes}) => {
     return {
       isLoading: notes.isLoading,
@@ -115,7 +117,7 @@ const actions = {
   fetchNotepadsTree({commit}, payload) {
     commit('updateLoadingStatus', {collection: 'notepads', isLoading: true});
     notepadsService.tree().then(response => {
-      commit('setTree', {collection: 'notepads', tree: response.data.tree});
+      commit('setTree', {collection: 'notepads', tree: response.data.tree, timestamp: +(new Date())});
       commit('updateLoadingStatus', {collection: 'notepads', isLoading: false});
     });
   },
@@ -369,8 +371,9 @@ const mutations = {
     state[collection].items = items;
   },
 
-  setTree(state, {collection, tree}) {
+  setTree(state, {collection, tree, timestamp}) {
     state[collection].tree = tree;
+    state[collection].timestamp = timestamp;
   },
 
   updateLoadingStatus(state, {collection, isLoading}) {
