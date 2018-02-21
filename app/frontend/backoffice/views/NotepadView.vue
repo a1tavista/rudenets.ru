@@ -103,7 +103,8 @@
         this.$refs.ts2 && this.$refs.ts2.loadOptions(true);
       },
       update(field, value) {
-        this.updateNotepadField({ field, value });
+        if(value !== undefined)
+          this.updateNotepadField({ field, value });
       },
       getTree(callback) {
         return callback(null, this.tree);
