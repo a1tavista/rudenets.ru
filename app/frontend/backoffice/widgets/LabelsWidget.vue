@@ -1,5 +1,5 @@
 <template lang="pug">
-  sidebar-widget(:items="getLabels.items", :is-loading="getLabels.isLoading")
+  sidebar-widget(:items="getLabels", :is-loading="getLabels.isLoading")
     template(slot="title") Метки
     template(slot="item" slot-scope="{ item }")
       router-link.widget__item(:to="'/notes/' + item.id") {{ item.name }}

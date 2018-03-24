@@ -1,6 +1,6 @@
 const state = {
   widget: null,
-  isWidgetOpened: false
+  isWidgetOpened: false,
 };
 
 const getters = {

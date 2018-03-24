@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root "entries#index"
 
-  get '/cc' => 'clearance/sessions#new', as: :cc
-  get '/bo(/*kek)' => 'backoffice#index'
+  get '/cc/sign_in' => 'clearance/sessions#new', as: :cc
+  get '/cc(/*kek)' => 'backoffice#index'
 
   namespace :api do
     resources :links do

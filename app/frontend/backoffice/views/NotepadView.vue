@@ -6,6 +6,9 @@
         @input="update('text', $event)"
         :is-preview-hidden="true"
       )
+        div(slot="status")
+          a(href="#!" v-if="savingInProgress") Сохранение изменений...
+          a(href="#!" v-else) Все изменения сохранены
         template.toolbar__spacer(slot="actions")
           .toolbar__group(v-show='!showEditForm && !showAddForm')
             .toolbar__group
@@ -120,7 +123,7 @@
         timestamp: 'getNotepadsTimestamp'
       }),
       savingInProgress() {
-        return this.$store.state.backofficeContent.saving.notepad;
+        return this.$store.state.notepads.isSaving;
       }
     },
 

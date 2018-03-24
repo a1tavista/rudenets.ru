@@ -50,7 +50,7 @@
         return id || null;
       },
       savingInProgress() {
-        return this.$store.state.backofficeContent.saving.page;
+        return this.$store.state.pages.isSaving;
       }
     },
 

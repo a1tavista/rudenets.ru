@@ -35,7 +35,7 @@ export default {
         taskLists: true,
         strikethrough: true,
         emoji: false,
-        theme: 'elegant',
+        theme: 'neat',
         extraKeys: {
           "Enter": "newlineAndIndentContinueMarkdownList"
         },

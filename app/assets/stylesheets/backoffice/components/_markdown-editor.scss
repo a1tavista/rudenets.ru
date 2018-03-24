@@ -1,6 +1,6 @@
-@import 'codemirror/lib/codemirror.css';
-@import 'codemirror/theme/elegant.css';
-@import 'codemirror/addon/fold/foldgutter.css';
+@import 'codemirror/lib/codemirror';
+@import 'codemirror/theme/neat';
+@import 'codemirror/addon/fold/foldgutter';
 
 .editor {
   $root: ".editor";
@@ -23,7 +23,7 @@
   }
 
   &--x-large {
-    height: 98vh;
+    height: 99vh;
   }
 
   &--single {

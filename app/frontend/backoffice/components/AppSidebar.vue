@@ -25,36 +25,36 @@
     .icon-sidebar
       div.icon-sidebar__group
         router-link.icon-sidebar__item(to="/")
-          i.material-icons share
+          | Notes
       div.icon-sidebar__group
         router-link.icon-sidebar__item(to="/notes/new")
-          i.material-icons note_add
+          | + Draft
       div.icon-sidebar__group
         button.icon-sidebar__item.icon-sidebar__item--widget(
           @click="openWidget('NotesWidget')"
           :class="[(currentWidget == 'NotesWidget') && 'active']")
-          i.material-icons description
+          | Drafts
 
         button.icon-sidebar__item.icon-sidebar__item--widget(
           @click="openWidget('PostsWidget')"
           :class="[(currentWidget == 'PostsWidget') && 'active']")
-          i.material-icons present_to_all
+          | Posts
 
         button.icon-sidebar__item.icon-sidebar__item--widget(
           @click="openWidget('LinksWidget')"
           :class="[(currentWidget == 'LinksWidget') && 'active']")
-          i.material-icons link
+          | Links
 
         button.icon-sidebar__item.icon-sidebar__item--widget(
           @click="openWidget('LabelsWidget')"
           :class="[(currentWidget == 'LabelsWidget') && 'active']")
-          i.material-icons label
+          | Tags
 
       div.icon-sidebar__group
         button.icon-sidebar__item.icon-sidebar__item--widget(
         @click="openWidget('PagesWidget')"
           :class="[(currentWidget == 'PagesWidget') && 'active']")
-          i.material-icons pages
+          | Pages
 
     aside(v-if="currentWidget" :is="currentWidget")
 </template>

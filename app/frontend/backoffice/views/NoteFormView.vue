@@ -93,7 +93,7 @@
         return this.note.id ? 'Редактирование заметки' : 'Новая заметка';
       },
       savingInProgress() {
-        return this.$store.state.backofficeContent.saving.note;
+        return this.$store.state.notes.isSaving;
       }
     },
 

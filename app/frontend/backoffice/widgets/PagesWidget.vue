@@ -1,5 +1,5 @@
 <template lang="pug">
-  sidebar-widget(:items="getPages.items", :is-loading="getPages.isLoading")
+  sidebar-widget(:items="getPages", :is-loading="getPages.isLoading")
     template(slot="title") Страницы
     template(slot="item" slot-scope="{ item }")
       router-link.widget__item(:to="'/pages/' + item.id")

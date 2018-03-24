@@ -82,7 +82,7 @@
         return 'Редактирование ссылки';
       },
       savingInProgress() {
-        return this.$store.state.backofficeContent.saving.link;
+        return this.$store.state.links.isSaving;
       }
     },
 
