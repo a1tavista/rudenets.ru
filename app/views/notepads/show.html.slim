@@ -1,0 +1,4 @@
+article.post(itemscope itemtype="http://schema.org/Blog")
+  header.post__header
+    h1.post__title = title @notepad.name
+  .post__content = to_markdown(@notepad.text)

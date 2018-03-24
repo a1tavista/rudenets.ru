@@ -11,6 +11,11 @@ li > ul {
   margin-top: $small-spacing / 2;
 }
 
+li.li__checkboxed {
+  margin-left: -$small-spacing;
+  list-style-type: none;
+}
+
 dl {
   margin: 0;
 }

@@ -4,6 +4,7 @@ export default class Notepad {
     this.name = null;
     this.text = null;
     this.ancestry = null;
+    this.shareUrl = null;
     this.isCurrent = false;
   }
 }

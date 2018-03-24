@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :entries
   resources :posts
   resources :links
+  resources :notepads, path: 'n', only: [:show]
 
   get '/(:id)', to: 'pages#show', as: :page
 end

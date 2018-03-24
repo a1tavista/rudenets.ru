@@ -27,6 +27,6 @@ class Api::NotepadsController < Api::BaseController
   private
 
   def notepad_params
-    params.require(:notepad).except(:category, :is_current).permit(:id, :name, :text, :ancestry)
+    params.require(:notepad).except(:category, :is_current).permit(:id, :name, :text, :ancestry, :share_url)
   end
 end

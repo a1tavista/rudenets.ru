@@ -10,12 +10,14 @@
           a(href="#!" v-if="savingInProgress") Сохранение изменений...
           a(href="#!" v-else) Все изменения сохранены
         template.toolbar__spacer(slot="actions")
-          .toolbar__group(v-show='!showEditForm && !showAddForm')
+          .toolbar__group(v-show='!showEditForm && !showAddForm && !showShareForm')
             .toolbar__group
               button(@click="showAddNoteForm")
                 i.material-icons add
               button(@click="showEditNoteForm")
                 i.material-icons edit
+              button(@click="getShareLink")
+                i.material-icons share
             .toolbar__spacer
             treeselect.treeselect--fullwidth(
               :loadRootOptions='getTree'
@@ -27,6 +29,13 @@
               ref="ts0"
             )
             .toolbar__spacer
+
+          .toolbar__group(v-show='showShareForm')
+            input#share.toolbar__input(:value="fullShareUrl" disabled="disabled")
+            button(@click="unshareNotepad")
+              i.material-icons remove
+            button(@click="closeForm")
+              i.material-icons close
 
           .toolbar__group(v-show='showAddForm')
             input.toolbar__input(v-model='newNotepad.name')
@@ -68,6 +77,7 @@
         currentID: null,
         showEditForm: false,
         showAddForm: false,
+        showShareForm: false,
         editCurrentNote: false,
 
         newNotepad: {
@@ -93,12 +103,31 @@
         this.showEditForm = true;
         this.showAddForm = false;
       },
+      getShareLink() {
+        function dec2hex (dec) {
+          return ('0' + dec.toString(16)).substr(-2)
+        }
+
+        function generateId (len) {
+          let arr = new Uint8Array((len || 40) / 2);
+          window.crypto.getRandomValues(arr);
+          return Array.from(arr, dec2hex).join('');
+        }
+        this.showShareForm = true;
+
+        if(this.notepad.shareUrl == null)
+          this.update('shareUrl', generateId(40));
+      },
+      unshareNotepad() {
+        this.update('shareUrl', null);
+      },
       closeForm() {
         if(this.showAddForm && this.newNotepad.name.length > 0) {
           this.createNotepad(this.newNotepad);
         }
         this.showAddForm = false;
         this.showEditForm = false;
+        this.showShareForm = false;
       },
       reloadTree() {
         this.$refs.ts0 && this.$refs.ts0.loadOptions(true);
@@ -124,6 +153,9 @@
       }),
       savingInProgress() {
         return this.$store.state.notepads.isSaving;
+      },
+      fullShareUrl() {
+        return `https://rudenets.ru/n/${this.notepad.shareUrl}`;
       }
     },
 

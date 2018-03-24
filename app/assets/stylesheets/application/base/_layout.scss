@@ -58,6 +58,12 @@ body {
       }
     }
 
+    &--centered {
+      margin: 0 auto;
+      max-width: 1000px;
+      padding-top: 2 * $small-spacing;
+    }
+
     @media screen and (max-width: 800px) {
       padding-left: 1.5 * $small-spacing;
       padding-right: 1.5 * $small-spacing;
