@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.3'
+ruby '2.4.4'
 
 gem 'active_link_to'
 gem 'acts-as-taggable-on'
@@ -64,7 +64,6 @@ group :test do
 end
 
 group :staging, :production do
-  gem 'wkhtmltopdf-binary'
   gem 'rack-timeout'
   gem 'rails_stdout_logging'
 end

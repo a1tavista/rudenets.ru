@@ -1,10 +1,35 @@
-FROM ruby:2.4-alpine
+FROM ruby:2.4-alpine3.6
 
 ENV PATH /root/.yarn/bin:$PATH
 
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh \
     build-base nodejs tzdata postgresql-dev python
+
+RUN apk add --no-cache \
+            xvfb \
+            # Additionnal dependencies for better rendering
+            ttf-freefont \
+            fontconfig \
+            dbus \
+    && \
+
+    # Install wkhtmltopdf from `testing` repository
+    apk add qt5-qtbase-dev \
+            wkhtmltopdf \
+            --no-cache \
+            --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+            --allow-untrusted \
+    && \
+
+    # Wrapper for xvfb
+    mv /usr/bin/wkhtmltoimage /usr/bin/wkhtmltoimage-origin && \
+    echo $'#!/usr/bin/env sh\n\
+Xvfb :0 -screen 0 1024x768x24 -ac +extension GLX +render -noreset & \n\
+DISPLAY=:0.0 wkhtmltoimage-origin $@ \n\
+killall Xvfb\
+' > /usr/bin/wkhtmltoimage && \
+    chmod +x /usr/bin/wkhtmltoimage
 
 RUN apk update \
   && apk add curl bash binutils tar gnupg \

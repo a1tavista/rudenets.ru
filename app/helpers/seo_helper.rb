@@ -44,7 +44,7 @@ module SeoHelper
         modified_time: post.updated_at
       }
     }
-    tags.merge(image: [{ _: post.preview.url, width: 1920, height: 900 }]) if post.preview.present?
+    tags.deep_merge(og: { image: [{ _: post.preview.url, width: 1920, height: 900 }] }) if post.preview.present?
     tags
   end
 end
