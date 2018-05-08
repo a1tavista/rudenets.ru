@@ -4,8 +4,7 @@ ENV PATH /root/.yarn/bin:$PATH
 
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh \
-    build-base nodejs tzdata postgresql-dev python \
-    xvfb libfontconfig wkhtmltopdf
+    build-base nodejs tzdata postgresql-dev python
 
 RUN apk update \
   && apk add curl bash binutils tar gnupg \
