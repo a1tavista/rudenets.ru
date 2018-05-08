@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "entries#index"
+  root 'entries#index'
 
   get '/cc/sign_in' => 'clearance/sessions#new', as: :cc
   get '/cc(/*kek)' => 'backoffice#index'
@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   end
 
   resources :entries
-  resources :posts
+  resources :posts do
+    get :preview, on: :member
+  end
   resources :links
   resources :notepads, path: 'n', only: [:show]
 

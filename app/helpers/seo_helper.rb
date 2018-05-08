@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SeoHelper
   def default_tags
     {
@@ -23,14 +25,14 @@ module SeoHelper
         url: root_url
       },
       twitter: {
-        card: "summary",
-        site: "@AndrewRudenets"
+        card: 'summary',
+        site: '@AndrewRudenets'
       }
     }
   end
 
   def post_tags(post)
-    {
+    tags = {
       description: post.summary || 'Маленький уютный блог.',
       og: {
         description: post.summary || 'Маленький уютный блог.',
@@ -42,5 +44,7 @@ module SeoHelper
         modified_time: post.updated_at
       }
     }
+    tags.merge(image: [{ _: post.preview.url, width: 1920, height: 900 }]) if post.preview.present?
+    tags
   end
 end
