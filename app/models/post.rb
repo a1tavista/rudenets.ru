@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   mount_uploader :preview, PreviewUploader
 
   acts_as_taggable
+  has_paper_trail
+
   friendly_id :slug
 
   has_one :entry, as: :taxonomy, dependent: :destroy

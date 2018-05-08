@@ -1,5 +1,6 @@
 class Notepad < ApplicationRecord
   has_ancestry
+  has_paper_trail
 
   belongs_to :notepad_category, optional: true
 
