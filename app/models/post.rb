@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   after_touch :update_canonical_url, if: :title_changed?
   before_save :update_canonical_url, if: :title_changed?
 
-  def regenerate_preview!
+  def regenerate_preview
     html = ApplicationController.render(
       template: 'posts/preview',
       layout: 'preview',
@@ -27,11 +27,16 @@ class Post < ApplicationRecord
     file.unlink
   end
 
+  def regenerate_preview!
+    regenerate_preview
+    save
+  end
+
   def update_canonical_url
     return if entry&.published_at.nil?
     slug_date = I18n.l(entry.published_at, format: :slug)
     slug_title = Russian.translit(title).parameterize.downcase
-    regenerate_preview!
+    regenerate_preview
     update_columns(slug: "#{slug_date}-#{slug_title}")
   end
 
