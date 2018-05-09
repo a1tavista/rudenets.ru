@@ -20,7 +20,7 @@ class Post < ApplicationRecord
     )
 
     file = Tempfile.new(["template_#{self.id.to_s}", '.png'], 'tmp', encoding: 'ascii-8bit')
-    blob = IMGKit.new(html, quality: 70, width: 1920, height: 900).to_img(:png)
+    blob = IMGKit.new(html, width: 1920, height: 900, javascript_delay: 1000, quality: 60).to_img(:png)
     file.write(blob)
     file.flush
     self.preview = file

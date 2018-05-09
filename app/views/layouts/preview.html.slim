@@ -5,15 +5,19 @@ html lang="en"
     meta charset="utf-8" /
     meta content="NOODP" name="ROBOTS" /
     meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
-    link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet"
     css:
-      body {
-        color: white;
-        font-family: "Open Sans", sans-serif;
-        font-size: 1em;
-        line-height: 1.75;
-        margin: 0;
+      html, body {
         height: 100%;
+        background: #1c2429;
+      }
+
+      body {
+        font-family: sans-serif;
+        font-weight: normal;
+        font-size: initial;
+        color: white;
+        line-height: 1.25;
+        margin: 0;
       }
 
       * {
@@ -25,23 +29,15 @@ html lang="en"
         max-width: 100%;
         border: 0;
       }
-
-      html, body {
-        height: 100%;
-        background: #263238;
-      }
-
-      h1 {
-        margin: 0;
-        padding: 0;
-      }
-
   body
-    div style='margin-top: 50px; height: 100vh; padding: 0 50px; color: white;'
-      div style='display: flex; flex-direction: row; align-items: center;'
-        = image_tag image_url('rsz_photo.png'), height: '300px;', style: 'display: inline-block;'
-        div style='display: inline-block; vertical-align: top; margin-top: 5em; margin-left: 5em; margin-bottom: 10em;'
-          h1 style='font-weight: bold; font-size: 100px; margin-top: 0; margin-bottom: 0; line-height: 1;' Andrew Rudenets
-          h5 style='margin-top: 0; margin-bottom: 0; font-size: 40px;' Personal blog
-      div style='font-size: 80px; line-height: 1.25;'
+    div style='padding: 20px 80px;'
+    div style='height: 100%; padding: 40px 80px; background: #263238;'
+      div
+        div style='display: inline-block; vertical-align: middle;'
+          = image_tag image_url('rsz_photo.png'), height: '300px;'
+        div style='display: inline-block; vertical-align: middle; padding: 0 40px;'
+          div style='display: block;'
+            div style='font-size: 120px;' Andrew Rudenets
+            div style='font-size: 40px;' Personal blog
+      div style='margin-top: 60px; font-size: 90px;'
         = yield
