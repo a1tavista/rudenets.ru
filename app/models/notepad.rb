@@ -1,6 +1,7 @@
 class Notepad < ApplicationRecord
   has_ancestry
-  has_paper_trail
+
+  has_paper_trail if: proc { |notepad| notepad.should_create_new_version? }
 
   belongs_to :notepad_category, optional: true
 
@@ -16,5 +17,11 @@ class Notepad < ApplicationRecord
         children: (children if children.present?)
       }.compact
     end
+  end
+
+  def should_create_new_version?
+    version = versions.last
+    last_update_time = version&.created_at || (Time.current - 10.minutes)
+    Time.current - last_update_time > 1.minute
   end
 end
