@@ -1,9 +1,13 @@
+- content_for :heading do
+  header.post-heading
+    .post-heading__content
+      h1.post-heading__title = title @post.title
+      .post-heading__meta
+        .post-heading__time = l(@post.entry.published_at)
+        .post-heading__categories
+          - @post.tag_list.each do |tag|
+            a(href="#") #{tag.to_s.downcase}
+      p = @post.summary
+
 article.post(itemscope itemtype="http://schema.org/Blog")
-  header.post__header
-    h1.post__title = title @post.title
-    .post__meta
-      .post__categories
-        - @post.tag_list.each do |tag|
-          a(href="#") ##{tag.to_s.gsub(/( )/, '_').downcase}
-      .post__time = l(@post.entry.published_at)
   .post__content = to_markdown(@post.text)

@@ -1,13 +1,15 @@
 article.link
-  .link__image
-    img src=(post.image.url)
   .link__content
-    a href=(post.url) target="_blank"
-      h4.link__title
-        .link__icon
-        span = post.title
-    .link__description = post.description
+    = link_to post.url, target: '_blank', class: 'link__anchor' do
+      - if post.image.presence
+        = image_tag post.image.url, class: 'link__image'
+      header.link__heading
+        h4.link__title = post.title
+        .link__url
+          = image_tag 'link.svg', class: 'link__icon'
+          span = post.url
+        .link__description = post.description
     - if post.summary
-      blockquote.link__summary
+      .link__summary
         h6 Комментарий:
-        p = to_smarty(post.summary)
+        div = to_smarty(post.summary)

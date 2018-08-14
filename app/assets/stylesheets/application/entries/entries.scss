@@ -1,21 +1,10 @@
 @import "post";
+@import "post-preview";
 @import "link";
 @import "form";
 
 .entries-list {
-  padding: $small-spacing 0;
   &__item {
     border-top: 1px solid lighten($light-gray, 7%);
-    &:last-child {
-      border-bottom: 1px solid lighten($light-gray, 7%);
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .entries-list {
-    &__item {
-      padding: $small-spacing * 1.5 0;
-    }
   }
 }

@@ -20,49 +20,15 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
   min-height: 100%;
   width: auto;
-
-  @media screen and (max-width: 800px) {
-    flex-direction: column;
-    background: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  }
+  background: white;
 
   &__main {
     display: flex;
     flex-direction: column;
-    padding: 4 * $small-spacing 2.5 * $small-spacing 2 * $small-spacing;
-    width: 100%;
-    max-width: 1400px;
+    @include layout();
     background: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-    @media screen and (max-width: 800px) {
-      box-shadow: none;
-    }
-
-    &--with-sidebar {
-      margin-left: 2.5 * $small-spacing;
-      padding-left: 320px;
-
-      @media screen and (max-width: 1279px) {
-        padding-left: 240px;
-      }
-
-      @media screen and (max-width: 800px) {
-        padding: 0;
-        margin: 0;
-      }
-    }
-
-    &--centered {
-      margin: 0 auto;
-      max-width: 1000px;
-      padding-top: 2 * $small-spacing;
-    }
 
     @media screen and (max-width: 800px) {
       padding-left: 1.5 * $small-spacing;
@@ -71,21 +37,12 @@ body {
 
     > .content {
       flex: 1;
-
-    }
-
-    > footer {
-      border-top: 1px solid $light-gray;
-      margin-top: 2 * $small-spacing;
-      padding: 1.5 * $small-spacing 0;
-      text-align: center;
-      color: $medium-gray;
     }
   }
 }
 
 .page-title {
-  margin-top: 0;
+  margin-top: 2 * $base-spacing;
   font-weight: normal !important;
   font-size: 1.6em;
 }

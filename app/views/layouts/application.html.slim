@@ -13,9 +13,12 @@ html lang="ru"
     #application
       .container
         = render "shared/aside"
+        - if content_for?(:heading)
+          = yield(:heading)
         main.container__main.container__main--with-sidebar
           .content
             = yield
+          = render "shared/footer"
     = render "javascript"
     = render "css_overrides"
     = render "metrika"

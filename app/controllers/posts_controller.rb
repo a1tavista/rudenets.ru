@@ -15,7 +15,6 @@ class PostsController < ApplicationController
 
   def show
     set_meta_tags(post_tags(@post))
-    @post
   end
 
   def preview

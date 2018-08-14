@@ -1,6 +1,5 @@
-a href=(post_path(post))
+= link_to post_path(post) do
   article.post-preview
-    .post-preview__date = l(published_at, format: :only_date)
     .post-preview__content
       h4.post-preview__title = post.title
       - if post.summary.present?

@@ -1,17 +1,16 @@
-header.aside
-  .aside__content
-    a.aside__root-link href=(root_path)
-      img.aside__photo src=(image_url("photo.png"))
-      .aside__title A. Rudenets
-    nav.aside__navigation.navigation
-      ul.navigation__links
-        li
-          = link_to "Всё вместе", root_path
-          = link_to "Заметки", posts_path
-          = link_to "Ссылки", links_path
-          = link_to "Обо мне", page_path('about')
-    .aside__accounts.accounts
-      a.accounts__link.vk target="_blank" href="https://vk.com/andrew.rudenets" vk.com
-      a.accounts__link.telegram target="_blank" href="https://t.me/a1tavista" t.me
-      a.accounts__link.github target="_blank" href="https://github.com/a1tavista" github.com
+header.header
+  .header__content
+    .header__main-heading
+      a.header__root-link href=(root_path)
+        img.header__photo src=(image_url("photo.png"))
+        h1.header__title A.&nbsp;Rudenets
+    .header__spacer
+    .header__links
+      nav.header__navigation
+        = link_to "Всё вместе", root_path, class: 'header__navigation-link'
+        = link_to "Заметки", posts_path, class: 'header__navigation-link'
+        = link_to "Ссылки", links_path, class: 'header__navigation-link'
+        = link_to "Обо мне", page_path('about'), class: 'header__navigation-link'
+
+
 

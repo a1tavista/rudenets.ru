@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/cc/sign_in' => 'clearance/sessions#new', as: :cc
   get '/cc(/*kek)' => 'backoffice#index'
 
+  get :typography, to: 'pages#typography'
+
   namespace :api do
     resources :links do
       get :parse, on: :collection

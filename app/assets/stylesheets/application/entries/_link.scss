@@ -3,37 +3,36 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  position: relative;
+
   color: $base-font-color;
+
+  &__anchor {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $base-spacing;
+  }
 
   &__icon {
     display: inline-block;
-    @include size(23px);
+    vertical-align: text-bottom;
+    margin-right: $small-spacing / 2;
+    background: #263238;
     border-radius: 50%;
-    margin-right: $small-spacing * 0.5;
-    vertical-align: middle;
-    background-color: $base-font-color;
-    background-image: image_url("link.svg");
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+  }
+
+  &__image {
+    max-width: 80px;
+    max-height: 80px;
+    margin-right: $base-spacing;
   }
 
   &__title {
     margin-top: 0;
-    span {
-      vertical-align: middle;
-    }
-  }
-
-  &__image {
-    width: 15%;
-    min-width: 150px;
-    margin-right: $small-spacing * 1.5;
-    text-align: center;
-
-    img {
-      max-width: 150px;
-      max-height: 100px;
-    }
+    margin-bottom: $small-spacing / 2;
   }
 
   &__image-picker {
@@ -47,21 +46,63 @@
 
   &__content {
     flex: 1;
-    padding: $small-spacing 0;
+    padding: $base-spacing 0;
+  }
+
+  &__url {
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
+
+    color: $base-font-color;
+    font-size: 12px;
+    margin-bottom: $small-spacing;
   }
 
   &__description {
-    font-size: 14px;
     height: auto;
     resize: none;
     color: $base-font-color;
+    font-size: 12px;
   }
 
   &__summary {
+    position: relative;
+    padding: $base-spacing;
+    border-radius: 8px;
+
+    background: lighten($light-gray, 10%);
+
+    &::before,
+    &::after {
+      position: absolute;
+    }
+
+    &::before {
+      content: '';
+      top: -10px;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border-width: 0 10.5px 10px;
+      border-style: solid;
+      border-color: transparent transparent lighten($light-gray, 10%);
+    }
+
+    &::after {
+      content: '';
+      top: -10px;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border-width: 0 10.5px 10px;
+      border-style: solid;
+      border-color: transparent transparent lighten($light-gray, 10%);
+    }
+
     h6 {
       font-size: 1.1em;
     }
-    margin-top: $small-spacing;
   }
 }
 
