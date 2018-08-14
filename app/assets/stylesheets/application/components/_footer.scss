@@ -1,8 +1,17 @@
 .footer {
+  background: #263238;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   margin: 2 * $base-spacing 0 0;
-  padding: $base-spacing 0 $small-spacing;
-  border-top: 1px solid #cfd8dc;
+  padding: $base-spacing $small-spacing;
+
+  &__spacer {
+    flex: 1;
+  }
+
+  &__owner {
+    margin-left: $small-spacing;
+    color: #90a4ae;
+  }
 }

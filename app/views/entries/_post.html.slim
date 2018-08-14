@@ -1,5 +1,6 @@
 = link_to post_path(post) do
   article.post-preview
+    .post-preview__badge Авторский пост
     .post-preview__content
       h4.post-preview__title = post.title
       - if post.summary.present?

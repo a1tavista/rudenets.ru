@@ -1,8 +1,10 @@
 article.link
   .link__content
     = link_to post.url, target: '_blank', class: 'link__anchor' do
-      - if post.image.presence
+      - if post.image.presence && Rails.env.production?
         = image_tag post.image.url, class: 'link__image'
+      - else
+        = image_tag 'no-image.jpg', class: 'link__image'
       header.link__heading
         h4.link__title = post.title
         .link__url

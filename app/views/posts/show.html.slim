@@ -4,9 +4,9 @@
       h1.post-heading__title = title @post.title
       .post-heading__meta
         .post-heading__time = l(@post.entry.published_at)
-        .post-heading__categories
+        .post-heading__category-list
           - @post.tag_list.each do |tag|
-            a(href="#") #{tag.to_s.downcase}
+            a.post-heading__category-list-item href="#" #{tag.to_s.downcase}
       p = @post.summary
 
 article.post(itemscope itemtype="http://schema.org/Blog")

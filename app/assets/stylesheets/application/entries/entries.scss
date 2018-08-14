@@ -5,6 +5,7 @@
 
 .entries-list {
   &__item {
+    padding: $small-spacing 0;
     border-top: 1px solid lighten($light-gray, 7%);
   }
 }

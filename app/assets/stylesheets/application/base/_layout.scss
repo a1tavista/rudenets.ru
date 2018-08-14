@@ -30,11 +30,6 @@ body {
     @include layout();
     background: white;
 
-    @media screen and (max-width: 800px) {
-      padding-left: 1.5 * $small-spacing;
-      padding-right: 1.5 * $small-spacing;
-    }
-
     > .content {
       flex: 1;
     }

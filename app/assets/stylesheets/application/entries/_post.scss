@@ -25,20 +25,26 @@
     align-items: center;
     font-size: 14px;
     color: white;
+
+    @media #{$tablet-screen-lg-max} {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
   }
 
-  &__categories {
+  &__category-list {
     margin-bottom: $small-spacing;
+  }
 
-    a {
-      display: inline-block;
-      background: #1976d2;
-      padding: $small-spacing / 4 $small-spacing;
-      color: white;
+  &__category-list-item {
+    display: inline-block;
+    background: #1976d2;
+    padding: $small-spacing / 4 $small-spacing;
+    @include styled-link(white);
 
-      &:not(:last-child) {
-        margin-right: 10px;
-      }
+    &:not(:last-child) {
+      margin-right: $small-spacing;
     }
   }
 }
