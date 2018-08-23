@@ -14,6 +14,7 @@ class Api::PostsController < Api::BaseController
 
   def publish
     @post.entry.publish!
+    @post.update_canonical_url
     render :show
   end
 

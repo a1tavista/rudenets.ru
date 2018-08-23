@@ -48,3 +48,10 @@
     }
   }
 }
+
+.post {
+  &__content {
+    max-width: 750px;
+    margin: $base-spacing 0;
+  }
+}

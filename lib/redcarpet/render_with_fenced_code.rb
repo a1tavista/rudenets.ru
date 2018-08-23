@@ -1,4 +1,15 @@
 class Redcarpet::RenderWithFencedCode < Redcarpet::Render::HTML
+  def header(text, header_level)
+    id = text.downcase.gsub(/\s/, '-')
+
+    <<-CODE
+<h#{header_level} id="#{id}">
+  <a href='##{id}'><i class="material-icons" style='font-size: 18px; vertical-align: middle;'>link</i></a> 
+  <span style='vertical-align: middle;'>#{text}</span>
+</h#{header_level}>
+    CODE
+  end
+
   def block_code(code, language)
     <<-CODE
 <pre><code class="language-#{language}">#{code}</code></pre>
