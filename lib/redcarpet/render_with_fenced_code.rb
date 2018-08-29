@@ -3,9 +3,9 @@ class Redcarpet::RenderWithFencedCode < Redcarpet::Render::HTML
     id = text.downcase.gsub(/\s/, '-')
 
     <<-CODE
-<h#{header_level} id="#{id}">
-  <a href='##{id}'><i class="material-icons" style='font-size: 18px; vertical-align: middle;'>link</i></a> 
-  <span style='vertical-align: middle;'>#{text}</span>
+<h#{header_level} id="#{id}" class="heading">
+  <span class="heading__text">#{text}</span>  
+  <a href='##{id}' class="heading__link"><i class="material-icons heading__icon">link</i></a> 
 </h#{header_level}>
     CODE
   end

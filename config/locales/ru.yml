@@ -60,6 +60,13 @@ ru:
     - :day
     - :month
     - :year
+  views:
+    pagination:
+      next: "Туда"
+      previous: "Обратно"
+      last: "В конец"
+      first: "В начало"
+      truncate: "&hellip;"
   datetime:
     distance_in_words:
       about_x_hours:

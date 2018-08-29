@@ -11,29 +11,13 @@ html {
 html,
 body {
   height: 100%;
-  background: #F0F0F0;
-}
-
-#application {
-  height: 100%;
-  min-height: 100%;
-}
-
-.container {
-  min-height: 100%;
-  width: auto;
   background: white;
+}
 
-  &__main {
-    display: flex;
-    flex-direction: column;
-    @include layout();
-    background: white;
-
-    > .content {
-      flex: 1;
-    }
-  }
+.flex-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 }
 
 .page-title {

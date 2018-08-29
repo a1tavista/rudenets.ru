@@ -1,0 +1,71 @@
+@mixin main-layout() {
+  $lg-desktop-column-width: 60px;
+  $lg-desktop-column-gap: 32px;
+  $md-desktop-column-width: 60px;
+  $md-desktop-column-gap: 16px;
+
+  display: grid;
+  grid-template-columns:
+          [screen-start] 1fr
+          [page-start kicker-start]
+          $lg-desktop-column-width
+          [middle-start] $lg-desktop-column-width
+          [kicker-end text-start]
+          repeat(8, $lg-desktop-column-width)
+          [text-end gutter-start]
+          $lg-desktop-column-width [middle-end]
+          $lg-desktop-column-width
+          [gutter-end page-end]
+          1fr [screen-end];
+  grid-column-gap: $lg-desktop-column-gap;
+
+  @media #{$desktop-screen-md-max} {
+    grid-template-columns:
+            [screen-start] 1fr
+            [page-start kicker-start]
+            $md-desktop-column-width
+            [middle-start] $md-desktop-column-width
+            [kicker-end text-start]
+            repeat(8, $md-desktop-column-width)
+            [text-end gutter-start]
+            $md-desktop-column-width [middle-end]
+            $md-desktop-column-width
+            [gutter-end page-end]
+            1fr [screen-end];
+    grid-column-gap: $md-desktop-column-gap;
+  }
+
+  @media #{$desktop-screen-xs-max} {
+    grid-template-columns:
+            [screen-start] 8px
+            [page-start kicker-start middle-start text-start]
+              repeat(10, 1fr)
+            [gutter-end middle-end page-end text-end]
+            8px [screen-end];
+    grid-column-gap: $md-desktop-column-gap;
+  }
+}
+
+.grid-screen {
+  grid-column: screen;
+}
+
+.grid-page {
+  grid-column: page;
+}
+
+.grid-text {
+  grid-column: text;
+}
+
+.grid-kicker {
+  grid-column: kicker;
+}
+
+.grid-middle {
+  grid-column: middle;
+}
+
+.grid-gutter {
+  grid-column: gutter;
+}

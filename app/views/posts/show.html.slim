@@ -1,6 +1,6 @@
 - content_for :heading do
   header.post-heading
-    .post-heading__content
+    .post-heading__content.grid-item_text
       h1.post-heading__title = title @post.title
       .post-heading__meta
         .post-heading__time = l(@post.entry.published_at)
@@ -9,5 +9,5 @@
             a.post-heading__category-list-item href="#" #{tag.to_s.downcase}
       p = @post.summary
 
-article.post(itemscope itemtype="http://schema.org/Blog")
-  .post__content = to_markdown(@post.text)
+article.post.grid-item_text(itemscope itemtype="http://schema.org/Blog")
+  = to_markdown(@post.text)

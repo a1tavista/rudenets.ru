@@ -15,14 +15,8 @@ h6 {
   font-size: 1.25em;
   font-weight: 600;
   line-height: $heading-line-height;
-  margin-top: 0;
-  margin-bottom: $base-spacing / 2;
-}
-
-@for $i from 1 through 6 {
-  * + h#{$i} {
-    margin-top: $base-spacing;
-  }
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
 }
 
 h1 {
@@ -47,7 +41,10 @@ h5, h6 {
 }
 
 p {
-  margin: 0 0 $small-spacing;
+  margin: 0 0 $base-spacing;
+  &:last-child {
+    margin: 0;
+  }
 }
 
 a {

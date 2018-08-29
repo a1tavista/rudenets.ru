@@ -1,11 +1,12 @@
-h1.page-title Последние записи
+.main__grid
+  h1.page-title.grid-page Последние записи
 
-- if current_user.present?
-  link-form
+  - if current_user.present?
+    link-form.grid-page
 
-.entries-list
-  - @entries.each do |entry|
-    .entries-list__item
-      = render partial: "entries/#{entry.taxonomy_type.underscore}", locals: { post: entry.taxonomy, published_at: entry.published_at }
+  .entries-list.grid-page
+    - @entries.each do |entry|
+      .entries-list__item = render partial: "entries/#{entry.taxonomy_type.underscore}",
+              locals: { post: entry.taxonomy, published_at: entry.published_at }
 
-= will_paginate @entries
+  .grid-page = paginate @entries

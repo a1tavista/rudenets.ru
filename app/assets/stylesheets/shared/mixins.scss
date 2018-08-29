@@ -12,19 +12,6 @@
   }
 }
 
-@mixin layout() {
-  padding: 0 2.5 * $small-spacing 2 * $small-spacing;
-  width: 90%;
-  max-width: $container-width;
-  margin: 0 auto;
-
-  @media #{$mobile-screen-lg-max} {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 16px;
-  }
-}
-
 @mixin styled-link($color, $hover-color: $color) {
   color: $color;
   text-decoration: none;

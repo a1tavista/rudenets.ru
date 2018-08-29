@@ -1,0 +1,21 @@
+.heading {
+  &__text {
+    vertical-align: middle;
+  }
+
+  &__link {
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+
+  &:hover {
+    .heading__link {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    vertical-align: middle;
+    font-size: 20px;
+  }
+}
