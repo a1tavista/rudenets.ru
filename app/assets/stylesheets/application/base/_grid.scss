@@ -35,7 +35,9 @@
   @media #{$desktop-screen-xs-max} {
     grid-template-columns:
             [screen-start] 8px
-            [page-start text-start gutter-start kicker-start shifted-text-start] 1fr [gutter-end text-end page-end kicker-end shifted-text-end]
+            [page-start text-start gutter-start kicker-start shifted-text-start]
+            1fr
+            [gutter-end text-end page-end kicker-end shifted-text-end]
             8px [screen-end];
     grid-column-gap: $md-desktop-column-gap;
   }

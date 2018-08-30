@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
                  .includes(:taxonomy)
                  .published
                  .sorted_by_publishing_time
-                 .page(params[:page])
+                 .page(params[:page]).per(10)
   end
 
   def show; end

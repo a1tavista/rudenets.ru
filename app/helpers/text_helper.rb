@@ -8,7 +8,7 @@ module TextHelper
 
   def from_markdown(text)
     return nil if text.nil?
-    Kramdown::Document.new(text, PARSER_OPTIONS).to_html.html_safe
+    Kramdown::Document.new(text, PARSER_OPTIONS).to_custom.html_safe
   end
 
   def to_smarty(html)
