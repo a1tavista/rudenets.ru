@@ -1,45 +1,44 @@
-<template lang="pug">
-  .note-editing-form
-    .note-editing-form__header
-      h3.note-editing-form__header-title {{ formTitle }}
-      .note-editing-form__header-actions
-        button(
+<template>
+  <div class="note-editing-form">
+    <div class="note-editing-form__header">
+      <h3 class="note-editing-form__header-title">{{ formTitle }}</h3>
+      <div class="note-editing-form__header-actions">
+        <button
           v-if='!link.entry.published'
           @click='publishLink'
-        ) Опубликовать
-        button(
+        >Опубликовать</button>
+        <button
           v-if='link.entry.published'
           @click='unpublishLink'
-        ) Скрыть в черновики
-        button(
+        >Скрыть в черновики</button>
+        <button
           v-if='!link.entry.published'
           @click='remove'
-        ) Удалить
-
-    img(:src='link.src')
-
-    input(
+        >Удалить</button>
+      </div>
+    </div>
+    <img :src='link.src' />
+    <input
       type='text'
       :value='link.title'
       @input="update('title', $event.target.value)"
       placeholder='Название страницы'
-    )
-
-    textarea(
+    />
+    <textarea
       :value='link.description'
       @input="update('description', $event.target.value)"
       placeholder='Описание'
-    )
-
-    textarea(
+    />
+    <textarea
       :value='link.summary'
       @input="update('summary', $event.target.value)"
       placeholder='Комментарий'
-    )
-
-    div
-      a(href="#!" v-if="savingInProgress") Сохранение изменений...
-      a(href="#!" v-else) Все изменения сохранены
+    />
+    <div>
+      <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
+      <a href="#!" v-else>Все изменения сохранены</a>
+    </div>
+  </div>
 </template>
 
 <script>

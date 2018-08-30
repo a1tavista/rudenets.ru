@@ -37,7 +37,6 @@
     "postcss-loader": "^2.0.5",
     "postcss-smart-import": "^0.7.4",
     "precss": "^1.4.0",
-    "pug": "^2.0.0-rc.2",
     "rails-erb-loader": "^5.0.1",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.5",

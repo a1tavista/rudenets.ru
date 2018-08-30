@@ -1,23 +1,26 @@
-<template lang="pug">
-  .note-editing-form
-    .note-editing-form__header
-      h3.note-editing-form__header-title Редактирование страницы
-
-    input(
+<template>
+  <div class="note-editing-form">
+    <div class="note-editing-form__header">
+      <h3 class="note-editing-form__header-title">Редактирование страницы</h3>
+    </div>
+    <input
       type='text'
       :value='page.title'
       @input="update('title', $event.target.value)"
       placeholder='Название страницы'
-    )
-
-    markdown-editor.editor--large(
+    />
+    <markdown-editor
+      class="editor--large"
       placeholder='Полный текст заметки'
       :value="page.content"
       @input="update('content', $event)"
-    )
-      div(slot="status")
-        a(href="#!" v-if="savingInProgress") Сохранение изменений...
-        a(href="#!" v-else) Все изменения сохранены
+    >
+      <div slot="status">
+        <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
+        <a href="#!" v-else>Все изменения сохранены</a>
+      </div>
+    </markdown-editor>
+  </div>
 </template>
 
 <script>

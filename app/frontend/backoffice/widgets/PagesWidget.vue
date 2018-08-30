@@ -1,9 +1,12 @@
-<template lang="pug">
-  sidebar-widget(:items="getPages", :is-loading="getPages.isLoading")
-    template(slot="title") Страницы
-    template(slot="item" slot-scope="{ item }")
-      router-link.widget__item(:to="'/pages/' + item.id")
-        h6(v-html="item.title || unnamed")
+<template>
+  <sidebar-widget :items="getPages" :is-loading="getPages.isLoading">
+    <template slot="title">Страницы</template>
+    <template slot="item" slot-scope="{ item }">
+      <router-link class="widget__item" :to="'/pages/' + item.id">
+        <h6 v-html="item.title || unnamed"/>
+      </router-link>
+    </template>
+  </sidebar-widget>
 </template>
 
 <script>
@@ -17,15 +20,3 @@
     components: { SidebarWidget }
   }
 </script>
-
-<style lang="scss">
-  .widget__item {
-    h6, p {
-      margin-bottom: 0;
-    }
-
-    p {
-      margin-top: 0.4em;
-    }
-  }
-</style>

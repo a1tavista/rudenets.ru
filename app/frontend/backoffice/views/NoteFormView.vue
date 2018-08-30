@@ -1,50 +1,49 @@
-<template lang="pug">
-  .note-editing-form
-    .note-editing-form__header
-      h3.note-editing-form__header-title {{ formTitle }}
-      .note-editing-form__header-actions
-        button(
+<template>
+  <div class="note-editing-form">
+    <div class="note-editing-form__header">
+      <h3 class="note-editing-form__header-title">{{ formTitle }}</h3>
+      <div class="note-editing-form__header-actions">
+        <button
           v-if='!note.entry.published'
           @click='publishNote'
-        ) Опубликовать
-        button(
+        >Опубликовать</button>
+        <button
           v-if='note.entry.published'
           @click='unpublishNote'
-        ) Скрыть в черновики
-        // button(v-if='!note.entry.published') Переместить в конспекты
-        button(
+        >Скрыть в черновики</button>
+        <button
           v-if='!note.entry.published'
           @click='remove'
-        ) Удалить
-
-
-    input(
+        >Удалить</button>
+      </div>
+    </div>
+    <input
       type='text'
       :value='note.title'
       @input="update('title', $event.target.value)"
       placeholder='Название заметки'
-    )
-
-    textarea(
+    />
+    <textarea
       :value='note.summary'
       @input="update('summary', $event.target.value)"
       placeholder='Краткое описание'
-    )
-
-    input-tag(
+    />
+    <input-tag
       :tags='tagList'
       :on-change='updateTags'
       placeholder='Метки'
-    )
-
-    markdown-editor.editor--large(
+    />
+    <markdown-editor
       placeholder='Полный текст заметки'
       :value="note.text"
       @input="update('text', $event)"
-    )
-      div(slot="status")
-        a(href="#!" v-if="savingInProgress") Сохранение изменений...
-        a(href="#!" v-else) Все изменения сохранены
+    >
+      <div slot="status">
+        <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
+        <a href="#!" v-else>Все изменения сохранены</a>
+      </div>
+    </markdown-editor>
+  </div>
 </template>
 
 <script>

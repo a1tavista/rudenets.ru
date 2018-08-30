@@ -50,6 +50,14 @@
     border-bottom: 1px solid #EFEFEF;
     @include styled-link(#444);
 
+    h6, p {
+      margin: 0;
+    }
+
+    p {
+      margin-top: 8px;
+    }
+
     &:hover {
       background: #EFEFEF;
     }

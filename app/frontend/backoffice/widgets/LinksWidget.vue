@@ -1,10 +1,13 @@
-<template lang="pug">
-  sidebar-widget(:items="getLinks", :is-loading="getLinks.isLoading")
-    template(slot="title") Ссылки
-    template(slot="item" slot-scope="{ item }")
-      router-link.widget__item(:to="'/links/' + item.id")
-        h6(v-html="item.title || unnamed")
-        p(v-html="item.description" v-show="item.description")
+<template>
+  <sidebar-widget :items="getLinks" :is-loading="getLinks.isLoading">
+    <template slot="title">Ссылки</template>
+    <template slot="item" slot-scope="{ item }">
+      <router-link class="widget__item" :to="'/links/' + item.id">
+        <h6 v-html="item.title || unnamed" />
+        <p v-html="item.description" v-show="item.description" />
+      </router-link>
+    </template>
+  </sidebar-widget>
 </template>
 
 <script>
@@ -18,15 +21,3 @@
     components: { SidebarWidget }
   }
 </script>
-
-<style lang="scss">
-  .widget__item {
-    h6, p {
-      margin-bottom: 0;
-    }
-
-    p {
-      margin-top: 0.4em;
-    }
-  }
-</style>

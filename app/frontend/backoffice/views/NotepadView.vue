@@ -1,26 +1,26 @@
-<template lang="pug">
-  .note-editing-form
-    .note-editing-form__wrapper
-      markdown-editor.editor--x-large.editor--single(
+<template>
+  <div class="note-editing-form">
+    <div class="note-editing-form__wrapper">
+      <markdown-editor
+        class="editor--x-large editor--single"
         :value="notepad.text"
         @input="update('text', $event)"
         :is-preview-hidden="true"
-      )
-        div(slot="status")
-          a(href="javascript:void(0);" v-if="savingInProgress") Сохранение изменений...
-          a(href="javascript:void(0);" v-else) Все изменения сохранены
-        template.toolbar__spacer(slot="actions")
-          // Default toolbar
-          .toolbar__group(v-show='!showEditForm && !showAddForm && !showShareForm')
-            .toolbar__group
-              button(@click="showAddNoteForm")
-                i.material-icons add
-              button(@click="showEditNoteForm")
-                i.material-icons edit
-              button(@click="getShareLink")
-                i.material-icons share
-            .toolbar__spacer
-            treeselect.treeselect--fullwidth(
+      >
+        <div slot="status">
+          <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
+          <a href="#!" v-else>Все изменения сохранены</a>
+        </div>
+        <template class="toolbar__spacer" slot="actions">
+          <div class="toolbar__group" v-show='!showEditForm && !showAddForm && !showShareForm'>
+            <div class="toolbar__group">
+              <button @click="showAddNoteForm"><i class="material-icons">add</i></button>
+              <button @click="showEditNoteForm"><i class="material-icons">edit</i></button>
+              <button @click="getShareLink"><i class="material-icons">share</i></button>
+            </div>
+            <div class="toolbar__spacer" />
+            <treeselect
+              class="treeselect--fullwidth"
               :loadRootOptions='getTree'
               :show-count="true"
               v-model='currentID'
@@ -28,45 +28,46 @@
               :clearable='false'
               :autofocus='true'
               ref="ts0"
-            )
-            .toolbar__spacer
-
-          // Sharing toolbar
-          .toolbar__group(v-show='showShareForm')
-            input#share.toolbar__input(:value="fullShareUrl" disabled="disabled")
-            button(@click="unshareNotepad")
-              i.material-icons delete
-            button(@click="closeForm")
-              i.material-icons done
-
-          // Add new note toolbar
-          .toolbar__group(v-show='showAddForm')
-            input.toolbar__input(v-model='newNotepad.name')
-            treeselect(
+            />
+            <div class="toolbar__spacer" />
+          </div>
+          <div class="toolbar__group" v-show='showShareForm'>
+            <input
+              id="share"
+              class="toolbar__input"
+              :value="fullShareUrl"
+              disabled="disabled"
+            />
+            <button @click="unshareNotepad"><i class="material-icons">delete</i></button>
+            <button @click="closeForm"><i class="material-icons">done</i></button>
+          </div>
+          <div class="toolbar__group" v-show="showAddForm">
+            <input class="toolbar__input" v-model="newNotepad.name" />
+            <treeselect
               :loadRootOptions='getTree'
               :show-count="true"
               v-model='newNotepad.ancestry'
               :multiple='false'
               ref="ts1"
-            )
-            button(@click="closeForm")
-              i.material-icons done
-
-          // Edit note toolbar
-          .toolbar__group(v-show='showEditForm')
-            input.toolbar__input(:value="notepad.name" @input="update('name', $event.target.value)")
-            treeselect(
+            />
+            <button @click="closeForm"><i class="material-icons">done</i></button>
+          </div>
+          <div class="toolbar__group" v-show='showEditForm'>
+            <input class="toolbar__input" :value="notepad.name" @input="update('name', $event.target.value)" />
+            <treeselect
               :loadRootOptions='getTree'
               :show-count="true"
               :value='notepad.ancestry'
               @input="update('ancestry', $event)"
               :multiple='false'
               ref="ts2"
-            )
-            // button(@click="deleteNotepad")
-              i.material-icons delete
-            button(@click="closeForm")
-              i.material-icons done
+            />
+            <button @click="closeForm"><i class="material-icons">done</i></button>
+          </div>
+        </template>
+      </markdown-editor>
+    </div>
+  </div>
 </template>
 
 <script>

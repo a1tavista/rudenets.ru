@@ -1,20 +1,29 @@
-<template lang="pug">
-  .editor(:class='generalClasses')
-    toolbar.editor__toolbar(:state="editorState" v-on:stateChanging="changeState")
-      .toolbar__group.toolbar__spacer(slot="actions")
-        slot(name="actions")
-    .editor__workspace(:class='workspaceClasses')
-      codemirror(
-      :value='code'
+<template>
+  <div class="editor" :class="generalClasses">
+    <toolbar class="editor__toolbar" :state="editorState" v-on:stateChanging="changeState">
+      <div class="toolbar__group toolbar__spacer" slot="actions">
+        <slot name="actions" />
+      </div>
+    </toolbar>
+    <div class="editor__workspace" :class='workspaceClasses'>
+      <codemirror
+        :value='code'
         @input='updateValue($event)'
-          @scroll='syncScroll'
-      ref='editor'
+        @scroll='syncScroll'
+        ref='editor'
         :options='codeMirrorOptions'
-      )
-      .editor__preview(v-html='html' ref='preview')
-    .editor__status-bar
-      div Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}
-      slot(name="status")
+      />
+      <div
+        class="editor__preview"
+        v-html='html'
+        ref='preview'
+      />
+    </div>
+    <div class="editor__status-bar">
+      <div>Символов: {{ stats.chars }}, слов: {{ stats.words }}, абзацев: {{ stats.lines }}</div>
+      <slot name="status" />
+    </div>
+  </div>
 </template>
 
 <script>

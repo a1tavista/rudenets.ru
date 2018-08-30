@@ -1,3 +1,12 @@
+<template>
+  <div class="container" :class="[!isWidgetOpened && 'container--tight']">
+    <app-sidebar />
+    <main class="content-container">
+      <router-view />
+    </main>
+  </div>
+</template>
+
 <script>
   import AppSidebar from './components/AppSidebar.vue';
   import {mapActions, mapGetters} from 'vuex';
@@ -18,11 +27,3 @@
     components: {AppSidebar}
   }
 </script>
-
-<template lang="pug">
-  .container(:class="[!isWidgetOpened && 'container--tight']")
-    app-sidebar
-    transition(name="fade" mode="out-in")
-      main.content-container
-        router-view
-</template>
