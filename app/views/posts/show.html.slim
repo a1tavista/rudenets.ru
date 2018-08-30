@@ -10,4 +10,4 @@
       p = @post.summary
 
 article.post.grid-item_text(itemscope itemtype="http://schema.org/Blog")
-  = to_markdown(@post.text)
+  = from_markdown(@post.text)

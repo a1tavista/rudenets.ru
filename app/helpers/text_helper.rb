@@ -1,17 +1,14 @@
 module TextHelper
-  REDCARPET_OPTIONS = {
-    autolink: true,
-    footnotes: true,
-    tables: true,
-    fenced_code_blocks: true,
-    strikethrough: true
+  PARSER_OPTIONS = {
+    parse_block_html: true,
+    parse_span_html: true,
+    enable_coderay: false,
+    input: 'GFM'
   }.freeze
 
-  def to_markdown(text)
+  def from_markdown(text)
     return nil if text.nil?
-    markdown = Redcarpet::Markdown.new(::Redcarpet::RenderWithFencedCode, REDCARPET_OPTIONS)
-    html = markdown.render(text)
-    to_smarty(html)
+    Kramdown::Document.new(text, PARSER_OPTIONS).to_html.html_safe
   end
 
   def to_smarty(html)
