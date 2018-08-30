@@ -9,7 +9,6 @@
   }
 
   &__screen-break {
-    text-align: center;
     grid-column: screen;
     padding: 2 * $base-spacing $small-spacing;
     margin: $base-spacing 0 2 * $base-spacing;
@@ -21,7 +20,6 @@
   }
 
   &__page-break {
-    text-align: center;
     grid-column: page;
     padding: 2 * $base-spacing $small-spacing;
     margin-bottom: $base-spacing;
