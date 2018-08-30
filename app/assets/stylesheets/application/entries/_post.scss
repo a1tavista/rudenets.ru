@@ -9,9 +9,12 @@
   }
 
   &__screen-break {
-    grid-column: screen;
-    padding: 2 * $base-spacing $small-spacing;
+    display: grid;
+    grid-template-columns: inherit;
+    grid-column-gap: inherit;
+    padding: 2 * $base-spacing 0;
     margin: $base-spacing 0 2 * $base-spacing;
+    grid-column: screen;
 
     &_grey {
       border: 1px solid #e0e7eb;
@@ -20,8 +23,11 @@
   }
 
   &__page-break {
-    grid-column: page;
-    padding: 2 * $base-spacing $small-spacing;
+    display: grid;
+    grid-template-columns: inherit;
+    grid-column-gap: inherit;
+    padding: 2 * $base-spacing 0;
     margin-bottom: $base-spacing;
+    grid-column: page;
   }
 }
