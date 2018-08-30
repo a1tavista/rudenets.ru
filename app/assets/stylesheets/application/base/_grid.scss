@@ -5,16 +5,13 @@
   $md-desktop-column-gap: 16px;
 
   display: grid;
+
   grid-template-columns:
           [screen-start] 1fr
-          [page-start kicker-start]
-          $lg-desktop-column-width
-          [middle-start] $lg-desktop-column-width
-          [kicker-end text-start]
-          repeat(8, $lg-desktop-column-width)
+          [page-start text-start]
+          repeat(10, $lg-desktop-column-width)
           [text-end gutter-start]
-          $lg-desktop-column-width [middle-end]
-          $lg-desktop-column-width
+          repeat(2, $lg-desktop-column-width)
           [gutter-end page-end]
           1fr [screen-end];
   grid-column-gap: $lg-desktop-column-gap;
@@ -22,14 +19,10 @@
   @media #{$desktop-screen-md-max} {
     grid-template-columns:
             [screen-start] 1fr
-            [page-start kicker-start]
-            $md-desktop-column-width
-            [middle-start] $md-desktop-column-width
-            [kicker-end text-start]
-            repeat(8, $md-desktop-column-width)
+            [page-start text-start]
+            repeat(10, $md-desktop-column-width)
             [text-end gutter-start]
-            $md-desktop-column-width [middle-end]
-            $md-desktop-column-width
+            repeat(2, $md-desktop-column-width)
             [gutter-end page-end]
             1fr [screen-end];
     grid-column-gap: $md-desktop-column-gap;
@@ -38,9 +31,7 @@
   @media #{$desktop-screen-xs-max} {
     grid-template-columns:
             [screen-start] 8px
-            [page-start kicker-start middle-start text-start]
-              repeat(10, 1fr)
-            [gutter-end middle-end page-end text-end]
+            [page-start text-start gutter-start] 1fr [gutter-end text-end page-end]
             8px [screen-end];
     grid-column-gap: $md-desktop-column-gap;
   }
@@ -56,14 +47,6 @@
 
 .grid-text {
   grid-column: text;
-}
-
-.grid-kicker {
-  grid-column: kicker;
-}
-
-.grid-middle {
-  grid-column: middle;
 }
 
 .grid-gutter {
