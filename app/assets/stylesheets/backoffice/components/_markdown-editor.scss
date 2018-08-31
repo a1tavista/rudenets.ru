@@ -6,7 +6,6 @@
   $root: ".editor";
 
   height: 40vh;
-  margin-bottom: $small-spacing;
 
   &--fullscreen {
     position: fixed;
@@ -19,15 +18,11 @@
   }
 
   &--large {
-    height: 70vh;
+    height: 75vh;
   }
 
   &--x-large {
-    height: 99vh;
-  }
-
-  &--single {
-    margin-bottom: 0;
+    height: 100vh;
   }
 
   &__toolbar {

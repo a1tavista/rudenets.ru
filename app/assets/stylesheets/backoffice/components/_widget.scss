@@ -10,7 +10,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 2.5 * $small-spacing 1.5 * $small-spacing;
+    padding: 2.5 * $small-spacing $base-spacing;
   }
 
   &__title {
@@ -46,7 +46,7 @@
 
   &__item {
     display: block;
-    padding: $small-spacing 1.5 * $small-spacing;
+    padding: $base-spacing;
     border-bottom: 1px solid #EFEFEF;
     @include styled-link(#444);
 

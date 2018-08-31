@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #3c4f58;
+  color: white;
+  padding: $base-spacing;
+
+  &__title {
+    font-size: 25px;
+    margin: 0;
+  }
+
+  &__actions {
+    button {
+      background: transparent;
+      border: 2px solid white;
+      margin: 0;
+      margin-left: 8px;
+      padding: 8px 16px;
+      color: white;
+
+      &:hover, &:focus, &.router-link-exact-active, &.active {
+        background: white;
+        color: black;
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 <template>
-  <div class="note-editing-form">
-    <div class="note-editing-form__wrapper">
-      <markdown-editor
-        class="editor--x-large editor--single"
+  <div>
+    <markdown-editor
+        class="editor--x-large editor--single view__page"
         :value="notepad.text"
         @input="update('text', $event)"
         :is-preview-hidden="true"
@@ -15,8 +14,7 @@
           <div class="toolbar__group" v-show='!showEditForm && !showAddForm && !showShareForm'>
             <div class="toolbar__group">
               <button @click="showAddNoteForm"><i class="material-icons">add</i></button>
-              <button @click="showEditNoteForm"><i class="material-icons">edit</i></button>
-              <button @click="getShareLink"><i class="material-icons">share</i></button>
+
             </div>
             <div class="toolbar__spacer" />
             <treeselect
@@ -29,6 +27,8 @@
               :auto-focus='true'
               ref="ts0"
             />
+            <button @click="showEditNoteForm"><i class="material-icons">edit</i></button>
+            <button @click="getShareLink"><i class="material-icons">share</i></button>
             <div class="toolbar__spacer" />
           </div>
           <div class="toolbar__group" v-show='showShareForm'>
@@ -65,8 +65,7 @@
             <button @click="closeForm"><i class="material-icons">done</i></button>
           </div>
         </template>
-      </markdown-editor>
-    </div>
+  </markdown-editor>
   </div>
 </template>
 

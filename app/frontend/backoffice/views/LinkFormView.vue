@@ -1,8 +1,8 @@
 <template>
-  <div class="note-editing-form">
-    <div class="note-editing-form__header">
-      <h3 class="note-editing-form__header-title">{{ formTitle }}</h3>
-      <div class="note-editing-form__header-actions">
+  <div>
+    <div class="view__header header">
+      <h3 class="header__title">{{ formTitle }}</h3>
+      <div class="header__actions">
         <button
           v-if='!link.entry.published'
           @click='publishLink'
@@ -17,26 +17,28 @@
         >Удалить</button>
       </div>
     </div>
-    <img :src='link.src' />
-    <input
-      type='text'
-      :value='link.title'
-      @input="update('title', $event.target.value)"
-      placeholder='Название страницы'
-    />
-    <textarea
-      :value='link.description'
-      @input="update('description', $event.target.value)"
-      placeholder='Описание'
-    />
-    <textarea
-      :value='link.summary'
-      @input="update('summary', $event.target.value)"
-      placeholder='Комментарий'
-    />
-    <div>
-      <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
-      <a href="#!" v-else>Все изменения сохранены</a>
+    <div class="view__content">
+      <img :src='link.src' />
+      <input
+        type='text'
+        :value='link.title'
+        @input="update('title', $event.target.value)"
+        placeholder='Название страницы'
+      />
+      <textarea
+        :value='link.description'
+        @input="update('description', $event.target.value)"
+        placeholder='Описание'
+      />
+      <textarea
+        :value='link.summary'
+        @input="update('summary', $event.target.value)"
+        placeholder='Комментарий'
+      />
+      <div>
+        <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
+        <a href="#!" v-else>Все изменения сохранены</a>
+      </div>
     </div>
   </div>
 </template>

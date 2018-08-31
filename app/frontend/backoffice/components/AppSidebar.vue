@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div>
     <div class="icon-sidebar">
 
       <div class="icon-sidebar__group">

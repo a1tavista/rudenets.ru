@@ -5,6 +5,7 @@ export default {
   mounted() {
     marked.setOptions({
       smartLists: true,
+      gfm: true,
       smartypants: true,
       highlight: function (code) {
         return highlight.highlightAuto(code).value;

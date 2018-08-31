@@ -1,8 +1,8 @@
 <template>
-  <div class="note-editing-form">
-    <div class="note-editing-form__header">
-      <h3 class="note-editing-form__header-title">{{ formTitle }}</h3>
-      <div class="note-editing-form__header-actions">
+  <div>
+    <div class="header view__header">
+      <h3 class="header__title">{{ formTitle }}</h3>
+      <div class="header__actions">
         <button
           v-if='!note.entry.published'
           @click='publishNote'
@@ -17,32 +17,35 @@
         >Удалить</button>
       </div>
     </div>
-    <input
-      type='text'
-      :value='note.title'
-      @input="update('title', $event.target.value)"
-      placeholder='Название заметки'
-    />
-    <textarea
-      :value='note.summary'
-      @input="update('summary', $event.target.value)"
-      placeholder='Краткое описание'
-    />
-    <input-tag
-      :tags='tagList'
-      :on-change='updateTags'
-      placeholder='Метки'
-    />
-    <markdown-editor
-      placeholder='Полный текст заметки'
-      :value="note.text"
-      @input="update('text', $event)"
-    >
-      <div slot="status">
-        <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
-        <a href="#!" v-else>Все изменения сохранены</a>
-      </div>
-    </markdown-editor>
+    <div class="view__content">
+      <input
+        type='text'
+        :value='note.title'
+        @input="update('title', $event.target.value)"
+        placeholder='Название заметки'
+      />
+      <textarea
+        :value='note.summary'
+        @input="update('summary', $event.target.value)"
+        placeholder='Краткое описание'
+      />
+      <input-tag
+        :tags='tagList'
+        :on-change='updateTags'
+        placeholder='Метки'
+      />
+      <markdown-editor
+        class="editor--large"
+        placeholder='Полный текст заметки'
+        :value="note.text"
+        @input="update('text', $event)"
+      >
+        <div slot="status">
+          <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
+          <a href="#!" v-else>Все изменения сохранены</a>
+        </div>
+      </markdown-editor>
+    </div>
   </div>
 </template>
 

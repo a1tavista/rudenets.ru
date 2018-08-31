@@ -1,8 +1,8 @@
 <template>
-  <div class="container" :class="[!isWidgetOpened && 'container--tight']">
-    <app-sidebar />
-    <main class="content-container">
-      <router-view />
+  <div class="grid" >
+    <app-sidebar class="grid__sidebar" :style="!isWidgetOpened && 'grid-column: small-sidebar;'" />
+    <main class="grid__view" :style="isWidgetOpened && 'grid-column: small-content;'">
+      <router-view class="view" />
     </main>
   </div>
 </template>
