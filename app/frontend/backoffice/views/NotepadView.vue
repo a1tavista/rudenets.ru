@@ -21,12 +21,12 @@
             <div class="toolbar__spacer" />
             <treeselect
               class="treeselect--fullwidth"
-              :loadRootOptions='getTree'
+              :options='tree'
               :show-count="true"
               v-model='currentID'
               :multiple='false'
               :clearable='false'
-              :autofocus='true'
+              :auto-focus='true'
               ref="ts0"
             />
             <div class="toolbar__spacer" />
@@ -44,7 +44,7 @@
           <div class="toolbar__group" v-show="showAddForm">
             <input class="toolbar__input" v-model="newNotepad.name" />
             <treeselect
-              :loadRootOptions='getTree'
+              :options='tree'
               :show-count="true"
               v-model='newNotepad.ancestry'
               :multiple='false'
@@ -55,7 +55,7 @@
           <div class="toolbar__group" v-show='showEditForm'>
             <input class="toolbar__input" :value="notepad.name" @input="update('name', $event.target.value)" />
             <treeselect
-              :loadRootOptions='getTree'
+              :options='tree'
               :show-count="true"
               :value='notepad.ancestry'
               @input="update('ancestry', $event)"
@@ -133,18 +133,10 @@
         this.showEditForm = false;
         this.showShareForm = false;
       },
-      reloadTree() {
-        this.$refs.ts0 && this.$refs.ts0.loadOptions(true);
-        this.$refs.ts1 && this.$refs.ts1.loadOptions(true);
-        this.$refs.ts2 && this.$refs.ts2.loadOptions(true);
-      },
       update(field, value) {
         if(this.notepad[field] === value) return;
         if(value === undefined) return;
         this.updateNotepadField({ field, value });
-      },
-      getTree(callback) {
-        return callback(null, this.tree);
       }
     },
 
@@ -172,9 +164,6 @@
       currentID(to, from) {
         if(this.currentID)
           this.fetchNotepad({ id: this.currentID });
-      },
-      timestamp(to, from) {
-        this.reloadTree();
       },
       'notepad.id'() {
         this.currentID = this.notepad.id;
