@@ -10,7 +10,9 @@
           :clearable='false'
           :auto-focus='true'
           class='treeselect--fullwidth'
-        />
+        >
+          <div slot="value-label" slot-scope="{ node }">{{ node.raw.label }} (#{{ node.raw.id }})</div>
+        </treeselect>
       </div>
       <div class="header__actions">
         <button @click="showAddNoteForm"><i class="material-icons">add</i></button>
