@@ -1,7 +1,72 @@
 <template>
   <div>
-    <markdown-editor
-        class="editor--x-large editor--single view__page"
+    <div class="view__header header">
+      <div class="header__select">
+        <treeselect
+          :options='tree'
+          :show-count="true"
+          v-model='currentID'
+          :multiple='false'
+          :clearable='false'
+          :auto-focus='true'
+          class='treeselect--fullwidth'
+        />
+      </div>
+      <div class="header__actions">
+        <button @click="showAddNoteForm"><i class="material-icons">add</i></button>
+        <button @click="showEditNoteForm"><i class="material-icons">edit</i></button>
+        <button @click="getShareLink"><i class="material-icons">share</i></button>
+      </div>
+    </div>
+
+    <modal v-if="showAddForm" @close="closeForm">
+      <h3 slot="header">Создание заметки</h3>
+      <div slot="body">
+        <input v-model="newNotepad.name" placeholder="Название заметки"/>
+        <treeselect
+          :options='tree'
+          :show-count="true"
+          v-model='newNotepad.ancestry'
+          :multiple='false'
+          class='treeselect--fullwidth'
+        />
+      </div>
+      <div slot="footer">
+        <button @click="closeForm">Сохранить</button>
+      </div>
+    </modal>
+    <modal v-if="showEditForm" @close="closeForm">
+      <h3 slot="header">Изменение заметки</h3>
+      <div slot="body">
+        <input :value="notepad.name" @input="update('name', $event.target.value)" />
+        <treeselect
+          :options='tree'
+          :show-count="true"
+          :value='notepad.ancestry'
+          @input="update('ancestry', $event)"
+          :multiple='false'
+          class='treeselect--fullwidth'
+        />
+      </div>
+      <div slot="footer">
+        <button @click="closeForm">Сохранить</button>
+      </div>
+    </modal>
+    <modal v-if="showShareForm" @close="closeForm">
+      <h3 slot="header">Заметка опубликована!</h3>
+      <div slot="body">
+        <p style="margin-bottom: 8px;">Ссылка для доступа:</p>
+        <pre>{{ fullShareUrl }}</pre>
+      </div>
+      <div slot="footer">
+        <button @click="unshareNotepad">Распубликовать</button>
+        <button @click="closeForm">Сохранить</button>
+      </div>
+    </modal>
+
+    <div class='view__content view__content_paddingless'>
+      <markdown-editor
+        class="editor--sticky"
         :value="notepad.text"
         @input="update('text', $event)"
         :is-preview-hidden="true"
@@ -10,67 +75,14 @@
           <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
           <a href="#!" v-else>Все изменения сохранены</a>
         </div>
-        <template class="toolbar__spacer" slot="actions">
-          <div class="toolbar__group" v-show='!showEditForm && !showAddForm && !showShareForm'>
-            <div class="toolbar__group">
-              <button @click="showAddNoteForm"><i class="material-icons">add</i></button>
-
-            </div>
-            <div class="toolbar__spacer" />
-            <treeselect
-              class="treeselect--fullwidth"
-              :options='tree'
-              :show-count="true"
-              v-model='currentID'
-              :multiple='false'
-              :clearable='false'
-              :auto-focus='true'
-              ref="ts0"
-            />
-            <button @click="showEditNoteForm"><i class="material-icons">edit</i></button>
-            <button @click="getShareLink"><i class="material-icons">share</i></button>
-            <div class="toolbar__spacer" />
-          </div>
-          <div class="toolbar__group" v-show='showShareForm'>
-            <input
-              id="share"
-              class="toolbar__input"
-              :value="fullShareUrl"
-              disabled="disabled"
-            />
-            <button @click="unshareNotepad"><i class="material-icons">delete</i></button>
-            <button @click="closeForm"><i class="material-icons">done</i></button>
-          </div>
-          <div class="toolbar__group" v-show="showAddForm">
-            <input class="toolbar__input" v-model="newNotepad.name" />
-            <treeselect
-              :options='tree'
-              :show-count="true"
-              v-model='newNotepad.ancestry'
-              :multiple='false'
-              ref="ts1"
-            />
-            <button @click="closeForm"><i class="material-icons">done</i></button>
-          </div>
-          <div class="toolbar__group" v-show='showEditForm'>
-            <input class="toolbar__input" :value="notepad.name" @input="update('name', $event.target.value)" />
-            <treeselect
-              :options='tree'
-              :show-count="true"
-              :value='notepad.ancestry'
-              @input="update('ancestry', $event)"
-              :multiple='false'
-              ref="ts2"
-            />
-            <button @click="closeForm"><i class="material-icons">done</i></button>
-          </div>
-        </template>
   </markdown-editor>
+    </div>
   </div>
 </template>
 
 <script>
   import MarkdownEditor from '../components/editor/MarkdownEditor.vue';
+  import Modal from '../components/Modal.vue';
   import Treeselect from '@riophae/vue-treeselect'
   import {mapActions, mapGetters, mapState} from "vuex";
 
@@ -169,7 +181,7 @@
       }
     },
 
-    components: {MarkdownEditor, Treeselect}
+    components: {MarkdownEditor, Treeselect, Modal}
   }
 </script>
 
@@ -191,7 +203,7 @@
   }
 
   .treeselect--fullwidth {
-    width: 80%;
+    width: 100%;
   }
 
   .vue-treeselect__control {
@@ -200,5 +212,9 @@
 
   .vue-treeselect__menu {
     z-index: 500;
+  }
+
+  .vue-treeselect__input:focus {
+    box-shadow: none;
   }
 </style>

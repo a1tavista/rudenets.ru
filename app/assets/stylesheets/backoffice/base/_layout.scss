@@ -46,9 +46,14 @@ body {
   }
 
   &__content {
+    position: relative;
     padding: $base-spacing $base-spacing 0;
     grid-row: view-content;
     overflow: hidden;
+
+    &_paddingless {
+      padding: 0;
+    }
   }
 
   &__page {

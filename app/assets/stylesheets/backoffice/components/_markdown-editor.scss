@@ -1,6 +1,7 @@
 @import 'codemirror/lib/codemirror';
 @import 'codemirror/theme/neat';
 @import 'codemirror/addon/fold/foldgutter';
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&subset=cyrillic');
 
 .editor {
   $root: ".editor";
@@ -21,8 +22,8 @@
     height: 75vh;
   }
 
-  &--x-large {
-    height: 100vh;
+  &--sticky {
+    height: 92vh;
   }
 
   &__toolbar {
@@ -94,6 +95,7 @@
 
     pre {
       margin: 0 !important;
+      font-family: 'Roboto Mono', monospace;
     }
     &-scroll, &-vscrollbar, &-hscrollbar {
       @include good-scroll();
