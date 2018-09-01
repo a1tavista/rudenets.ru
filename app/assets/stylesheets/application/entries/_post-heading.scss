@@ -1,7 +1,6 @@
 .post-heading {
   background: #263238;
   padding: 64px 0;
-  margin-bottom: $base-spacing;
   @include main-layout();
 
   @media #{$tablet-screen-lg-max} {

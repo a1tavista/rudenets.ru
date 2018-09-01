@@ -61,8 +61,8 @@ hr {
 
 blockquote {
   border-left: 0.5em solid $light-gray;
-  margin: 0 0 $small-spacing;
-  padding-left: $small-spacing * 2;
+  margin: 0 0 $base-spacing;
+  padding-left: $base-spacing;
 }
 
 code:not([class]) {
@@ -76,7 +76,7 @@ code:not([class]) {
 }
 
 pre {
-  margin: 0 0 $small-spacing !important;
+  margin: 0 0 $base-spacing !important;
 }
 
 dl {

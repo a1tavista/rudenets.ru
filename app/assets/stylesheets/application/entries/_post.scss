@@ -4,6 +4,10 @@
   line-height: 1.7;
   @include main-layout();
 
+  > .toc:first-child {
+    margin-top: -$base-spacing;
+  }
+
   > * {
     grid-column: text;
   }

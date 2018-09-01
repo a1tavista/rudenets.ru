@@ -1,0 +1,21 @@
+.toc {
+  display: grid;
+  grid-template-columns: inherit;
+  grid-column-gap: inherit;
+  grid-column: screen;
+  border: 1px solid #e0e7eb;
+  color: #212c31;
+  padding: $base-spacing 0;
+  margin-bottom: $base-spacing;
+
+  &__content {
+    grid-column: text;
+    font-size: 15px;
+
+    > ul, > ol {
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+    }
+  }
+}
