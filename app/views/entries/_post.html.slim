@@ -1,7 +1,7 @@
-= link_to post_path(post) do
-  article.post-preview
-    .post-preview__badge Авторский пост
+article.post-preview.entry-grid__item
+  = link_to post_path(post) do
     .post-preview__content
+      header.post-preview__eyebrow #{time_ago_in_words(post.entry.published_at)} назад
       h4.post-preview__title = post.title
       - if post.summary.present?
         p.post-preview__summary = to_smarty(post.summary)

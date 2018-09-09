@@ -1,11 +1,12 @@
 .post {
-  margin: $base-spacing 0;
+  margin: 4 * $base-spacing 0 0;
   font-size: $article-font-size;
   line-height: 1.7;
   @include main-layout();
+  padding-bottom: 4 * $base-spacing;
 
   > .toc:first-child {
-    margin-top: -$base-spacing;
+    margin-top: -4 * $base-spacing;
   }
 
   > * {
@@ -33,5 +34,18 @@
     padding: 2 * $base-spacing 0;
     margin-bottom: $base-spacing;
     grid-column: page;
+  }
+
+  &__footer {
+    margin-bottom: - 4 * $base-spacing;
+    display: grid;
+    grid-template-columns: inherit;
+    grid-column-gap: inherit;
+    grid-column: screen;
+    background: #f6f8f9;
+    margin-top: 2 * $base-spacing;
+    padding: 4 * $base-spacing 0;
+    font-size: 14px;
+    color: #455e68;
   }
 }

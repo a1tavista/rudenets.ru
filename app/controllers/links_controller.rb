@@ -1,10 +1,10 @@
 class LinksController < ApplicationController
   def index
-    @entries = Entry.includes(:taxonomy)
+    @links = Entry.includes(:taxonomy)
                  .published
                  .sorted_by_publishing_time
                  .where('taxonomy_type = ?', Link)
-                 .page(params[:page])
+                 .page(params[:page]).per(10)
     render 'entries/index'
   end
 end

@@ -1,27 +1,15 @@
-.toc {
+.footnotes {
   display: grid;
   grid-template-columns: inherit;
   grid-column-gap: inherit;
   grid-column: screen;
   border: 1px solid #e0e7eb;
   color: #212c31;
-
-  &:first-child {
-    padding: 64px 0;
-    margin-bottom: 32px;
-  }
-
   padding: $base-spacing 0;
   margin-bottom: $base-spacing;
 
-  &__content {
-    grid-column: text;
+  ol {
+    grid-column: shifted-text;
     font-size: 15px;
-
-    > ul, > ol {
-      padding-left: 0;
-      margin-bottom: 0;
-      list-style: none;
-    }
   }
 }

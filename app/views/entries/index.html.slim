@@ -1,12 +1,30 @@
-.main__grid
-  h1.page-title.grid-page Последние записи
+.main__grid.entry-grid
+  - if @posts.present?
+    section.entry-grid__section
+      h1.entry-grid__heading Посты
+      - @posts.each do |entry|
+        = render partial: "entries/#{entry.taxonomy_type.underscore}",
+                locals: { post: entry.taxonomy, published_at: entry.published_at }
+      - if @posts.respond_to?(:total_pages)
+        .entry-grid__pagination
+          = paginate @posts
 
-  - if current_user.present?
-    link-form.grid-page
+      - if current_page?('/')
+        = link_to 'Все посты', posts_path, class: 'entry-grid__read-more'
 
-  .entries-list.grid-page
-    - @entries.each do |entry|
-      .entries-list__item = render partial: "entries/#{entry.taxonomy_type.underscore}",
-              locals: { post: entry.taxonomy, published_at: entry.published_at }
 
-  .grid-page = paginate @entries
+  - if @links.present?
+    section.entry-grid__section
+      h1.entry-grid__heading Рекомендации
+      - if current_user.present?
+        link-form.grid-page
+      - @links.each do |entry|
+        = render partial: "entries/#{entry.taxonomy_type.underscore}",
+                 locals: { post: entry.taxonomy, published_at: entry.published_at }
+      - if @links.respond_to?(:total_pages)
+        .entry-grid__pagination
+          = paginate @links
+
+      - if current_page?('/')
+        = link_to 'Все рекомендации', links_path, class: 'entry-grid__read-more'
+

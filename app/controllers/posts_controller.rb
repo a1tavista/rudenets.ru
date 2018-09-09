@@ -1,15 +1,13 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
   include SeoHelper
   load_and_authorize_resource find_by: :slug
 
   def index
-    @entries = Entry.includes(:taxonomy)
+    @posts = Entry.includes(:taxonomy)
                     .published
                     .sorted_by_publishing_time
                     .where('taxonomy_type = ?', Post)
-                    .page(params[:page])
+                    .page(params[:page]).per(10)
     render 'entries/index'
   end
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:400,500,700&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:300,400,500,700&subset=cyrillic');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 // Breakpoints
@@ -45,7 +45,7 @@ $base-line-height: 1.75;
 $heading-line-height: 1.2;
 
 // Other Sizes
-$base-border-radius: 0;
+$base-border-radius: 4px;
 $base-spacing: 16px;
 $small-spacing: 8px;
 $base-z-index: 0;

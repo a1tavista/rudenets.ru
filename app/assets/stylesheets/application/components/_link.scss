@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: stretch;
   position: relative;
+  transition: box-shadow .3s ease;
+
+  &:hover, &:active, &:focus {
+
+  }
 
   color: $base-font-color;
 
@@ -26,13 +31,15 @@
   }
 
   &__image {
-    width: 80px;
+    width: 100px;
     margin-right: $base-spacing;
   }
 
   &__title {
     margin-top: 0;
     margin-bottom: $small-spacing / 2;
+    font-size: 1.1em;
+    font-weight: normal;
   }
 
   &__image-picker {
@@ -46,7 +53,6 @@
 
   &__content {
     flex: 1;
-    padding: $base-spacing 0;
   }
 
   &__url {

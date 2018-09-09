@@ -1,0 +1,36 @@
+.entry-grid {
+  &__section {
+    display: grid;
+    padding: 64px 0;
+    grid-template-columns: inherit;
+    grid-column-gap: inherit;
+    grid-column: screen;
+
+    &:not(:first-of-type) {
+      border-top: 1px solid #e0e7eb;
+    }
+  }
+
+  &__heading {
+    grid-column: page;
+    margin-top: 0;
+    font-weight: normal;
+  }
+
+  &__item {
+    grid-column: page;
+    &:not(:last-of-type) {
+      margin-bottom: 3 * $base-spacing;
+    }
+  }
+
+  &__read-more {
+    grid-column: page;
+    margin-top: 32px;
+  }
+
+  &__pagination {
+    grid-column: page;
+    margin-top: 32px;
+  }
+}

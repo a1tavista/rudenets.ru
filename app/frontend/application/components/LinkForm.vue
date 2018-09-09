@@ -84,10 +84,10 @@
 
 <template>
   <div>
-    <div class="entries-new">
+    <div class="share-link-form">
       <input type="text" placeholder="Вставьте URL для быстрой публикации" v-model="textInput">
-      <pre class="entries-new__status" v-if="answer">{{ answer }}</pre>
-      <div class="entries-new__form" v-if="isURL">
+      <pre class="share-link-form__status" v-if="answer">{{ answer }}</pre>
+      <div class="share-link-form__form" v-if="isURL">
         <div class="link">
           <div class="link__image-picker">
             <i class="material-icons md-48" @click="imageSelected -= 1">keyboard_arrow_up</i>
@@ -108,7 +108,7 @@
             </blockquote>
           </div>
         </div>
-        <div class="entries-new__actions">
+        <div class="share-link-form__actions">
           <button @click="saveLink">Сохранить и опубликовать</button>
         </div>
       </div>

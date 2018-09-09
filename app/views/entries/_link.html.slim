@@ -1,4 +1,4 @@
-article.link
+article.link.entry-grid__item
   .link__content
     = link_to post.url, target: '_blank', class: 'link__anchor' do
       - if post.image.presence && Rails.env.production?
@@ -7,9 +7,6 @@ article.link
         = image_tag 'no-image.jpg', class: 'link__image'
       header.link__heading
         h4.link__title = post.title
-        .link__url
-          = image_tag 'link.svg', class: 'link__icon'
-          span = post.url
         .link__description = post.description
     - if post.summary
       .link__summary
