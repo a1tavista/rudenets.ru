@@ -55,22 +55,8 @@
     height: calc(100% - 91px);
     flex-direction: row;
 
-    &--preview-hidden {
-      #{$root}__preview { display: none; }
-      .vue-codemirror {
-        max-width: 100% !important;
-      }
-    }
-
-    &--input-hidden {
-      .vue-codemirror {
-        display: none;
-      }
-
-      #{$root}__preview {
-        border-left-width: 1px;
-        max-width: 100% !important;
-      }
+    .vue-codemirror {
+      max-width: 100% !important;
     }
   }
 
@@ -81,7 +67,6 @@
 
   .vue-codemirror, &__preview {
     flex: 1;
-    max-width: 50%;
     height: 100%;
     border: 1px solid $light-gray;
     resize: none;

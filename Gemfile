@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.4'
+ruby '2.5.1'
 
 gem 'active_link_to'
 gem 'acts-as-taggable-on'
@@ -26,7 +26,7 @@ gem 'pg'
 gem 'imgkit'
 gem 'puma'
 gem 'rack-canonical-host'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.2'
 gem 'recipient_interceptor'
 gem 'redcarpet'
 gem 'responders'

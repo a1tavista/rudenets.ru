@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require 'glightbox/dist/js/glightbox.min.js'
 
 //= require_tree .
+
+document.addEventListener('DOMContentLoaded', function(){
+    var myLightbox = GLightbox({
+        selector: 'glightbox',
+        height: '80%'
+    });
+});

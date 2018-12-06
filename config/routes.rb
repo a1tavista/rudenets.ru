@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       put :publish, on: :member
       put :unpublish, on: :member
     end
+    resources :images
     resources :posts do
       get :published, on: :collection
       get :private, on: :collection

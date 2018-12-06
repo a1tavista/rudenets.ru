@@ -5,18 +5,13 @@
         <slot name="actions" />
       </div>
     </toolbar>
-    <div class="editor__workspace" :class='workspaceClasses'>
+    <div class="editor__workspace">
       <codemirror
         :value='code'
         @input='updateValue($event)'
         @scroll='syncScroll'
         ref='editor'
         :options='codeMirrorOptions'
-      />
-      <div
-        class="editor__preview"
-        v-html='html'
-        ref='preview'
       />
     </div>
     <div class="editor__status-bar">

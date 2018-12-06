@@ -5,6 +5,8 @@
 /.bundle
 /.env
 /.env.local
+/.byebug_history
+/.idea
 /coverage/*
 /db/*.sqlite3
 /log/*

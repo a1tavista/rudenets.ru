@@ -3,11 +3,6 @@ import Vuex from 'vuex';
 
 const debug = process.env.NODE_ENV !== 'production';
 
-const vuexLocal = new VuexPersistence({
-  strictMode: debug,
-  storage: window.localStorage
-});
-
 // -----------------------------------------
 // Utility modules
 // -----------------------------------------
@@ -21,7 +16,6 @@ import links from './content/links';
 import notes from './content/notes';
 import pages from './content/pages';
 import labels from './content/labels';
-import VuexPersistence from "vuex-persist/dist/index";
 
 Vue.use(Vuex);
 

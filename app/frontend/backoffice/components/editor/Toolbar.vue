@@ -2,12 +2,6 @@
   <div class="toolbar">
     <slot name="actions" />
     <div class="toolbar__group">
-      <button @click="changeState('isInputHidden', !state.isInputHidden)">
-        <i class="material-icons">{{ state.isInputHidden ? 'edit' : 'visibility' }}</i>
-      </button>
-      <button @click="changeState('isPreviewHidden', !state.isPreviewHidden)">
-        <i class="material-icons">{{ state.isPreviewHidden ? 'vertical_split' : 'subject' }}</i>
-      </button>
       <button @click="changeState('isFullscreen', !state.isFullscreen)">
         <i class="material-icons">{{ state.isFullscreen ? 'fullscreen_exit' : 'fullscreen' }}</i>
       </button>
