@@ -19,6 +19,11 @@
 document.addEventListener('DOMContentLoaded', function(){
     var myLightbox = GLightbox({
         selector: 'glightbox',
-        height: '80%'
+        height: '800',
+        descPosition: 'right'
     });
+    document.querySelectorAll('.glightbox').forEach(function(element) {
+      var linkToImg = element.getAttribute('href');
+      element.setAttribute('style', 'background-image: url(' + linkToImg + ');');
+    })
 });
