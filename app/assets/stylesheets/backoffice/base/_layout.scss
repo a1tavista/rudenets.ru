@@ -22,6 +22,7 @@ body {
           [small-sidebar-end widget-start content-start] $widget-width
           [sidebar-end widget-end small-content-start] 1fr [small-content-end content-end];
   min-height: 100%;
+  align-items: stretch;
 
   &__sidebar {
     grid-column: sidebar;
@@ -29,6 +30,10 @@ body {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+
+    height: 100%;
+
+    position: relative;
   }
 
   &__view {
