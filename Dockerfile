@@ -4,7 +4,8 @@ ENV PATH /root/.yarn/bin:$PATH
 
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh \
-    build-base nodejs tzdata postgresql-dev python
+    build-base nodejs tzdata postgresql-dev python \
+    imagemagick jpegoptim optipng
 
 RUN apk add --no-cache \
             xvfb \
