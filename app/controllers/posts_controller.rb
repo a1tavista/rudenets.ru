@@ -14,10 +14,4 @@ class PostsController < ApplicationController
   def show
     set_meta_tags(post_tags(@post))
   end
-
-  def preview
-    html = render_to_string(layout: 'preview')
-    blob = IMGKit.new(html, width: 1900, height: 900, quality: 60, javascript_delay: 1000).to_img(:png)
-    send_data(blob, type: 'image/png', disposition: 'inline')
-  end
 end
