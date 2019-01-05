@@ -31,7 +31,7 @@
       />
       <input-tag
         :tags='tagList'
-        :on-change='updateTags'
+        @update:tags='updateTags'
         placeholder='Метки'
       />
       <markdown-editor

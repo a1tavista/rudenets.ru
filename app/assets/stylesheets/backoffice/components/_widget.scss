@@ -20,16 +20,17 @@
   }
 
   &__title {
-    font-size: 25px;
+    font-size: 20px;
     text-transform: uppercase;
-    color: #444;
+    color: #696969;
+    overflow: hidden;
     margin: 0;
   }
 
   &__close {
     padding: 0;
     background: transparent;
-    @include styled-link(black);
+    @include styled-link(#696969);
     &:hover, &:active, &:focus {
       background: transparent;
     }
@@ -56,11 +57,16 @@
     border-bottom: 1px solid #EFEFEF;
     @include styled-link(#444);
 
+    h6 {
+      font-size: 16px;
+    }
+
     h6, p {
       margin: 0;
     }
 
     p {
+      font-size: 12px;
       margin-top: 8px;
     }
 
