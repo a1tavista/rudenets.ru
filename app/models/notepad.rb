@@ -10,10 +10,10 @@ class Notepad < ApplicationRecord
   end
 
   def self.tree_hash
-    self.arrange_serializable do |parent, children|
+    arrange_serializable do |parent, children|
       {
         id: parent.id,
-        label: "#{parent.name}",
+        label: parent.name.to_s,
         children: (children if children.present?)
       }.compact
     end

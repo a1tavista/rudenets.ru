@@ -1,5 +1,5 @@
 class BackofficeController < ApplicationController
-  layout "backoffice"
+  layout 'backoffice'
   before_action :require_login
 
   def backoffice

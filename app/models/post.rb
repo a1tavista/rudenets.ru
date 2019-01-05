@@ -16,6 +16,7 @@ class Post < ApplicationRecord
 
   def update_canonical_url
     return if entry&.published_at.nil?
+
     slug_date = I18n.l(entry.published_at, format: :slug)
     slug_title = Russian.translit(title).parameterize.downcase
     update_columns(slug: "#{slug_date}-#{slug_title}")
@@ -30,7 +31,7 @@ class Post < ApplicationRecord
   end
 
   def self.refreshed_order
-    order("posts.updated_at DESC")
+    order('posts.updated_at DESC')
   end
 
   def is_published

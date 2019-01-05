@@ -20,8 +20,8 @@ Rails.application.routes.draw do
       put :unpublish, on: :member
     end
     resources :labels, only: [:index]
-    resources :pages, only: %i(index show update)
-    resources :notepads, only: %i(index show create update) do
+    resources :pages, only: [:index, :show, :update]
+    resources :notepads, only: [:index, :show, :create, :update] do
       get :current, on: :collection
       get :tree, on: :collection
     end

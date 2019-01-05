@@ -8,11 +8,13 @@ module TextHelper
 
   def from_markdown(text)
     return nil if text.nil?
+
     Kramdown::Document.new(text, PARSER_OPTIONS).to_custom.html_safe
   end
 
   def to_smarty(html)
     return nil if html.nil?
+
     Redcarpet::Render::SmartyPants.render(html).html_safe
   end
 
@@ -21,6 +23,6 @@ module TextHelper
 
     words = input.split.size
     minutes = (words / words_per_minute).floor
-    minutes > 0 ? "#{minutes} мин." : "меньше мин."
+    minutes.positive? ? "#{minutes} мин." : 'меньше мин.'
   end
 end

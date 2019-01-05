@@ -11,4 +11,3 @@ json.entry do
   json.published @post.entry.published
   json.published_at @post.entry.published_at
 end
-

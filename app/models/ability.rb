@@ -5,7 +5,7 @@ class Ability
     can [:read, :preview], Post
     can :read, Entry
     can :read, Link
-    
+
     return unless user.present?
 
     can :manage, :all

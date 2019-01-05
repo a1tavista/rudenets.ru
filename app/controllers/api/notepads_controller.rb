@@ -1,32 +1,34 @@
-class Api::NotepadsController < Api::BaseController
-  load_resource
+module Api
+  class NotepadsController < BaseController
+    load_resource
 
-  def index
-    respond_with(@notepads)
-  end
+    def index
+      respond_with(@notepads)
+    end
 
-  def tree
-    @notepads = Notepad.tree_hash
-  end
+    def tree
+      @notepads = Notepad.tree_hash
+    end
 
-  def current
-    @notepad = Notepad.current
-    @notepad = Notepad.create(name: 'Новый блокнот') unless @notepad.present?
-    render :show
-  end
+    def current
+      @notepad = Notepad.current
+      @notepad = Notepad.create(name: 'Новый блокнот') unless @notepad.present?
+      render :show
+    end
 
-  def create
-    @notepad.text = ''
-    @notepad.save
-  end
+    def create
+      @notepad.text = ''
+      @notepad.save
+    end
 
-  def update
-    @notepad.update(notepad_params)
-  end
+    def update
+      @notepad.update(notepad_params)
+    end
 
-  private
+    private
 
-  def notepad_params
-    params.require(:notepad).except(:category, :is_current).permit(:id, :name, :text, :ancestry, :share_url)
+    def notepad_params
+      params.require(:notepad).except(:category, :is_current).permit(:id, :name, :text, :ancestry, :share_url)
+    end
   end
 end
