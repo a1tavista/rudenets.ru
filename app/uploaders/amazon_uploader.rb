@@ -1,6 +1,9 @@
 class AmazonUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include CarrierWave::ImageOptimizer
+  include CarrierWave::DelayedVersions
+
+  @fog_public = true
 
   storage :fog
 
@@ -9,17 +12,17 @@ class AmazonUploader < CarrierWave::Uploader::Base
     ext.include?('jpg') || ext.include?('jpeg') || ext.include?('png')
   end
 
-  version :small, if: :raster? do
+  delayed_version :small, if: :raster? do
     process resize_to_fit: [960, 960]
     process optimize: [{ quality: 75 }]
   end
 
-  version :medium, if: :raster? do
+  delayed_version :medium, if: :raster? do
     process resize_to_fit: [1024, 1024]
     process optimize: [{ quality: 50 }]
   end
 
-  version :large, if: :raster? do
+  delayed_version :large, if: :raster? do
     process resize_to_fit: [2048, 2048]
     process optimize: [{ quality: 50 }]
   end
