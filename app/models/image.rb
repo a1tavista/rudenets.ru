@@ -9,6 +9,6 @@ class Image < ApplicationRecord
   private
 
   def process_images_async
-    ProcessImagesJob.perform_later('Link', id)
+    ProcessImagesJob.set(wait: 10.seconds).perform_later('Image', id)
   end
 end

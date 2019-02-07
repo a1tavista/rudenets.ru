@@ -31,7 +31,7 @@ module CarrierWave
 
       def process_delayed_versions!
         self.class.uploaders.each do |mounted_as, uploader|
-          next unless uploader.included_modules.include?(Carrierwave::DelayedVersions) &&
+          next unless uploader.included_modules.include?(CarrierWave::DelayedVersions) &&
                       !uploader.delayed_versions.empty?
 
           with_async_processing do
