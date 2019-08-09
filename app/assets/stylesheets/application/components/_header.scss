@@ -14,6 +14,7 @@
 
     @media #{$mobile-screen-lg-max} {
       padding: $small-spacing 0;
+      margin-right: 0;
     }
   }
 
@@ -41,14 +42,10 @@
   &__title {
     margin: 0;
     text-align: left;
-    font-size: 2.2em;
+    font-size: 1.8em;
 
     @media #{$mobile-screen-lg-max} {
-      font-size: 1.8em;
-    }
-
-    @media #{$mobile-screen-sm-max} {
-      font-size: 1.4em;
+      font-size: 1.6em;
     }
   }
 
@@ -82,15 +79,22 @@
   }
 
   &__navigation-link {
-    @include styled-link(white);
-    font-family: $heading-font-family;
+    @include styled-link(#eee);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 
-    @media #{$mobile-screen-lg-max} {
-      font-size: 0.9em;
-    }
+    font-family: $heading-font-family;
+    font-size: 0.9em;
 
     &:not(:last-child) {
       margin-right: $base-spacing;
+    }
+
+    @media #{$mobile-screen-lg-max} {
+      font-size: 0.6em;
+      &:not(:last-child) {
+        margin-right: $small-spacing * 1.5;
+      }
     }
   }
 }

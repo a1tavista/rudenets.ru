@@ -6,7 +6,7 @@
   &__link {
     &:hover, &:active, &:focus {
       color: transparent;
-      background-color: #37474f;
+      background-color: $light-gray;
     }
 
     display: block;
@@ -19,7 +19,7 @@
     background-size: 55%;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #4f5b62;
+    background-color: $medium-gray;
 
     &_vk {
       background-image: image_url("vk.svg");

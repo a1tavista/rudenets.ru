@@ -11,11 +11,15 @@ h3,
 h4,
 h5,
 h6 {
+  &:first-child {
+    margin-top: 0;
+  }
+
   font-family: $heading-font-family;
   font-size: 1.25em;
   font-weight: 600;
   line-height: $heading-line-height;
-  margin-top: $base-spacing;
+  margin-top: 0.8em;
   margin-bottom: $base-spacing;
 }
 
@@ -32,13 +36,22 @@ h3 {
 }
 
 h4 {
-  font-size: 1.333em;
+  font-size: 1.433em;
 }
 
 h5, h6 {
   font-size: 1.25em;
   color: $dark-gray;
 }
+
+@for $i from 1 through 6 {
+  @for $j from $i through 6 {
+    h#{$i} + h#{$j} {
+      margin-top: 0;
+    }
+  }
+}
+
 
 p {
   margin: 0 0 $base-spacing;
@@ -60,9 +73,9 @@ hr {
 }
 
 blockquote {
-  border-left: 0.5em solid $light-gray;
+  border-left: 4px solid $dark-gray;
   margin: 0 0 $base-spacing;
-  padding-left: $base-spacing;
+  padding-left: $base-spacing * 1.5;
 }
 
 code:not([class]) {
