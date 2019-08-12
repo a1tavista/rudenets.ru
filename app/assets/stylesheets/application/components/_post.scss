@@ -22,8 +22,8 @@
     grid-column: screen;
 
     &_grey {
-      border: 1px solid #e0e7eb;
-      background: #f6f8f9;
+      border: 1px solid $gray-5;
+      background: $gray-0;
     }
   }
 
@@ -42,10 +42,10 @@
     grid-template-columns: inherit;
     grid-column-gap: inherit;
     grid-column: screen;
-    background: #f6f8f9;
+    background: $gray-5;
     margin-top: 2 * $base-spacing;
     padding: 4 * $base-spacing 0;
     font-size: 14px;
-    color: #455e68;
+    color: $gray-80;
   }
 }

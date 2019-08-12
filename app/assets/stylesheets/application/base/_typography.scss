@@ -83,9 +83,9 @@ code:not([class]) {
   padding: 4px;
   border-radius: 4px;
   vertical-align: middle;
-  color: #333333;
+  color: $gray-70;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
-  background: #FFFFFF;
+  background: $gray-0;
 }
 
 pre {
@@ -94,10 +94,10 @@ pre {
 
 dl {
   dt {
-    color: #272822;
+    color: $gray-70;
     font-weight: normal;
     font-size: 1.5em;
-    border-bottom: 1px solid #272822;
+    border-bottom: 1px solid $gray-70;
     margin-bottom: $small-spacing / 2;
   }
 }

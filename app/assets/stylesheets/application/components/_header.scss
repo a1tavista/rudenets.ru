@@ -1,5 +1,5 @@
 .header {
-  background: #263238;
+  background: $gray-100;
 
   @media #{$mobile-screen-lg-max} {
     padding: 0 $base-spacing;
@@ -54,7 +54,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    @include styled-link(#F1F1F1);
+    @include styled-link($gray-5);
   }
 
   &__links {
@@ -79,7 +79,7 @@
   }
 
   &__navigation-link {
-    @include styled-link(#eee);
+    @include styled-link($gray-5);
     text-transform: uppercase;
     letter-spacing: 2px;
 

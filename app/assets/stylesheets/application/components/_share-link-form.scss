@@ -11,13 +11,13 @@
     font-size: $base-font-size;
     padding: $small-spacing 0;
     margin-top: $small-spacing !important;
-    background: #FBFBFB;
+    background: $gray-5;
     text-align: center;
   }
 
   &__form {
     padding: $small-spacing;
-    background: #FBFBFB;
+    background: $gray-5;
     margin-top: $small-spacing;
   }
 

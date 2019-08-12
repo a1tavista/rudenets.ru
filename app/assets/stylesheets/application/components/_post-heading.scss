@@ -1,5 +1,5 @@
 .post-heading {
-  background: #263238;
+  background: $gray-80;
   padding: 64px 0;
   @include main-layout();
 
@@ -9,7 +9,7 @@
 
   &__content {
     grid-column: text;
-    color: white;
+    color: $gray-0;
   }
 
   &__title {
@@ -20,7 +20,7 @@
   &__time {
     margin-right: $small-spacing;
     margin-bottom: $small-spacing;
-    color: #90a4ae;
+    color: $gray-20;
   }
 
   &__meta {

@@ -77,7 +77,7 @@
     padding: $base-spacing;
     border-radius: 8px;
 
-    background: lighten($light-gray, 10%);
+    background: $lighter-gray;
 
     &::before,
     &::after {
@@ -92,7 +92,7 @@
       height: 0;
       border-width: 0 10.5px 10px;
       border-style: solid;
-      border-color: transparent transparent lighten($light-gray, 10%);
+      border-color: transparent transparent $lighter-gray;
     }
 
     &::after {
@@ -103,7 +103,7 @@
       height: 0;
       border-width: 0 10.5px 10px;
       border-style: solid;
-      border-color: transparent transparent lighten($light-gray, 10%);
+      border-color: transparent transparent $lighter-gray;
     }
 
     h6 {
