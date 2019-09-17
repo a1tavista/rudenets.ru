@@ -1,0 +1,9 @@
+<%= form_for :session, url: session_path do |form| %>
+  <%= form.label :email, 'E-Mail' %>
+  <%= form.text_field :email, type: 'email' %>
+
+  <%= form.label :password, 'Пароль' %>
+  <%= form.password_field :password %>
+
+  <%= form.submit 'Войти' %>
+<% end %>
