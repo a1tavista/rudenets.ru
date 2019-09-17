@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.6.4'
 
 gem 'active_link_to'
 gem 'acts-as-taggable-on'
@@ -33,7 +33,7 @@ gem 'recipient_interceptor'
 gem 'redcarpet'
 gem 'responders'
 gem 'russian'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 gem 'slim-rails'
 gem 'sprockets', '>= 3.0.0'
 gem 'uglifier'

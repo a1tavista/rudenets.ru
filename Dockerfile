@@ -1,4 +1,4 @@
-FROM ruby:2.5.1-alpine
+FROM ruby:2.6.4-alpine
 
 ENV PATH /root/.yarn/bin:$PATH
 
@@ -19,9 +19,6 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development test
-#
-# COPY yarn.lock package.json ./
-# RUN yarn install --production=false
 
 ENV NODE_ENV production
 ENV RAILS_ENV production
