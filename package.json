@@ -62,6 +62,11 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "@editorjs/editorjs": "^2.15.1",
+    "@editorjs/embed": "^2.2.1",
+    "@editorjs/header": "^2.3.0",
+    "@editorjs/list": "^1.4.0",
+    "@editorjs/raw": "^2.1.1",
     "vue-devtools": "^4.0.0",
     "webpack-dev-server": "^2.4.5"
   }

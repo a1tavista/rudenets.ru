@@ -1,10 +1,12 @@
 - content_for :heading do
-  header.post-heading
+  header.post-heading style=styles_for_post_preview(@post)
+    .post-heading__image-filter
     .post-heading__content.grid-item_text
       h1.post-heading__title = title @post.title
       .post-heading__meta
-        .post-heading__time #{time_tag(@post.entry.published_at, l(@post.entry.published_at))} | ~#{reading_time(@post.text)}
-      p = @post.summary
+        .post-heading__time #{time_tag(@post.entry.published_at, l(@post.entry.published_at))} / ~#{reading_time(@post.text)}
+      - if @post.summary.present?
+        p.post-heading__summary = @post.summary
 
 article.post.grid-item_text(itemscope itemtype="http://schema.org/Blog")
   = from_markdown(@post.text)

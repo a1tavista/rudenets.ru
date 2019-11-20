@@ -1,2 +1,0 @@
-class NotepadCategory < ApplicationRecord
-end

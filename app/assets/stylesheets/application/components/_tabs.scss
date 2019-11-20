@@ -1,0 +1,32 @@
+.categories-list {
+  margin-top: $base-spacing;
+  grid-column: page;
+  flex: 1 1;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid $color-strong-elevated-background;
+
+  &__item {
+    position: relative;
+    padding: $small-spacing $base-spacing;
+    @include styled-link($color-gray-accent, $color-active-accent);
+    letter-spacing: 1px;
+
+    &::after {
+      content: "";
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $color-dark-background;
+    }
+
+    &_active {
+      &::after {
+        display: block;
+      }
+    }
+  }
+}

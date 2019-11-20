@@ -1,34 +1,12 @@
 .footer {
-  min-height: 80px;
-  background: $gray-100;
+  background: $color-strong-elevated-background;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding: $base-spacing $small-spacing;
+  padding: $base-spacing;
 
   @media #{$mobile-screen-lg-max} {
     flex-direction: column;
-    min-height: 100px;
-  }
-
-  &__contacts {
-    @media #{$mobile-screen-lg-max} {
-      top: -23px;
-      position: absolute;
-    }
-  }
-
-  &__spacer {
-    flex: 1;
-    @media #{$mobile-screen-lg-max} {
-      display: none;
-    }
-  }
-
-  &__owner {
-    margin-left: $small-spacing;
-    color: $light-gray;
   }
 }

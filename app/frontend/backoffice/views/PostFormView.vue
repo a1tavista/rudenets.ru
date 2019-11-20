@@ -4,15 +4,15 @@
       <h3 class="header__title">{{ formTitle }}</h3>
       <div class="header__actions">
         <button
-          v-if='!note.entry.published'
-          @click='publishNote'
+          v-if='!post.entry.published'
+          @click='publishPost'
         >Опубликовать</button>
         <button
-          v-if='note.entry.published'
-          @click='unpublishNote'
+          v-if='post.entry.published'
+          @click='unpublishPost'
         >Скрыть в черновики</button>
         <button
-          v-if='!note.entry.published'
+          v-if='!post.entry.published'
           @click='remove'
         >Удалить</button>
       </div>
@@ -20,24 +20,15 @@
     <div class="view__content">
       <input
         type='text'
-        :value='note.title'
+        :value='post.title'
         @input="update('title', $event.target.value)"
         placeholder='Название заметки'
       />
-      <textarea
-        :value='note.summary'
-        @input="update('summary', $event.target.value)"
-        placeholder='Краткое описание'
-      />
-      <input-tag
-        :tags='tagList'
-        @update:tags='updateTags'
-        placeholder='Метки'
-      />
+      <text-editor></text-editor>
       <markdown-editor
         class="editor--large"
         placeholder='Полный текст заметки'
-        :value="note.text"
+        :value="post.text"
         @input="update('text', $event)"
       >
         <div slot="status">
@@ -50,75 +41,62 @@
 </template>
 
 <script>
-  import notesService from '../services/notesService';
   import MarkdownEditor from '../components/editor/MarkdownEditor.vue';
-  import InputTag from 'vue-input-tag';
   import {mapActions, mapGetters, mapState} from "vuex";
+  import TextEditor from "../components/TextEditor";
 
   export default {
-    data() {
-      return {
-        tagList: []
-      };
-    },
-
     methods: {
       ...mapActions([
-        'newNote',
-        'fetchNote',
-        'updateNoteField',
-        'publishNote',
-        'unpublishNote',
-        'deleteNote'
+        'newPost',
+        'fetchPost',
+        'updatePostField',
+        'publishPost',
+        'unpublishPost',
+        'deletePost'
       ]),
-      updateTags(value) {
-        this.update('tagList', value);
-      },
       update(field, value) {
-        this.updateNoteField({ field, value });
+        this.updatePostField({ field, value });
       },
       remove() {
         this.$router.push('/');
-        this.deleteNote();
+        this.deletePost();
       }
     },
 
     computed: {
       ...mapGetters({
-        note: 'getCurrentNote'
+        post: 'getCurrentPost'
       }),
       currentID() {
         const id = this.$store.state.route.params.id;
         return id || null;
       },
       formTitle() {
-        return this.note.id ? 'Редактирование заметки' : 'Новая заметка';
+        return this.post.id ? 'Редактирование заметки' : 'Новая заметка';
       },
       savingInProgress() {
-        return this.$store.state.notes.isSaving;
+        return this.$store.state.posts.isSaving;
       }
     },
 
     mounted() {
       if(this.currentID !== null)
-        this.fetchNote({id: this.currentID});
+        this.fetchPost({id: this.currentID});
       else
-        this.newNote();
+        this.newPost();
     },
 
     watch: {
       '$route'(to, from) {
         if(this.currentID !== null)
-          this.fetchNote({id: this.currentID});
+          this.fetchPost({id: this.currentID});
         else
-          this.newNote();
+          this.newPost();
       },
-      'note.tagList'() {
-        this.tagList = [...this.note.tagList];
-      }
     },
 
-    components: {MarkdownEditor, InputTag},
+    components: {TextEditor, MarkdownEditor},
 
     props: ["type"]
   }

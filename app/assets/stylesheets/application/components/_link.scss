@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin-bottom: $base-spacing;
   }
 
   &__icon {
@@ -31,7 +30,7 @@
   }
 
   &__image {
-    width: 100px;
+    width: 50px;
     margin-right: $base-spacing;
   }
 
@@ -40,6 +39,10 @@
     margin-bottom: $small-spacing / 2;
     font-size: 1.1em;
     font-weight: normal;
+
+    @media #{$mobile-screen-lg-max} {
+      font-size: 0.9em;
+    }
   }
 
   &__image-picker {
@@ -65,19 +68,41 @@
     margin-bottom: $small-spacing;
   }
 
-  &__description {
+  &__meta-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     height: auto;
     resize: none;
     color: $base-font-color;
     font-size: 12px;
   }
 
+
+  &__meta-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: $small-spacing;
+  }
+
+  &__meta-icon {
+    height: 16px;
+    margin-right: 4px;
+  }
+
   &__summary {
     position: relative;
     padding: $base-spacing;
     border-radius: 8px;
+    margin-top: $small-spacing * 2;
 
-    background: $lighter-gray;
+    @media #{$mobile-screen-lg-max} {
+      font-size: 0.9em;
+    }
+
+    background: $color-elevated-background;
 
     &::before,
     &::after {
@@ -92,7 +117,7 @@
       height: 0;
       border-width: 0 10.5px 10px;
       border-style: solid;
-      border-color: transparent transparent $lighter-gray;
+      border-color: transparent transparent $color-elevated-background;
     }
 
     &::after {
@@ -103,7 +128,7 @@
       height: 0;
       border-width: 0 10.5px 10px;
       border-style: solid;
-      border-color: transparent transparent $lighter-gray;
+      border-color: transparent transparent $color-elevated-background;
     }
 
     h6 {

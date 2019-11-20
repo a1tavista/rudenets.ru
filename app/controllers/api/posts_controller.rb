@@ -35,7 +35,7 @@ module Api
     private
 
     def post_params
-      params.require(:post).except(:entry).permit(:id, :title, :summary, :text, tag_list: [])
+      params.require(:post).except(:entry).permit(:id, :title, :summary, :text)
     end
   end
 end

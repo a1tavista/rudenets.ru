@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
 
-  border-top: 3px solid $lighter-gray;
+  border-top: 1px solid $color-strong-elevated-background;
   padding: $base-spacing 0;
 
   &-page {
@@ -12,7 +12,7 @@
 
     margin-right: 8px;
 
-    background: $lighter-gray;
+    background: $color-strong-elevated-background;
     border-radius: 50%;
 
     a, span {
@@ -36,32 +36,15 @@
 
   &-next,
   &-prev {
-    background: $lighter-gray;
-    margin-right: 8px;
-
-    border-radius: 2px;
-
-    a, span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 8px;
-
-      height: 100%;
-      font-size: 13px;
-    }
-
-    a {
-      color: black;
-    }
+    display: none;
   }
 
   &-page_current {
-    background: $blue;
+    background: $color-accent;
     color: #f2fbff !important;
 
     &:hover {
-      background: $blue;
+      background: $color-active-accent;
       color: #f2fbff;
     }
   }

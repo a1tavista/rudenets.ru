@@ -8,22 +8,22 @@
 </template>
 
 <script>
-  import AppSidebar from './components/AppSidebar.vue';
-  import {mapActions, mapGetters} from 'vuex';
+import AppSidebar from './components/AppSidebar.vue';
+import {mapActions, mapGetters} from 'vuex';
 
-  export default {
-    data() {
-      return {};
-    },
-    computed: {
-      ...mapGetters(['isWidgetOpened'])
-    },
-    methods: {
-      ...mapActions(['initializeApplicationData'])
-    },
-    mounted() {
-      this.initializeApplicationData();
-    },
-    components: {AppSidebar}
-  }
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(['isWidgetOpened'])
+  },
+  methods: {
+    ...mapActions(['initializeApplicationData'])
+  },
+  mounted() {
+    this.initializeApplicationData();
+  },
+  components: {AppSidebar}
+}
 </script>

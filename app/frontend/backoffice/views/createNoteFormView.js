@@ -1,4 +1,4 @@
-import NoteFormView from './NoteFormView.vue'
+import NoteFormView from './PostFormView.vue'
 
 export default function createNoteFormView (type) {
   return {

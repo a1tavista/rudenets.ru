@@ -5,36 +5,18 @@
 
   &__link {
     &:hover, &:active, &:focus {
-      color: transparent;
-      background-color: $gray-50;
+      color: $color-gray-active-accent;
     }
 
     display: block;
-    @include size(35px);
-    padding: 5px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 5px;
-    color: transparent;
-    background-size: 55%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: $gray-60;
+    margin-right: $base-spacing;
+    color: $color-gray-accent;
 
-    &_vk {
-      background-image: image_url("vk.svg");
-    }
+    text-transform: uppercase;
+    letter-spacing: 2px;
 
-    &_instagram {
-      background-image: image_url("instagram.svg");
-    }
-
-    &_telegram {
-      background-image: image_url("telegram.svg");
-    }
-
-    &_github {
-      background-image: image_url("github.svg");
+    @media #{$mobile-screen-lg-max} {
+      font-size: 0.9em;
     }
   }
 }

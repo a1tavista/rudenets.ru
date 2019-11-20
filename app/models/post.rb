@@ -1,10 +1,14 @@
 class Post < ApplicationRecord
   include FriendlyId
 
-  mount_uploader :preview, PreviewUploader
+  SHRINE_CARRIERWAVE_MAPPING = {
+    cover_img: :cover_image,
+    preview: :preview_image
+  }.freeze
 
-  acts_as_taggable
-  has_paper_trail if: proc { |post| post.should_create_new_version? }
+  mount_uploader :preview, PreviewUploader
+  mount_uploader :cover_img, PostCoverUploader
+  include CarrierwaveShrineSynchronization
 
   friendly_id :slug
 
@@ -36,11 +40,5 @@ class Post < ApplicationRecord
 
   def is_published
     entry.published?
-  end
-
-  def should_create_new_version?
-    version = versions.last
-    last_update_time = version&.created_at || (Time.current - 10.minutes)
-    Time.current - last_update_time > 1.minute
   end
 end

@@ -9,7 +9,7 @@ module CarrierWave
 
       def delayed_version(name, opts = {}, &block)
         delayed_versions.add(name)
-        version(name, opts.merge(if: :processing_async?), &block)
+        version(name, opts.merge(unless: :processing_async?), &block)
       end
     end
 

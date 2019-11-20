@@ -34,12 +34,12 @@
 
   @media #{$desktop-screen-xs-max} {
     grid-template-columns:
-            [screen-start] 8px
+            [screen-start] 12px
             [page-start text-start gutter-start kicker-start shifted-text-start]
             1fr
             [gutter-end text-end page-end kicker-end shifted-text-end]
-            8px [screen-end];
-    grid-column-gap: $md-desktop-column-gap;
+            12px [screen-end];
+    grid-column-gap: 0;
   }
 }
 

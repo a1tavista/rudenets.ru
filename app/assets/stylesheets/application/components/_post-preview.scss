@@ -2,8 +2,52 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  border-radius: $base-border-radius;
-  transition: box-shadow .3s ease;
+
+  &__featured-label {
+    display: inline-block;
+
+    background: $color-accent;
+    color: $color-light-text;
+    padding: 4px 8px;
+    margin-right: 4px;
+    vertical-align: middle;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px;
+
+    opacity: 0.7;
+
+    @media #{$mobile-screen-lg-max} {
+      display: block;
+      margin-bottom: $small-spacing;
+    }
+  }
+
+  &__wrapping-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media #{$mobile-screen-lg-max} {
+      flex-direction: column;
+      align-items: initial;
+      width: 100%;
+    }
+  }
+
+  &__image {
+    width: 200px;
+    height: 200px;
+    margin-right: $base-spacing * 3;
+    background: $color-dark-background;
+
+    @media #{$mobile-screen-lg-max} {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: $base-spacing;
+    }
+  }
 
   &__content {
     flex: 3;
@@ -11,9 +55,9 @@
 
   &__eyebrow {
     margin-bottom: $small-spacing / 2;
-    font-weight: 400;
-    color: $gray-40;
-    font-size: 10px;
+    font-weight: 600;
+    color: $color-active-accent;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
@@ -21,15 +65,21 @@
   &__title {
     margin: 0 0 $small-spacing;
     font-size: 1.8em;
-    font-weight: normal;
-    color: $action-color;
+    font-weight: 500;
+    @include styled-link($color-title, $color-active-accent);
+
+    @media #{$mobile-screen-lg-max} {
+      font-size: 1.4em;
+    }
   }
 
   &__summary {
-    color: $medium-gray;
-    font-size: 14px;
-    margin-top: $small-spacing / 2;
-    margin-bottom: 0;
+    color: $color-subtitle;
+    font-size: 16px;
+
+    @media #{$mobile-screen-lg-max} {
+      font-size: 0.9em;
+    }
   }
 
   &__cover {

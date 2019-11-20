@@ -11,22 +11,17 @@ import layout from './modules/layout';
 // -----------------------------------------
 // Content modules
 // -----------------------------------------
-import notepads from './content/notepads';
 import links from './content/links';
-import notes from './content/notes';
+import posts from './content/posts';
 import pages from './content/pages';
-import labels from './content/labels';
 
 Vue.use(Vuex);
 
 const actions = {
   initializeApplicationData({dispatch}) {
-    dispatch('fetchLabels');
-    dispatch('fetchNotes');
+    dispatch('fetchPosts');
     dispatch('fetchPages');
     dispatch('fetchLinks');
-    dispatch('fetchNotepads');
-    dispatch('fetchNotepadsTree');
   },
 
   fetchCollection({commit}, {serviceMethod, collection}) {
@@ -62,11 +57,9 @@ const mutations = {
 const store = new Vuex.Store({
   modules: {
     layout,
-    notepads,
     links,
-    notes,
+    posts,
     pages,
-    labels,
   },
   actions,
   mutations,

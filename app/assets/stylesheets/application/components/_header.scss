@@ -1,15 +1,16 @@
 .header {
-  background: $gray-100;
+  background: $color-background;
+  @include main-layout();
 
   @media #{$mobile-screen-lg-max} {
-    padding: 0 $base-spacing;
+    padding: $small-spacing $base-spacing;
   }
 
   &__main-heading {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: $base-spacing;
+    padding: $base-spacing 0;
     margin-right: $small-spacing;
 
     @media #{$mobile-screen-lg-max} {
@@ -20,8 +21,7 @@
 
   &__content {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    grid-column: page;
 
     @media #{$mobile-screen-lg-max} {
       flex-direction: column;
@@ -35,14 +35,10 @@
     margin-right: $base-spacing;
   }
 
-  &__spacer {
-    flex: 1;
-  }
-
   &__title {
     margin: 0;
     text-align: left;
-    font-size: 1.8em;
+    font-size: 2.4em;
 
     @media #{$mobile-screen-lg-max} {
       font-size: 1.6em;
@@ -54,12 +50,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    @include styled-link($gray-5);
+
+    @include styled-link($color-title, $color-text);
   }
 
   &__links {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: $base-spacing;
 
     @media #{$mobile-screen-lg-max} {
@@ -79,7 +77,7 @@
   }
 
   &__navigation-link {
-    @include styled-link($gray-5);
+    @include styled-link($color-gray-accent, $color-gray-active-accent);
     text-transform: uppercase;
     letter-spacing: 2px;
 
@@ -91,7 +89,7 @@
     }
 
     @media #{$mobile-screen-lg-max} {
-      font-size: 0.6em;
+      font-size: 0.8em;
       &:not(:last-child) {
         margin-right: $small-spacing * 1.5;
       }

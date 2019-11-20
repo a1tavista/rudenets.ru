@@ -1,30 +1,20 @@
 .main__grid.entry-grid
-  - if @posts.present?
+
+  section.entry-grid__section.entry-grid__section_paddingless
+    - if current_page?('/') || current_page?(posts_path)
+      = render partial: "entries/post",
+               locals: { post: @featured_post, published_at: @featured_post.entry.published_at, featured: true }
+
+  .categories-list
+    = active_link_to 'Все', root_path, class: 'categories-list__item', class_active: 'categories-list__item_active', active: :exact
+    = active_link_to 'Посты', posts_path, class: 'categories-list__item', class_active: 'categories-list__item_active'
+    = active_link_to 'Рекомендации', links_path, class: 'categories-list__item', class_active: 'categories-list__item_active'
+
+  - if @entries.present?
     section.entry-grid__section
-      h1.entry-grid__heading Посты
-      - @posts.each do |entry|
+      - @entries.each do |entry|
         = render partial: "entries/#{entry.taxonomy_type.underscore}",
                 locals: { post: entry.taxonomy, published_at: entry.published_at }
-      - if @posts.respond_to?(:total_pages)
+      - if @entries.respond_to?(:total_pages)
         .entry-grid__pagination
-          = paginate @posts
-
-      - if current_page?('/')
-        = link_to 'Все посты', posts_path, class: 'entry-grid__read-more'
-
-
-  - if @links.present?
-    section.entry-grid__section
-      h1.entry-grid__heading Рекомендации
-      - if current_user.present?
-        link-form.grid-page
-      - @links.each do |entry|
-        = render partial: "entries/#{entry.taxonomy_type.underscore}",
-                 locals: { post: entry.taxonomy, published_at: entry.published_at }
-      - if @links.respond_to?(:total_pages)
-        .entry-grid__pagination
-          = paginate @links
-
-      - if current_page?('/')
-        = link_to 'Все рекомендации', links_path, class: 'entry-grid__read-more'
-
+          = paginate @entries

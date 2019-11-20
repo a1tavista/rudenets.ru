@@ -1,13 +1,19 @@
 article.link.entry-grid__item
   .link__content
-    = link_to post.url, target: '_blank', class: 'link__anchor' do
+    = link_to go_links_path(url: post.url), target: '_blank', class: 'link__anchor' do
       - if post.image.presence && Rails.env.production?
         = image_tag post.image.url, class: 'link__image'
       - else
         = image_tag 'no-image.jpg', class: 'link__image'
       header.link__heading
-        h4.link__title = post.title
-        .link__description = post.description
+        h4.link__title #{post.host} / #{post.title}
+        .link__meta-line
+          .link__meta-data
+            = image_tag 'clock.svg', class: 'link__meta-icon'
+            | #{time_ago_in_words(post.entry.published_at).capitalize} назад
+          .link__meta-data
+            = image_tag 'eye.svg', class: 'link__meta-icon'
+            = post.follows_count
     - if post.summary
       .link__summary
         h6 Комментарий:

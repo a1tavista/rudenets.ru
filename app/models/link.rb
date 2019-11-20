@@ -2,17 +2,16 @@ class Link < ApplicationRecord
   has_one :entry, as: :taxonomy
   validates_uniqueness_of :url
 
-  include CarrierWave::DelayedVersions::ModelMethods
   mount_uploader :image, AmazonUploader
+  include CarrierwaveShrineSynchronization
 
   before_save :set_empty_summary_to_nil
-  after_save :process_images_async
+
+  def host
+    URI.parse(url).host
+  end
 
   private
-
-  def process_images_async
-    ProcessImagesJob.set(wait: 10.seconds).perform_later('Link', id)
-  end
 
   def set_empty_summary_to_nil
     self.summary = nil if summary.empty?

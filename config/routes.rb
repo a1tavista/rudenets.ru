@@ -19,20 +19,16 @@ Rails.application.routes.draw do
       put :publish, on: :member
       put :unpublish, on: :member
     end
-    resources :labels, only: [:index]
     resources :pages, only: [:index, :show, :update]
-    resources :notepads, only: [:index, :show, :create, :update] do
-      get :current, on: :collection
-      get :tree, on: :collection
-    end
   end
 
   resources :entries
   resources :posts do
     get :preview, on: :member
   end
-  resources :links
-  resources :notepads, path: 'n', only: [:show]
+  resources :links do
+    get :go, on: :collection
+  end
 
   get '/(:id)', to: 'pages#show', as: :page
 end

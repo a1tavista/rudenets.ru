@@ -3,18 +3,14 @@
     <div class="icon-sidebar">
 
       <div class="icon-sidebar__group">
-        <router-link class="icon-sidebar__item" to="/">Notes</router-link>
-      </div>
-
-      <div class="icon-sidebar__group">
         <router-link class="icon-sidebar__item" to="/notes/new">+ Draft</router-link>
       </div>
 
       <div class="icon-sidebar__group">
         <button
           class="icon-sidebar__item icon-sidebar__item--widget"
-          @click="openWidget('NotesWidget')"
-          :class="[(currentWidget === 'NotesWidget') && 'active']"
+          @click="openWidget('DraftsWidget')"
+          :class="[(currentWidget === 'DraftsWidget') && 'active']"
         >Drafts</button>
 
         <button
@@ -31,12 +27,6 @@
 
         <button
           class="icon-sidebar__item icon-sidebar__item--widget"
-          @click="openWidget('LabelsWidget')"
-          :class="[(currentWidget === 'LabelsWidget') && 'active']"
-        >Tags</button>
-
-        <button
-          class="icon-sidebar__item icon-sidebar__item--widget"
           @click="openWidget('PagesWidget')"
           :class="[(currentWidget === 'PagesWidget') && 'active']"
         >Pages</button>
@@ -47,8 +37,7 @@
 </template>
 
 <script>
-  import LabelsWidget from '../widgets/LabelsWidget.vue';
-  import NotesWidget from '../widgets/NotesWidget.vue';
+  import DraftsWidget from '../widgets/DraftsWidget.vue';
   import PostsWidget from '../widgets/PostsWidget.vue';
   import LinksWidget from '../widgets/LinksWidget.vue';
   import PagesWidget from '../widgets/PagesWidget.vue';
@@ -64,6 +53,6 @@
     methods: {
       ...mapActions(['openWidget'])
     },
-    components: {NotesWidget, PostsWidget, LabelsWidget, LinksWidget, PagesWidget}
+    components: {DraftsWidget, PostsWidget, LinksWidget, PagesWidget}
   }
 </script>

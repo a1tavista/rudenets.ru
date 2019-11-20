@@ -1,3 +1,1 @@
-class Page < ApplicationRecord
-  has_paper_trail
-end
+class Page < ApplicationRecord; end
