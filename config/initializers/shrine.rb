@@ -2,14 +2,19 @@ require "shrine"
 require "shrine/storage/file_system"
 require "shrine/storage/s3"
 
+if ENV.fetch('ENABLE_S3', false)
+  store = Shrine::Storage::S3.new(
+    bucket: ENV['S3_BUCKET_NAME'],
+    access_key_id: ENV['S3_KEY'],
+    secret_access_key: ENV['S3_SECRET'],
+    region: ENV['S3_REGION'],
+  )
+end
+store ||= Shrine::Storage::FileSystem.new("public", prefix: "uploads/store")
+
 Shrine.storages = {
   cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
-  store: Shrine::Storage::S3.new(
-    bucket: ENV.fetch('S3_BUCKET_NAME'), # required
-    access_key_id: ENV.fetch('S3_KEY', ''),
-    secret_access_key: ENV.fetch('S3_SECRET', ''),
-    region: ENV.fetch('S3_REGION'),
-  )
+  store: store
 }
 
 Shrine.plugin :model

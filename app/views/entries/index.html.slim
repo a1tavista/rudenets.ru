@@ -6,7 +6,7 @@
                locals: { post: @featured_post, published_at: @featured_post.entry.published_at, featured: true }
 
   .categories-list
-    = active_link_to 'Все', root_path, class: 'categories-list__item', class_active: 'categories-list__item_active', active: :exact
+    = active_link_to 'Свежее', root_path, class: 'categories-list__item', class_active: 'categories-list__item_active', active: :exact
     = active_link_to 'Посты', posts_path, class: 'categories-list__item', class_active: 'categories-list__item_active'
     = active_link_to 'Рекомендации', links_path, class: 'categories-list__item', class_active: 'categories-list__item_active'
 

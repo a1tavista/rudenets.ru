@@ -24,7 +24,6 @@
         @input="update('title', $event.target.value)"
         placeholder='Название заметки'
       />
-      <text-editor></text-editor>
       <markdown-editor
         class="editor--large"
         placeholder='Полный текст заметки'
@@ -43,7 +42,6 @@
 <script>
   import MarkdownEditor from '../components/editor/MarkdownEditor.vue';
   import {mapActions, mapGetters, mapState} from "vuex";
-  import TextEditor from "../components/TextEditor";
 
   export default {
     methods: {
@@ -96,7 +94,7 @@
       },
     },
 
-    components: {TextEditor, MarkdownEditor},
+    components: {MarkdownEditor},
 
     props: ["type"]
   }
