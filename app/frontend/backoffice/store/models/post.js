@@ -5,5 +5,7 @@ export default class Post {
     this.text = null;
     this.summary = null;
     this.entry = {};
+    this.coverImageUrl = null;
+    this.previewUrl = null;
   }
 }

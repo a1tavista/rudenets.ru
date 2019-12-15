@@ -1,1 +1,1 @@
-json.(@post, :id, :title, :summary, :text)
+json.call(@post, :id, :title, :summary, :text)

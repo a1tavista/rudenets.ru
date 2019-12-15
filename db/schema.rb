@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_18_145938) do
+ActiveRecord::Schema.define(version: 2019_12_05_162654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2019_11_18_145938) do
   end
 
   create_table "images", id: :serial, force: :cascade do |t|
-    t.string "file"
     t.string "imageable_type"
     t.integer "imageable_id"
     t.datetime "created_at", null: false
@@ -73,7 +72,6 @@ ActiveRecord::Schema.define(version: 2019_11_18_145938) do
     t.string "title"
     t.string "site_name"
     t.string "description"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "follows_count", default: 0, null: false
@@ -87,18 +85,17 @@ ActiveRecord::Schema.define(version: 2019_11_18_145938) do
   end
 
   create_table "posts", id: :serial, force: :cascade do |t|
-    t.string "cover_img"
     t.string "title"
     t.string "summary"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.string "preview"
     t.boolean "featured", default: false, null: false
     t.jsonb "render_settings", default: {}, null: false
     t.jsonb "cover_image_data"
     t.jsonb "preview_image_data"
+    t.string "preview_hash"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

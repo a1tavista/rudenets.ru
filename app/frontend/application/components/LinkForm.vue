@@ -1,106 +1,21 @@
-<script>
-  import _ from 'lodash';
-
-  export default {
-    data() {
-      return {
-        textInput: "",
-        answer: "",
-        isURL: false,
-        opengraph: {
-          url: "",
-          title: "",
-          description: "",
-          image: "",
-          summary: ""
-        },
-        images: [],
-        imageSelected: 0
-      }
-    },
-    watch: {
-      textInput: function (newInput) {
-        this.isURL = false;
-        if (this.isUrl(newInput)) {
-          this.answer = "Обнаружена ссылка. Подготовка к получению содержимого...";
-          this.tryParseURL();
-        } else {
-          this.answer = "Пожалуйста, укажите ссылку на ресурс.";
-        }
-      },
-      imageSelected: function(newValue) {
-        if(this.images.length > newValue && newValue >= 0) {
-          this.opengraph.image = this.images[newValue];
-        }
-      }
-    },
-    methods: {
-      isUrl: function (text) {
-        const regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-        return regexp.test(text);
-      },
-      tryParseURL: _.debounce(
-        function () {
-          this.answer = "Получение содержимого ссылки...";
-          const vm = this;
-          this.axios.get('/api/links/parse.json', {
-              params: {
-                url: vm.textInput
-              }
-            })
-            .then(function (response) {
-              if (response.data.success) {
-                vm.answer = "";
-                vm.isURL = true;
-                vm.opengraph = Object.assign(vm.opengraph, response.data.opengraph);
-                vm.images = response.data.images;
-                vm.imageSelected = 0;
-              } else {
-                vm.answer = "Неудача!";
-              }
-            })
-            .catch(function (error) {
-              vm.answer = 'Ошибка! ' + error
-            })
-        },
-        3000
-      ),
-      saveLink: function () {
-        this.answer = "Saving...";
-        const vm = this;
-        this.axios.post('/api/links.json', {
-            link: vm.opengraph
-          })
-          .then(function (response) {
-            vm.answer = "Ссылка успешно опубликована!"
-          })
-          .catch(function (error) {
-            vm.answer = 'Ошибка! ' + error
-          })
-      }
-    }
-  }
-</script>
-
 <template>
   <div>
     <div class="share-link-form">
-      <input type="text" placeholder="Вставьте URL для быстрой публикации" v-model="textInput">
-      <pre class="share-link-form__status" v-if="answer">{{ answer }}</pre>
-      <div class="share-link-form__form" v-if="isURL">
+      <input type="text" placeholder="Вставьте URL для быстрой публикации" v-model="url">
+      <pre class="share-link-form__status" v-if="status">{{ status }}</pre>
+      <div class="share-link-form__form" v-if="opengraph">
         <div class="link">
-          <div class="link__image-picker">
-            <i class="material-icons md-48" @click="imageSelected -= 1">keyboard_arrow_up</i>
-            <i class="material-icons md-48" @click="imageSelected += 1">keyboard_arrow_down</i>
-          </div>
           <div class="link__image">
-            <div><img :src="opengraph.image"></div>
+            <div><img :src="opengraph.image.url"></div>
+            <div class="link__image-picker">
+              <i class="material-icons md-48" @click="imageSelected -= 1">keyboard_arrow_left</i>
+              <i class="material-icons md-48" @click="imageSelected += 1">keyboard_arrow_right</i>
+            </div>
           </div>
           <div class="link__content">
-            <h4 class="link__title">
-              <div class="link__icon"></div>
-              <span>{{ opengraph.title }}</span>
-            </h4>
+            <div class='link__title-row'>
+              <input type="text" v-model="opengraph.siteName" class='link__site-name'> / <h4 class="link__title">{{ opengraph.title }}</h4>
+            </div>
             <textarea placeholder="Краткое описание" class="link__description" v-model="opengraph.description"></textarea>
             <blockquote class="link__summary">
               <h6>Комментарий:</h6>
@@ -115,3 +30,60 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    url: "",
+    status: "",
+    opengraph: null,
+    images: [],
+    imageSelected: 0
+  }),
+  watch: {
+    url(newInput) {
+      if (this.isUrl(newInput)) {
+        this.status = "Обнаружена ссылка. Подготовка к получению содержимого...";
+        this.opengraph = null;
+        this.parseURL();
+      } else {
+        this.status = "Пожалуйста, укажите ссылку на ресурс.";
+        this.opengraph = null;
+      }
+    },
+    imageSelected(newValue) {
+      if(this.images.length > newValue && newValue >= 0) {
+        this.selectImage(newValue);
+      }
+    }
+  },
+  methods: {
+    isUrl(text) {
+      const regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+      return regexp.test(text);
+    },
+    parseURL() {
+      this.status = "Получение содержимого ссылки...";
+      this.axios.get('/api/links/new.json', { params: { url: this.url } })
+        .then((response) => {
+          this.status = "";
+          const { url, title, siteName, description } = response.data;
+          this.opengraph = { url, title, siteName, description, summary: '', imageUrl: null };
+          this.images = response.data.images.map((v) => v.table);
+          this.selectImage(0);
+        })
+        .catch((error) => this.status = 'Ошибка! ' + error);
+    },
+    selectImage(position) {
+      this.imageSelected = position;
+      this.opengraph.image = this.images[position];
+    },
+    saveLink() {
+      this.status = "Сохранение...";
+      this.axios.post('/api/links.json', { link: this.opengraph })
+        .then((response) => { this.status = "Ссылка успешно опубликована!" })
+        .catch((error) => { this.status = 'Ошибка! ' + error })
+    }
+  }
+}
+</script>

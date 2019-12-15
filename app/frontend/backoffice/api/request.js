@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const request = axios.create({
-  timeout: 5000,
-});
+const request = axios.create();
 
 request.interceptors.request.use(config => {
   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

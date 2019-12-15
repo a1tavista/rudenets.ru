@@ -4,11 +4,6 @@ import Vuex from 'vuex';
 const debug = process.env.NODE_ENV !== 'production';
 
 // -----------------------------------------
-// Utility modules
-// -----------------------------------------
-import layout from './modules/layout';
-
-// -----------------------------------------
 // Content modules
 // -----------------------------------------
 import links from './content/links';
@@ -56,15 +51,13 @@ const mutations = {
 
 const store = new Vuex.Store({
   modules: {
-    layout,
     links,
     posts,
     pages,
   },
   actions,
   mutations,
-  strict: debug,
-  // plugins: [vuexLocal.plugin]
+  strict: debug
 });
 
 export default store;

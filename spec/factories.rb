@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :notepad_category do
-    title { 'MyString' }
+    title { "MyString" }
   end
   factory :notepad do
-    name { 'MyString' }
-    text { 'MyString' }
+    name { "MyString" }
+    text { "MyString" }
     category { 1 }
   end
   factory :comment do

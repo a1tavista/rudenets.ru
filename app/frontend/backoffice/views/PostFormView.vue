@@ -1,101 +1,71 @@
 <template>
   <div>
-    <div class="header view__header">
-      <h3 class="header__title">{{ formTitle }}</h3>
-      <div class="header__actions">
-        <button
-          v-if='!post.entry.published'
-          @click='publishPost'
-        >Опубликовать</button>
-        <button
-          v-if='post.entry.published'
-          @click='unpublishPost'
-        >Скрыть в черновики</button>
-        <button
-          v-if='!post.entry.published'
-          @click='remove'
-        >Удалить</button>
-      </div>
-    </div>
-    <div class="view__content">
-      <input
-        type='text'
-        :value='post.title'
-        @input="update('title', $event.target.value)"
-        placeholder='Название заметки'
-      />
-      <markdown-editor
-        class="editor--large"
-        placeholder='Полный текст заметки'
-        :value="post.text"
-        @input="update('text', $event)"
-      >
-        <div slot="status">
-          <a href="#!" v-if="savingInProgress">Сохранение изменений...</a>
-          <a href="#!" v-else>Все изменения сохранены</a>
-        </div>
-      </markdown-editor>
+    <el-row>
+      <el-page-header @back="$router.push({ path: '/posts' })" :content="formTitle" />
+    </el-row>
+    <el-row>
+      <post-form-view-content class="view__content" />
+    </el-row>
+    <div>
+      <button v-if='!post.entry.published' @click='remove'>Удалить</button>
     </div>
   </div>
 </template>
 
 <script>
-  import MarkdownEditor from '../components/editor/MarkdownEditor.vue';
-  import {mapActions, mapGetters, mapState} from "vuex";
+import PostFormViewContent from "./PostFormView/PostFormViewContent";
+import {mapActions, mapGetters, mapState} from "vuex";
 
-  export default {
-    methods: {
-      ...mapActions([
-        'newPost',
-        'fetchPost',
-        'updatePostField',
-        'publishPost',
-        'unpublishPost',
-        'deletePost'
-      ]),
-      update(field, value) {
-        this.updatePostField({ field, value });
-      },
-      remove() {
-        this.$router.push('/');
-        this.deletePost();
-      }
+
+export default {
+  components: { PostFormViewContent },
+  data() {
+    return {
+      isInitialized: false,
+    };
+  },
+  methods: {
+    ...mapActions([
+      'newPost',
+      'fetchPost',
+      'updatePostField',
+      'deletePost'
+    ]),
+    remove() {
+      this.$router.push('/');
+      this.deletePost();
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      post: 'getCurrentPost'
+    }),
+    currentID() {
+      const id = this.$store.state.route.params.id;
+      return id || null;
     },
-
-    computed: {
-      ...mapGetters({
-        post: 'getCurrentPost'
-      }),
-      currentID() {
-        const id = this.$store.state.route.params.id;
-        return id || null;
-      },
-      formTitle() {
-        return this.post.id ? 'Редактирование заметки' : 'Новая заметка';
-      },
-      savingInProgress() {
-        return this.$store.state.posts.isSaving;
-      }
+    formTitle() {
+      return this.post.id ? 'Редактирование поста' : 'Новый пост';
     },
+  },
 
-    mounted() {
+  mounted() {
+    if(this.currentID !== null)
+      this.fetchPost({id: this.currentID});
+    else
+      this.newPost();
+  },
+
+  watch: {
+    '$route'(to, from) {
       if(this.currentID !== null)
         this.fetchPost({id: this.currentID});
       else
         this.newPost();
     },
+  },
 
-    watch: {
-      '$route'(to, from) {
-        if(this.currentID !== null)
-          this.fetchPost({id: this.currentID});
-        else
-          this.newPost();
-      },
-    },
-
-    components: {MarkdownEditor},
-
-    props: ["type"]
-  }
+  props: ["type"]
+}
 </script>

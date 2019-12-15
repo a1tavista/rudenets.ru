@@ -5,7 +5,17 @@
 @import "bourbon";
 @import "highlight.js/styles/railscasts";
 @import "vue2-dropzone/dist/vue2Dropzone.min";
+@import 'element-ui/lib/theme-chalk/index';
+
+@font-face {
+  font-family: element-icons;
+  src: url(element-ui/lib/theme-chalk/fonts/element-icons.woff) format("woff"),
+    url(element-ui/lib/theme-chalk/fonts/element-icons.ttf) format("truetype");
+  font-weight: 400;
+  font-display: "auto";
+  font-style: normal
+}
 
 @import "shared/mixins";
-@import "backoffice/base/base";
-@import "backoffice/components/components";
+@import "shared/color-schemas";
+@import "backoffice/backoffice";

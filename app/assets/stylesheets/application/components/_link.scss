@@ -34,9 +34,18 @@
     margin-right: $base-spacing;
   }
 
-  &__title {
-    margin-top: 0;
+  &__title-row {
     margin-bottom: $small-spacing / 2;
+  }
+
+  &__site-name {
+    display: inline-block;
+    max-width: 80px;
+  }
+
+  &__title {
+    display: inline-block;
+    margin: 0;
     font-size: 1.1em;
     font-weight: normal;
 
@@ -46,6 +55,7 @@
   }
 
   &__image-picker {
+    display: flex;
     margin-right: $small-spacing;
     user-select: none;
     i {

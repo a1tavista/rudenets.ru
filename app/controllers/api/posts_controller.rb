@@ -1,41 +1,37 @@
 module Api
   class PostsController < BaseController
-    load_resource
+    load_resource except: [:create]
 
     def index
-      @posts = Post.refreshed_order
+      @posts = Post.joins(:entry).order("entries.published_at DESC").order(updated_at: :desc)
       respond_with(@posts)
     end
 
     def create
-      @post = Post.create!(post_params)
-      Entry.create!(taxonomy: @post)
-      respond_with(@post)
-    end
-
-    def publish
-      @post.entry.publish!
-      @post.update_canonical_url
-      render :show
-    end
-
-    def unpublish
-      @post.entry.unpublish!
-      render :show
+      ::Posts::CreatePost.new.call(attributes: post_params.to_h) do |monad|
+        monad.success { |result| @post = result[:post] }
+        monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
+      end
     end
 
     def update
-      @post.update(post_params)
+      ::Posts::UpdatePost.new.call(post: @post, attributes: post_params.to_h) do |monad|
+        monad.success { |result| @post = result[:post] }
+        monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
+      end
     end
 
     def destroy
-      @post.destroy
+      ::Posts::RemovePost.new.call(post: @post) do |monad|
+        monad.success { |result| @post = result[:post] }
+        monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
+      end
     end
 
     private
 
     def post_params
-      params.require(:post).except(:entry).permit(:id, :title, :summary, :text)
+      params.require(:post).permit!
     end
   end
 end

@@ -1,14 +1,29 @@
 <template>
-  <div class="grid" >
-    <app-sidebar class="grid__sidebar" :style="!isWidgetOpened && 'grid-column: small-sidebar;'" />
-    <main class="grid__view" :style="isWidgetOpened && 'grid-column: small-content;'">
-      <router-view class="view" />
-    </main>
+  <div>
+    <el-container>
+      <el-header class="header" height="80">
+        <div class="header__content">
+          <div class="header__main-heading">
+            <h1 class="header__title">Редактор</h1>
+          </div>
+          <div class="header__links">
+            <nav class="header__navigation">
+              <router-link class="header__navigation-link" to="/posts">Посты</router-link>
+              <router-link class="header__navigation-link" to="/links">Ссылки</router-link>
+              <router-link class="header__navigation-link" to="/pages">Страницы</router-link>
+              <router-link class="header__navigation-link" to="/images">Галерея</router-link>
+            </nav>
+          </div>
+        </div>
+      </el-header>
+      <el-main>
+        <router-view class="view" />
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-import AppSidebar from './components/AppSidebar.vue';
 import {mapActions, mapGetters} from 'vuex';
 
 export default {
@@ -23,7 +38,6 @@ export default {
   },
   mounted() {
     this.initializeApplicationData();
-  },
-  components: {AppSidebar}
+  }
 }
 </script>

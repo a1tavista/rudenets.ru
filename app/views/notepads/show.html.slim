@@ -1,8 +1,0 @@
-header.post-heading
-  .post-heading__content.grid-item_text
-    h1.post-heading__title = title @notepad.name
-    .post-heading__meta
-      .post-heading__time = l(@notepad.created_at)
-
-article.post.grid-item_text(itemscope itemtype="http://schema.org/Blog")
-  = from_markdown(@notepad.text)

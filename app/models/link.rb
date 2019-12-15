@@ -1,19 +1,11 @@
 class Link < ApplicationRecord
   has_one :entry, as: :taxonomy
-  validates_uniqueness_of :url
 
-  mount_uploader :image, AmazonUploader
-  include CarrierwaveShrineSynchronization
+  include ImageUploader::Attachment(:image)
 
-  before_save :set_empty_summary_to_nil
+  accepts_nested_attributes_for :entry, update_only: true
 
   def host
     URI.parse(url).host
-  end
-
-  private
-
-  def set_empty_summary_to_nil
-    self.summary = nil if summary.empty?
   end
 end

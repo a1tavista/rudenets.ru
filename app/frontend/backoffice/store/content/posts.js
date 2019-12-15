@@ -57,6 +57,17 @@ const actions = {
     dispatch('savePost');
   },
 
+  generatePostCover({commit, dispatch}, { shapesNumber, mode }) {
+    return new Promise((resolve, reject) =>
+      postsService.
+        generateCoverImage(state.current.id, { shapesNumber, mode }).
+        then(response => {
+          resolve();
+          dispatch('fetchPost', { id: state.current.id });
+        }).catch((e) => reject(e))
+    );
+  },
+
   publishPost({dispatch, commit}, payload) {
     postsService.publish(state.current.id).then(response => {
       commit('updateEntry', {
@@ -79,8 +90,12 @@ const actions = {
 
   savePost: debounce(function ({commit, dispatch}) {
     commit('updateSavingStatus', {collection: 'posts', saving: true});
+
+    const postState = Object.assign({}, state.current);
+    delete postState.coverImageUrl;
+
     if (state.current.id === null) {
-      postsService.create(state.current).then(response => {
+      postsService.create(postState).then(response => {
         commit('updateEntry', {
           collection: 'posts',
           content: {
@@ -92,7 +107,7 @@ const actions = {
       });
     } else {
       postsService
-        .update(state.current.id, state.current)
+        .update(state.current.id, postState)
         .then(_ => {
           commit('updateSavingStatus', {collection: 'posts', saving: false});
         });

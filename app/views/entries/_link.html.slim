@@ -6,7 +6,7 @@ article.link.entry-grid__item
       - else
         = image_tag 'no-image.jpg', class: 'link__image'
       header.link__heading
-        h4.link__title #{post.host} / #{post.title}
+        h4.link__title #{post.site_name || post.host} / #{post.title}
         .link__meta-line
           .link__meta-data
             = image_tag 'clock.svg', class: 'link__meta-icon'

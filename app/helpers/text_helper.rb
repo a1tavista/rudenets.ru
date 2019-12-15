@@ -3,7 +3,7 @@ module TextHelper
     parse_block_html: true,
     parse_span_html: true,
     enable_coderay: false,
-    input: 'GFM'
+    input: "GFM",
   }.freeze
 
   def from_markdown(text)
@@ -23,6 +23,6 @@ module TextHelper
 
     words = input.split.size
     minutes = (words / words_per_minute).floor
-    minutes.positive? ? "#{minutes} мин." : 'меньше мин.'
+    minutes.positive? ? "#{minutes} мин." : "меньше мин."
   end
 end

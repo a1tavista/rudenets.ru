@@ -5,6 +5,10 @@
       = render partial: "entries/post",
                locals: { post: @featured_post, published_at: @featured_post.entry.published_at, featured: true }
 
+  - if current_user
+    section.entry-grid__section style='margin: 32px 0 0; padding: 0;'
+      link-form
+
   .categories-list
     = active_link_to 'Свежее', root_path, class: 'categories-list__item', class_active: 'categories-list__item_active', active: :exact
     = active_link_to 'Посты', posts_path, class: 'categories-list__item', class_active: 'categories-list__item_active'

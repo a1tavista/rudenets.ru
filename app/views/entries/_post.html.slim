@@ -1,6 +1,6 @@
 article.post-preview.entry-grid__item
   = link_to post_path(post), class: 'post-preview__wrapping-link' do
-    - if post.cover_img.shaped.url.present?
+    - if post.cover_image(:shaped)&.url.present?
       .post-preview__image style=styles_for_post_preview(post)
     .post-preview__content
       header.post-preview__eyebrow #{time_ago_in_words(post.entry.published_at)} назад / ~#{reading_time(post.text)}

@@ -1,14 +1,14 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails'
-require 'active_model/railtie'
-require 'active_job/railtie'
-require 'active_record/railtie'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'action_view/railtie'
-require 'action_cable/engine'
-require 'sprockets/railtie'
+require "rails"
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+require "action_cable/engine"
+require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
 module RudenetsRu
@@ -25,7 +25,7 @@ module RudenetsRu
     end
     config.autoload_paths << "#{Rails.root}/lib"
     config.eager_load_paths << "#{Rails.root}/lib"
-    config.time_zone = 'Moscow'
+    config.time_zone = "Moscow"
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ru
     config.i18n.available_locales = [:ru]

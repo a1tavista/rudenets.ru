@@ -1,44 +1,15 @@
 class Post < ApplicationRecord
   include FriendlyId
-
-  SHRINE_CARRIERWAVE_MAPPING = {
-    cover_img: :cover_image,
-    preview: :preview_image
-  }.freeze
-
-  mount_uploader :preview, PreviewUploader
-  mount_uploader :cover_img, PostCoverUploader
-  include CarrierwaveShrineSynchronization
+  include ImageUploader::Attachment(:preview_image)
+  include CoverUploader::Attachment(:cover_image)
 
   friendly_id :slug
 
   has_one :entry, as: :taxonomy, dependent: :destroy
   has_many :images, as: :imageable
 
-  after_touch :update_canonical_url, if: :title_changed?
-  before_save :update_canonical_url, if: :title_changed?
+  scope :published, -> { joins(:entry).where(entries: {published: true}).where('entries.published_at >= ?', Time.current) }
+  scope :unpublished, -> { joins(:entry).where(entries: {published: false}) }
 
-  def update_canonical_url
-    return if entry&.published_at.nil?
-
-    slug_date = I18n.l(entry.published_at, format: :slug)
-    slug_title = Russian.translit(title).parameterize.downcase
-    update_columns(slug: "#{slug_date}-#{slug_title}")
-  end
-
-  def self.published
-    includes(:entry).where(entries: { published: true })
-  end
-
-  def self.unpublished
-    includes(:entry).where(entries: { published: false })
-  end
-
-  def self.refreshed_order
-    order('posts.updated_at DESC')
-  end
-
-  def is_published
-    entry.published?
-  end
+  accepts_nested_attributes_for :entry, update_only: true
 end

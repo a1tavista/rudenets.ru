@@ -3,10 +3,13 @@ import store from '../backoffice/store';
 import router from '../backoffice/router';
 import {sync} from 'vuex-router-sync';
 
+import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/en';
+import VueCodeMirror from 'vue-codemirror';
+
 sync(store, router);
 
-import VueCodeMirror from 'vue-codemirror'
-
+Vue.use(ElementUI, { locale });
 Vue.use(VueCodeMirror, {
   options: {
     tabSize: 2,

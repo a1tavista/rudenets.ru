@@ -8,7 +8,7 @@
         id="dropzone"
         :options="dropzoneOptions"
         @vdropzone-success="fetchImages()"
-    ></vue-dropzone>
+    />
     <div class="images-list">
       <figure v-for="image in images" class="images-list__item">
         <img :src="image.fileUrl" @click="copyUrl">

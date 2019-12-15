@@ -1,34 +1,32 @@
 Rails.application.routes.draw do
-  root 'entries#index'
+  root "entries#index"
 
-  get '/cc/sign_in' => 'clearance/sessions#new', as: :cc
-  get '/cc(/*kek)' => 'backoffice#index'
+  get "/cc/sign_in" => "clearance/sessions#new", :as => :cc
+  get "/cc(/*any)" => "backoffice#index"
 
-  get :typography, to: 'pages#typography'
+  get :typography, to: "pages#typography"
 
   namespace :api do
     resources :links do
-      get :parse, on: :collection
-      put :publish, on: :member
-      put :unpublish, on: :member
+      resource :publication, module: :links
     end
     resources :images
     resources :posts do
-      get :published, on: :collection
-      get :private, on: :collection
-      put :publish, on: :member
-      put :unpublish, on: :member
+      resource :publication, module: :posts
+      resource :cover_image, only: [:create] do
+        post :shaped
+      end
     end
     resources :pages, only: [:index, :show, :update]
   end
 
   resources :entries
   resources :posts do
-    get :preview, on: :member
+    get "preview/:hash", action: :preview, on: :collection, as: :preview
   end
   resources :links do
     get :go, on: :collection
   end
 
-  get '/(:id)', to: 'pages#show', as: :page
+  get "/(:id)", to: "pages#show", as: :page
 end
