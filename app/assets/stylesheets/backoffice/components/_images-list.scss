@@ -1,0 +1,16 @@
+.images-list {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+
+  &__item {
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    background-color: $color-elevated-background;
+    background-repeat: no-repeat;
+    border: 1px solid $color-strong-elevated-background;
+  }
+}

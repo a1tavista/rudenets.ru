@@ -2,11 +2,11 @@ module Api
   class ImagesController < BaseController
     def index
       @all_images = Image.all
-      @images = @all_images.page(params[:page]).per(20).order(id: :desc)
+      @images = @all_images.page(params[:page]).per(params[:per] || 40).order(id: :desc)
     end
 
     def create
-      @image = Image.create(file: params[:file])
+      @image = Image.create(image: params[:file])
     end
   end
 end

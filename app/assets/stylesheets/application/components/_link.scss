@@ -35,12 +35,14 @@
   }
 
   &__title-row {
+    display: flex;
+    flex-direction: row;
     margin-bottom: $small-spacing / 2;
   }
 
   &__site-name {
-    display: inline-block;
-    max-width: 80px;
+    max-width: 120px;
+    margin-right: $small-spacing / 2;
   }
 
   &__title {
