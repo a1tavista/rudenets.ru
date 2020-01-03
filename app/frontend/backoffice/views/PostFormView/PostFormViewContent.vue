@@ -13,6 +13,8 @@
       <el-row>
         <el-input
           type="textarea"
+          :value='post.summary'
+          @input="update('summary', $event)"
           :autosize="{ minRows: 2, maxRows: 6}"
           placeholder="Описание поста"
         />
@@ -23,13 +25,10 @@
       <post-cover-image v-if="imageCoverAction" :action="imageCoverAction" />
     </el-card>
 
-    <el-card class='el-card_margin-bottom'>
-      <el-input
-        type="textarea"
-        :value="post.text"
-        autosize
-        @input="update('text', $event)"
-        placeholder="Описание поста"
+    <el-card class='el-card_margin-bottom el-card_with-overflow'>
+      <v-editor
+        :value="post.contentBlocks"
+        @input="update('contentBlocks', $event)"
       />
     </el-card>
 
@@ -40,44 +39,44 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters, mapState } from "vuex";
-  import MarkdownEditor from '../../components/editor/MarkdownEditor.vue';
-  import vue2Dropzone from 'vue2-dropzone';
-  import PostFormViewSettings from "./PostFormViewSettings";
-  import PostFormViewContentCoverImage from "./PostFormViewContentCoverImage";
+import { mapActions, mapGetters, mapState } from "vuex";
+import vue2Dropzone from 'vue2-dropzone';
+import PostFormViewSettings from "./PostFormViewSettings";
+import PostFormViewContentCoverImage from "./PostFormViewContentCoverImage";
+import MarkdownBlockEditor from '../../components/MarkdownBlockEditor';
 
-  export default {
-    methods: {
-      ...mapActions([
-        'updatePostField',
-      ]),
-      update(field, value) {
-        this.updatePostField({ field, value });
-      },
+export default {
+  methods: {
+    ...mapActions([
+      'updatePostField',
+    ]),
+    update(field, value) {
+      this.updatePostField({ field, value });
     },
-    computed: {
-      ...mapGetters({
-        post: 'getCurrentPost'
-      }),
-      currentID() {
-        const id = this.$store.state.route.params.id;
-        return id || null;
-      },
-      imageCoverAction() {
-        if(!this.currentID) {
-          return false;
-        }
-        return `/api/posts/${this.currentID}/cover_image.json`;
-      },
-      savingInProgress() {
-        return this.$store.state.posts.isSaving;
+  },
+  computed: {
+    ...mapGetters({
+      post: 'getCurrentPost'
+    }),
+    currentID() {
+      const id = this.$store.state.route.params.id;
+      return id || null;
+    },
+    imageCoverAction() {
+      if(!this.currentID) {
+        return false;
       }
+      return `/api/posts/${this.currentID}/cover_image.json`;
     },
-    components: {
-      MarkdownEditor,
-      vueDropzone: vue2Dropzone,
-      PostSettings: PostFormViewSettings,
-      PostCoverImage: PostFormViewContentCoverImage
-    },
-  }
+    savingInProgress() {
+      return this.$store.state.posts.isSaving;
+    }
+  },
+  components: {
+    vueDropzone: vue2Dropzone,
+    PostSettings: PostFormViewSettings,
+    PostCoverImage: PostFormViewContentCoverImage,
+    VEditor: MarkdownBlockEditor
+  },
+}
 </script>

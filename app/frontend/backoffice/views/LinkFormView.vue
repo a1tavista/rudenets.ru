@@ -44,9 +44,6 @@
 </template>
 
 <script>
-  import notesService from '../services/postsService';
-  import MarkdownEditor from '../components/editor/MarkdownEditor.vue';
-  import InputTag from 'vue-input-tag';
   import {mapActions, mapGetters, mapState} from "vuex";
 
   export default {
@@ -99,9 +96,7 @@
         }
       }
     },
-
-    components: {MarkdownEditor, InputTag},
-
+    components: {},
     props: ["type"]
   }
 </script>

@@ -10,4 +10,4 @@
         p.post-heading__summary = @post.summary
 
 article.post.grid-item_text(itemscope itemtype="http://schema.org/Blog")
-  = from_markdown(@post.text)
+  = @post.prerendered_content&.html_safe

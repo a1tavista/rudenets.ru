@@ -78,6 +78,10 @@ blockquote {
   padding-left: $base-spacing * 1.5;
 }
 
+.twitter-tweet {
+  margin: 0 0 $base-spacing !important;
+}
+
 code:not([class]) {
   font-size: $base-font-size;
   padding: 4px;

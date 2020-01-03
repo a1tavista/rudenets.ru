@@ -5,6 +5,7 @@ module Posts
     map :initialize_records
     step :validate
     step :update_post
+    step :prerender_post_content
 
     def initialize_records(input)
       {
@@ -23,6 +24,10 @@ module Posts
     def update_post(input)
       input[:post].update!(input[:attributes])
       Success(input)
+    end
+
+    def prerender_post_content(input)
+      Posts::Operations::PrerenderPostContent.new.call(input)
     end
   end
 end

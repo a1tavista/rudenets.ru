@@ -5,18 +5,10 @@ import {sync} from 'vuex-router-sync';
 
 import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/en';
-import VueCodeMirror from 'vue-codemirror';
 
 sync(store, router);
 
 Vue.use(ElementUI, { locale });
-Vue.use(VueCodeMirror, {
-  options: {
-    tabSize: 2,
-    lineNumbers: true,
-    line: true,
-  }
-});
 
 import App from '../backoffice/App.vue';
 

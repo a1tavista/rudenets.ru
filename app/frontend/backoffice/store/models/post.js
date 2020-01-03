@@ -7,5 +7,6 @@ export default class Post {
     this.entry = {};
     this.coverImageUrl = null;
     this.previewUrl = null;
+    this.contentBlocks = null;
   }
 }
