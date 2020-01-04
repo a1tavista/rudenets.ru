@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :images
     resources :posts do
       resource :publication, module: :posts
-      resource :cover_image, only: [:create] do
+      resource :cover_image, module: :posts, only: [:create] do
         post :shaped
       end
     end

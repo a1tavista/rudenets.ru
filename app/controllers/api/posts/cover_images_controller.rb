@@ -7,7 +7,7 @@ module Api
       end
 
       def shaped
-        Posts::CreateDerivativesJob.perform_later(params[:post_id], params[:shapes_number], params[:mode])
+        ::Posts::CreateDerivativesJob.perform_later(params[:post_id], params[:shapes_number], params[:mode])
       end
     end
   end
