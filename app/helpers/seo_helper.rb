@@ -8,14 +8,19 @@ module SeoHelper
         "блог",
         "разработка",
         "программрование",
+        "архитектура",
+        "рефакторинг",
+        "технический долг",
+        "рекомендации",
         "юфу",
         "мехмат",
-        "жизнь",
+        "ruby",
+        "rails",
+        "ror",
         "музыка",
         "рецензии",
         "книги",
       ],
-      reverse: true,
       og: {
         title: :title,
         description: :description,
@@ -24,25 +29,29 @@ module SeoHelper
       },
       twitter: {
         card: "summary",
-        site: "@AndrewRudenets",
+        site: "@a1tavista",
       },
+      reverse: true
     }
   end
 
   def post_tags(post)
-    tags = {
-      description: post.summary || "Маленький уютный блог.",
+    cover_url = post.cover_image(:shaped)&.url || post.cover_image&.url
+
+    default_tags.deep_merge(
+      description: post.summary || nil,
       og: {
         description: post.summary || "Маленький уютный блог.",
         url: post_url(post),
-      },
+        image: [
+          ({_: cover_url, width: 1920, height: 900} if cover_url.present?)
+        ].compact.presence
+      }.compact,
       canonical: post_url(post),
       article: {
         published_time: post.entry.published_at,
         modified_time: post.updated_at,
-      },
-    }
-    tags = tags.deep_merge(og: {image: [{_: post.preview_image.url, width: 1920, height: 900}]}) if post.preview_image.present?
-    tags
+      }
+    ).compact
   end
 end
