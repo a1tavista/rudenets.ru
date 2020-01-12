@@ -4,6 +4,7 @@
   line-height: 1.7;
   @include main-layout();
   padding-bottom: 4 * $base-spacing;
+  word-break: break-word;
 
   > .toc:first-child {
     margin-top: -4 * $base-spacing;
