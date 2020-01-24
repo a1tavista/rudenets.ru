@@ -12,6 +12,10 @@
     @include styled-link($color-gray-accent, $color-active-accent);
     letter-spacing: 1px;
 
+    @media #{$mobile-screen-lg-max} {
+      padding: $small-spacing $small-spacing;
+    }
+
     &::after {
       content: "";
       display: none;

@@ -3,7 +3,6 @@ source "https://rubygems.org"
 ruby "2.6.5"
 
 gem "active_link_to"
-gem "ancestry"
 gem "autoprefixer-rails"
 gem "aws-sdk-s3"
 gem "bourbon", "~> 5.0.0.beta.7"
@@ -12,10 +11,10 @@ gem "clearance"
 gem "dry-schema"
 gem "dry-transaction"
 gem "dry-validation"
+gem "dry-monads"
 gem "down"
 gem "fog-aws"
 gem "friendly_id"
-gem "imgkit"
 gem "jbuilder"
 gem "jquery-rails"
 gem "kaminari"
@@ -31,6 +30,7 @@ gem "rack-canonical-host"
 gem "rails", "~> 5.2.2"
 gem "recipient_interceptor"
 gem "redcarpet"
+gem "redis"
 gem "rest-client"
 gem "responders"
 gem "russian"
@@ -43,35 +43,28 @@ gem "webpacker"
 
 group :development do
   gem "listen"
+  gem "rack-mini-profiler", require: false
 end
 
 group :development, :test do
   gem "standard"
-  gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "dotenv-rails"
-  gem "factory_bot_rails"
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails"
 end
 
-group :development, :staging do
-  gem "rack-mini-profiler", require: false
-end
-
 group :test do
   gem "database_cleaner"
-  gem "formulaic"
-  gem "launchy"
+  gem "factory_bot_rails"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "timecop"
   gem "webmock"
 end
 
-group :staging, :production do
-  gem "rack-timeout"
+group :production do
   gem "rails_stdout_logging"
 end

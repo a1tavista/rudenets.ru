@@ -1,20 +1,16 @@
 class EntriesController < ApplicationController
+  include Concerns::EntriesConcern
+
   load_and_authorize_resource
 
   def index
-    @entries = Entry
-      .includes(:taxonomy)
-      .published
-      .sorted_by_publishing_time
-      .first(10)
+    @entries, @highlighted_post = fetch_entries_with_highlighted
+    @entries = @entries.page(params[:page]).per(10)
 
-    @featured_post = fetch_featured
+    render "entries/index"
   end
 
-  private
-
-  def fetch_featured
-    posts = Post.joins(:entry).order("entries.published_at DESC").where(entries: {published: true})
-    posts.where(featured: true).first || posts.first
+  def scoped_entries(all_entries)
+    all_entries.links
   end
 end

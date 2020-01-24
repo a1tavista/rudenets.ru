@@ -1,10 +1,10 @@
 class LinksController < ApplicationController
+  include Concerns::EntriesConcern
+
   def index
-    @entries = Entry.includes(:taxonomy)
-      .published
-      .sorted_by_publishing_time
-      .where("taxonomy_type = ?", Link)
-      .page(params[:page]).per(10)
+    @entries, @highlighted_post = fetch_entries_with_highlighted
+    @entries = @entries.page(params[:page]).per(10)
+
     render "entries/index"
   end
 

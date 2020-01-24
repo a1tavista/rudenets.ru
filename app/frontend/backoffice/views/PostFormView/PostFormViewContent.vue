@@ -15,7 +15,7 @@
           type="textarea"
           :value='post.summary'
           @input="update('summary', $event)"
-          :autosize="{ minRows: 2, maxRows: 6}"
+          :autosize="{ minRows: 2, maxRows: 6 }"
           placeholder="Описание поста"
         />
       </el-row>

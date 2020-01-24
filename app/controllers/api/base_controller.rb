@@ -7,7 +7,6 @@ module Api
     include ActionView::Rendering
     include AbstractController::Translation
 
-
     before_action :require_login
     before_action :verify_requested_format!
 

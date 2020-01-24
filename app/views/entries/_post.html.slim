@@ -3,10 +3,11 @@ article.post-preview.entry-grid__item
     - if post.cover_image(:shaped)&.url.present? || post.cover_image&.url.present?
       .post-preview__image style=styles_for_post_preview(post)
     .post-preview__content
-      header.post-preview__eyebrow #{time_ago_in_words(post.entry.published_at)} назад / ~#{reading_time(post.text)}
+      header.post-preview__eyebrow
+        - if local_assigns.has_key?(:featured)
+          .post-preview__featured-label = featured ? 'featured' : 'new'
+        div #{time_ago_in_words(post.entry.published_at)} назад / ~#{reading_time(post.text)}
       h4.post-preview__title
-        - if local_assigns[:featured]
-          .post-preview__featured-label featured
         span = post.title
       - if post.summary.present?
         p.post-preview__summary = to_smarty(post.summary)

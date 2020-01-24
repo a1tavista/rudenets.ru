@@ -1,14 +1,13 @@
 class PostsController < ApplicationController
   include SeoHelper
+  include Concerns::EntriesConcern
+
   load_and_authorize_resource find_by: :slug, except: [:preview]
 
   def index
-    @entries = Entry.includes(:taxonomy)
-      .published
-      .sorted_by_publishing_time
-      .where("taxonomy_type = ?", Post)
-      .page(params[:page]).per(10)
-    @featured_post = fetch_featured
+    @entries, @highlighted_post = fetch_entries_with_highlighted
+    @entries = @entries.page(params[:page]).per(10)
+
     render "entries/index"
   end
 
@@ -24,8 +23,7 @@ class PostsController < ApplicationController
 
   private
 
-  def fetch_featured
-    posts = Post.joins(:entry).order("entries.published_at DESC").where(entries: {published: true})
-    posts.where(featured: true).first || posts.first
+  def scoped_entries(all_entries)
+    all_entries.posts
   end
 end

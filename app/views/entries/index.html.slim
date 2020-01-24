@@ -1,9 +1,12 @@
 .main__grid.entry-grid
 
   section.entry-grid__section.entry-grid__section_paddingless
-    - if current_page?('/') || current_page?(posts_path)
-      = render partial: "entries/post",
-               locals: { post: @featured_post, published_at: @featured_post.entry.published_at, featured: true }
+    = render partial: "entries/post",
+             locals: { \
+               post: @highlighted_post,
+               published_at: @highlighted_post.entry.published_at,
+               featured: @highlighted_post.featured \
+             }
 
   - if current_user
     section.entry-grid__section style='margin: 32px 0 0; padding: 0;'

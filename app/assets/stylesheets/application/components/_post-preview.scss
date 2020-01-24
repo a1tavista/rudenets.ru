@@ -4,13 +4,10 @@
   flex-direction: row;
 
   &__featured-label {
-    display: inline-block;
-
     background: $color-accent;
     color: $color-light-text;
-    padding: 4px 8px;
-    margin-right: 4px;
-    vertical-align: middle;
+    padding: 2px 8px;
+    margin-right: 8px;
 
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -19,8 +16,8 @@
     opacity: 0.7;
 
     @media #{$mobile-screen-lg-max} {
-      display: block;
       margin-bottom: $small-spacing;
+      width: 100%;
     }
   }
 
@@ -54,6 +51,14 @@
   }
 
   &__eyebrow {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    @media #{$mobile-screen-lg-max} {
+      flex-direction: column;
+    }
+
     margin-bottom: $small-spacing / 2;
     font-weight: 600;
     color: $color-active-accent;

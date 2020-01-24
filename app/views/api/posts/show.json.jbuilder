@@ -1,7 +1,6 @@
 json.id @post.id
 json.title @post.title
 json.summary @post.summary
-json.text @post.text
 json.preview_url preview_posts_url(@post.preview_hash)
 json.content_blocks @post.content_blocks
 
