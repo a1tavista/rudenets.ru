@@ -3,6 +3,15 @@ module Concerns::EntriesConcern
 
   include Dry::Monads[:maybe]
 
+  def index
+    @entries, @highlighted_post = fetch_entries_with_highlighted
+    @entries = @entries.page(params[:page]).per(10)
+
+    render "entries/index"
+  end
+
+  private
+
   def fetch_entries
     Entry
         .includes(:taxonomy)

@@ -4,13 +4,6 @@ class PostsController < ApplicationController
 
   load_and_authorize_resource find_by: :slug, except: [:preview]
 
-  def index
-    @entries, @highlighted_post = fetch_entries_with_highlighted
-    @entries = @entries.page(params[:page]).per(10)
-
-    render "entries/index"
-  end
-
   def show
     set_meta_tags(post_tags(@post))
   end
