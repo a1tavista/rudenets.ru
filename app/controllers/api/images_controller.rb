@@ -7,6 +7,7 @@ module Api
 
     def create
       @image = Image.create(image: params[:file])
+      ::Images::CreateDerivativesJob.perform_later(@image.id)
     end
   end
 end

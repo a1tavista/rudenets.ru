@@ -5,6 +5,7 @@ require "shrine/storage/s3"
 if ENV.fetch("ENABLE_S3", false)
   store = Shrine::Storage::S3.new(
     bucket: ENV["S3_BUCKET_NAME"],
+    public: true,
     access_key_id: ENV["S3_KEY"],
     secret_access_key: ENV["S3_SECRET"],
     region: ENV["S3_REGION"],

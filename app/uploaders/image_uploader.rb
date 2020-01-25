@@ -5,6 +5,7 @@ class ImageUploader < Shrine
     optimized = Optimizer.new(original).call
 
     {
+      optimized: optimized,
       large: prepare_thumbnail(optimized, dimensions: [960, 960]),
       medium: prepare_thumbnail(optimized, dimensions: [1024, 1024]),
       small: prepare_thumbnail(optimized, dimensions: [2048, 2048]),
