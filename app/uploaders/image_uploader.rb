@@ -5,13 +5,13 @@ class ImageUploader < Shrine
 
   Attacher.derivatives do |original|
     optimized = Optimizer.new(original).call
-    magick = ::ImageProcessing::MiniMagick.source(optimized)
+    medium = ::ImageProcessing::MiniMagick.source(optimized).resize_to_fit(600, 600).call
+    small = ::ImageProcessing::MiniMagick.source(optimized).resize_to_fit(300, 300).call
 
     {
       optimized: optimized,
-      large: magick.resize_to_fit!(1000, 1000),
-      medium: magick.resize_to_fit!(600, 600),
-      small: magick.resize_to_fit!(300, 300),
+      medium: medium,
+      small: small,
     }
   end
 end

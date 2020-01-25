@@ -1,8 +1,8 @@
 class Optimizer
-  attr_reader :image
+  attr_reader :image_file
 
   def initialize(image)
-    @image = image
+    @image_file = ::ImageProcessing::MiniMagick.source(image).convert('png').call
   end
 
   def call
@@ -17,7 +17,7 @@ class Optimizer
     response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) { |http|
       req = Net::HTTP::Post.new(uri.path)
       req.basic_auth "api", ENV.fetch("TINIFY_API_KEY")
-      req.body = File.open(image.path).read
+      req.body = image_file.read
       req.content_type = "application/octet-stream"
 
       http.request(req)
@@ -36,9 +36,10 @@ class Optimizer
       http.request(req)
     }
 
-    tempfile = Tempfile.new(["image", ".png"])
-    tempfile.binmode
-    tempfile.write(response.body)
-    tempfile
+    file = File.open(Rails.root.join("tmp", "#{SecureRandom.uuid}.png"), "w+")
+    file.binmode
+    file.write(response.body)
+    file.flush
+    file
   end
 end

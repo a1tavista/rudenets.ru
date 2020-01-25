@@ -1,2 +1,3 @@
 json.id @image.id
-json.file_url @image.file.url
+json.optimized_url @image.image(:optimized)&.url
+json.original_url @image.image.url

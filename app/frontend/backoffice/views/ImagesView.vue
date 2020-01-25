@@ -12,9 +12,11 @@
         <picture
           v-for="image in images"
           class="images-list__item"
-          :style='`background-image: url(${image.fileUrl});`'
-          @click="copyUrl"
-        />
+          :style='`background-image: url(${image.optimizedUrl || image.originalUrl});`'
+          @click="copyUrl(image.optimizedUrl || image.originalUrl)"
+        >
+          <div v-if="!image.optimizedUrl" class="images-list__alert">Необработанное</div>
+        </picture>
       </div>
     </el-row>
 
@@ -49,10 +51,23 @@ export default {
     }
   },
   methods: {
-    copyUrl(event) {
-      const input = event.target.parentNode.lastChild;
-      input.select();
-      document.execCommand("copy");
+    copyToClipboard(str) {
+      const el = document.createElement('textarea');
+      el.value = str;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    },
+    copyUrl(url) {
+      this.copyToClipboard(`
+        <a href="${url}"
+           data-description=""
+           data-type="image"
+           class="glightbox"
+           style="background-image: url(${url});">
+          <img src="${url}">
+        </a>`)
     },
     fetchNextPage() {
       this.currentPage += 1;
