@@ -6,7 +6,7 @@
   &__featured-label {
     background: $color-accent;
     color: $color-light-text;
-    padding: 2px 8px;
+    padding: 2px 6px 2px 8px;
     margin-right: 8px;
 
     text-transform: uppercase;
@@ -17,6 +17,7 @@
 
     @media #{$mobile-screen-lg-max} {
       margin-bottom: $small-spacing;
+      padding: 2px 8px;
       width: 100%;
     }
   }
