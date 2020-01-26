@@ -6,7 +6,7 @@ article.post-preview.entry-grid__item
       header.post-preview__eyebrow
         - if local_assigns.has_key?(:featured)
           .post-preview__featured-label = featured ? 'featured' : 'new'
-        div #{time_ago_in_words(post.entry.published_at)} назад / ~#{reading_time(post.text)}
+        div #{time_ago_in_words(post.entry.published_at)} назад / ~#{reading_time(post.reading_time)}
       h4.post-preview__title
         span = post.title
       - if post.summary.present?

@@ -5,7 +5,7 @@
       h1.post-heading__title = title @post.title
       .post-heading__meta
         - if @post.entry.published_at
-          .post-heading__time #{time_tag(@post.entry.published_at, l(@post.entry.published_at))} / ~#{reading_time(@post.text)}
+          .post-heading__time #{time_tag(@post.entry.published_at, l(@post.entry.published_at))} / ~#{reading_time(@post.reading_time)}
       - if @post.summary.present?
         p.post-heading__summary = @post.summary
 
