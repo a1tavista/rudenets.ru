@@ -1,8 +1,9 @@
 module Links
   class ParseLink
     include Dry::Transaction
+    include Dry::Monads[:maybe, :try]
 
-    USERAGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5".freeze
+    USERAGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36".freeze
 
     step :url_correct?
     step :parse_url
@@ -14,7 +15,9 @@ module Links
     end
 
     def parse_url(input)
-      og = OGP::OpenGraph.new(input[:response])
+      monad = Try { OGP::OpenGraph.new(input[:response]) }.to_maybe
+      og = monad.value_or { OpenGraph.new(input[:response], headers: {"User-Agent": USERAGENT}) }
+
       Success(opengraph: og)
     rescue => e
       Failure(errors: [e], code: :exception_caught)

@@ -254,6 +254,9 @@ GEM
       ruby-ll (~> 2.1)
     ogp (0.3.0)
       oga (~> 2.15)
+    opengraph_parser (0.2.3)
+      addressable
+      nokogiri
     parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
@@ -455,6 +458,7 @@ DEPENDENCIES
   neat (~> 2.0.0.beta.1)
   normalize-rails (~> 3.0.0)
   ogp
+  opengraph_parser
   pg
   pry-byebug
   pry-rails
