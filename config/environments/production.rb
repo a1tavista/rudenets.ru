@@ -6,6 +6,7 @@ Rails.application.configure do
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
   config.cache_classes = true
   config.eager_load = true
+  config.exceptions_app = self.routes
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?

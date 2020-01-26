@@ -28,5 +28,9 @@ Rails.application.routes.draw do
     get :go, on: :collection
   end
 
+  %w(404 422 500 503).each do |code|
+    get code, to: "errors#show", code: code
+  end
+
   get "/(:id)", to: "pages#show", as: :page
 end
