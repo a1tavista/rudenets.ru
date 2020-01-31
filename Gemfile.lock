@@ -163,6 +163,7 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
+    fastimage (2.1.7)
     ffi (1.9.25)
     fog-aws (3.3.0)
       fog-core (~> 2.1)
@@ -445,6 +446,7 @@ DEPENDENCIES
   dry-transaction
   dry-validation
   factory_bot_rails
+  fastimage
   fog-aws
   friendly_id
   image_processing (~> 1.8)
@@ -453,6 +455,7 @@ DEPENDENCIES
   kaminari
   kramdown
   listen
+  marcel (~> 0.3)
   meta-tags
   mini_magick
   neat (~> 2.0.0.beta.1)

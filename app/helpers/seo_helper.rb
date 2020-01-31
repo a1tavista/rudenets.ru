@@ -36,16 +36,12 @@ module SeoHelper
   end
 
   def post_tags(post)
-    cover_url = post.cover_image(:shaped)&.url || post.cover_image&.url
-
     default_tags.deep_merge(
       description: post.summary || nil,
       og: {
         description: post.summary || "Маленький уютный блог.",
         url: post_url(post),
-        image: [
-          ({_: cover_url, width: 1920, height: 900} if cover_url.present?)
-        ].compact.presence
+        image: images_for(post)
       }.compact,
       canonical: post_url(post),
       article: {
@@ -53,5 +49,21 @@ module SeoHelper
         modified_time: post.updated_at,
       }
     ).compact
+  end
+
+  private
+
+  def images_for(post)
+    [
+      image_to_og(post.cover_image),
+      image_to_og(post.cover_image(:shaped)),
+      image_to_og(post.preview_image)
+    ].compact.presence
+  end
+
+  def image_to_og(image)
+    return if image.nil?
+
+    { _: image.url, width: image.width, height: image.height }
   end
 end
