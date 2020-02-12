@@ -25,13 +25,17 @@
   }
 
   &__title {
-    margin-bottom: $small-spacing;
-    font-size: 2.5em;
+    margin-bottom: $base-spacing;
+    font-size: 5em;
     padding: 8px;
     background: rgba($color-dark-background, 0.8);
 
     @media #{$mobile-screen-lg-max} {
-      font-size: 1.8em;
+      font-size: 3em;
+    }
+
+    @media #{$mobile-screen-sm-max} {
+      font-size: 2em;
     }
   }
 

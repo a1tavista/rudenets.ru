@@ -16,6 +16,10 @@ h6 {
   }
 
   font-family: $heading-font-family;
+  @supports (font-variation-settings: normal) {
+    font-family: $heading-var-font-family;
+  }
+
   font-size: 1.25em;
   font-weight: 600;
   line-height: $heading-line-height;

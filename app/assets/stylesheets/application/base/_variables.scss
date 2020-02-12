@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:300,400,500,700&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=cyrillic');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://rsms.me/inter/inter.css');
 
 // Breakpoints
 $medium-screen: 600px;
@@ -33,7 +34,8 @@ $desktop-screen-lg-max: '(max-width: 1440px)';
 $container-width: 75rem;
 
 // Typography
-$heading-font-family: "Roboto", sans-serif;
+$heading-font-family: "Inter", sans-serif;
+$heading-var-font-family: "Inter var", sans-serif;
 $base-font-family: "Open Sans", sans-serif;
 
 // Font Sizes
