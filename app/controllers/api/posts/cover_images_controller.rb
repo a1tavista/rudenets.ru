@@ -4,10 +4,16 @@ module Api
       def create
         @post = Post.find(params[:post_id])
         @post.update(cover_image: params[:file])
+        @post.publish_event(Events::PostCoverImageUploaded)
       end
 
       def shaped
-        ::Posts::CreateDerivativesJob.perform_later(params[:post_id], params[:shapes_number], params[:mode])
+        @post = Post.find(params[:post_id])
+        @post.publish_event(
+          Events::PostCoverImageTransformationRequested,
+          shapes_number: params[:shapes_number],
+          mode: params[:mode]
+        )
       end
     end
   end

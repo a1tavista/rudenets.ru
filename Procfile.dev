@@ -1,2 +1,3 @@
-web: bundle exec rails s -p 3000
-webpack: ./bin/webpack-dev-server --progress=false
+web: ./bin/rails s -p 3000
+webpack: ./bin/webpack-dev-server
+worker: bundle exec sidekiq -c 5 -q default -q event_queue

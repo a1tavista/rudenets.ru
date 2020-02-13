@@ -1,0 +1,10 @@
+<% if Rails.env.production? %>
+  User-Agent: *
+  Allow: /
+  Disallow: /cc
+  Sitemap: https://<%=@host%>/data/sitemap.xml.gz
+  Host: https://rudenets.ru
+<% else %>
+  User-Agent: *
+  Disallow: /
+<% end %>

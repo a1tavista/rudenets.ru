@@ -1,7 +1,7 @@
 article.link.entry-grid__item
   .link__content
     = link_to go_links_path(url: post.url), target: '_blank', class: 'link__anchor' do
-      - if post.image.presence && Rails.env.production?
+      - if post.image.present?
         = image_tag post.image.url, class: 'link__image'
       - else
         = image_tag 'no-image.jpg', class: 'link__image'

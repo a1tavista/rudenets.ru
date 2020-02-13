@@ -32,6 +32,7 @@ gem "pg"
 gem "puma"
 gem "rack-canonical-host"
 gem "rails", "~> 5.2.2"
+gem 'rails_event_store'
 gem "recipient_interceptor"
 gem "redcarpet"
 gem "redis"
@@ -39,9 +40,13 @@ gem "rest-client"
 gem "responders"
 gem "russian"
 gem "sassc-rails"
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'sitemap_generator'
 gem "slim-rails"
 gem "sprockets", ">= 3.0.0"
 gem "shrine"
+gem "telegram-bot-ruby"
 gem "uglifier"
 gem "webpacker"
 

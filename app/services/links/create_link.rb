@@ -4,7 +4,7 @@ module Links
 
     step :validate
     step :create_link
-    step :create_derivatives
+    tee :publish_event
 
     def validate(input)
       result = LinkSchema.new.call(input[:attributes])
@@ -17,16 +17,15 @@ module Links
       attributes = input[:attributes].transform_values { |v| v.presence }
 
       link = Link.new(attributes.except(:image_url))
-      link.image_uploader.upload(Down.open(attributes[:image_url])) unless attributes[:image_url].blank?
+      link.image = Down.open(attributes[:image_url]) unless attributes[:image_url].blank?
       link.entry_attributes = {published: true, published_at: Time.current}
       link.save!
 
       Success(input.merge(link: link))
     end
 
-    def create_derivatives(input)
-      Links::CreateDerivativesJob.perform_later(input[:link].id)
-      Success(input)
+    def publish_event(input)
+      input[:link].publish_event(Events::LinkPublished)
     end
   end
 end

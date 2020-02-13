@@ -72,7 +72,7 @@ export default {
           this.showForm = true;
           const { url, title, siteName, description } = response.data;
           this.opengraph = { url, title, siteName, description, summary: '', imageUrl: null };
-          this.images = response.data.images.map((v) => v.table);
+          this.images = response.data.images;
           this.selectImage(0);
         })
         .catch((error) => {

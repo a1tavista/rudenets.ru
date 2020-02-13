@@ -8,6 +8,14 @@ class PostsController < ApplicationController
     set_meta_tags(post_tags(@post))
   end
 
+  def feed
+    @posts = Post.published.joins(:entry).order('entries.published_at DESC').first(10)
+
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
   def preview
     @post = Post.find_by_preview_hash(params[:hash])
     set_meta_tags(post_tags(@post))

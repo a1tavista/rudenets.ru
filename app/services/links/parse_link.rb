@@ -16,7 +16,7 @@ module Links
 
     def parse_url(input)
       monad = Try { OGP::OpenGraph.new(input[:response]) }.to_maybe
-      og = monad.value_or { OpenGraph.new(input[:response], headers: {"User-Agent": USERAGENT}) }
+      og = monad.value_or { OpenGraph.new(input[:url], headers: {"User-Agent": USERAGENT}) }
 
       Success(opengraph: og)
     rescue => e

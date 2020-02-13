@@ -7,7 +7,7 @@ module Api
 
     def create
       @image = Image.create(image: params[:file])
-      ::Images::CreateDerivativesJob.perform_later(@image.id)
+      @image.publish_event(Events::ImageUploaded) if @image.persisted?
     end
   end
 end

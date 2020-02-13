@@ -1,7 +1,6 @@
 class LinksController < ApplicationController
   include Concerns::EntriesConcern
 
-
   def go
     return redirect_to root_path if params[:url].nil?
 

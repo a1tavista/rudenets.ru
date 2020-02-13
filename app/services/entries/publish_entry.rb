@@ -27,6 +27,10 @@ module Entries
       Success(input)
     end
 
+    def publish_event(input)
+      input[:entry].taxonomy.publish_event("Events::#{input[:entry].taxonomy_type}Published".constantize)
+    end
+
     private
 
     def prepare_taxonomy(input)

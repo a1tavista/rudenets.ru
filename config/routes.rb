@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :posts do
     get "preview/:hash", action: :preview, on: :collection, as: :preview
   end
+
+  get 'feed', to: 'posts#feed', as: :feed
+
   resources :links do
     get :go, on: :collection
   end
@@ -31,6 +34,8 @@ Rails.application.routes.draw do
   %w(404 422 500 503).each do |code|
     get code, to: "errors#show", code: code
   end
+
+  get 'robots', to: 'pages#robots', format: :text
 
   get "/(:id)", to: "pages#show", as: :page
 end

@@ -7,6 +7,7 @@ html lang="ru"
     meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
     = display_meta_tags default_tags
     = stylesheet_link_tag :application, media: "all"
+    = auto_discovery_link_tag :rss, feed_url(format: :rss)
     link rel="icon" type="image/png" href="/favicon.png"
     = csrf_meta_tags
   body.flex-layout
