@@ -1,0 +1,5 @@
+pre-commit:
+  parallel: true
+  commands:
+    backend-linter:
+      run: bundle exec standardrb --force-exclusion {staged_files} --fix && git add {staged_files}

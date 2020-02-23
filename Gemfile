@@ -57,6 +57,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "lefthook"
   gem "standard"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
