@@ -40,6 +40,7 @@ gem "rest-client"
 gem "responders"
 gem "russian"
 gem "sassc-rails"
+gem "sentry-raven"
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sitemap_generator'
