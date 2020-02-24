@@ -2,11 +2,15 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def self.primary_key_as_foreign
-    [self.to_s.underscore, self.primary_key].join('_').to_sym
+    [to_s.underscore, primary_key].join("_").to_sym
   end
 
   def event_store
     Rails.configuration.event_store
+  end
+
+  def event_stream
+    event_store.read.stream(stream_name)
   end
 
   def publish_event(klass, data = {})
@@ -16,6 +20,6 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def stream_name
-    [self.class.to_s, id].join(':')
+    [self.class.to_s, id].join(":")
   end
 end
