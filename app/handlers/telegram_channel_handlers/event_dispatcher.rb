@@ -7,16 +7,16 @@ module TelegramChannelHandlers
       ["11:30", "21:00"],
       ["11:30", "21:00"],
       ["17:00", "21:30"],
-      ["17:00", "21:30"]
+      ["17:00", "21:30"],
     ].freeze
 
     EVENT_DISPATCHING_RULES = {
-      'Events::PostPublished' => [
-        { handler: TelegramChannelHandlers::NotifyChannel::NewPost, when: ->(d) { d.prime_time } }
+      "Events::PostPublished" => [
+        {handler: TelegramChannelHandlers::NotifyChannel::NewPost, when: ->(d) { d.prime_time }},
       ],
-      'Events::LinkPublished' => [
-        { handler: TelegramChannelHandlers::NotifyChannel::NewLink, when: ->(d) { d.prime_time } }
-      ]
+      "Events::LinkPublished" => [
+        {handler: TelegramChannelHandlers::NotifyChannel::NewLink, when: ->(d) { d.prime_time }},
+      ],
     }.freeze
 
     def prime_time
@@ -32,14 +32,14 @@ module TelegramChannelHandlers
     private
 
     def acceptable_time_for(time, gap: 0.days)
-      Range.new(*self.class::PRIME_TIME_INTERVALS[time.wday - 1].map { |t| t.to_time + gap })
+      Range.new(*self.class::PRIME_TIME_INTERVALS[time.wday - 1].map { |t| Time.zone.parse(t) + gap })
     end
 
     def time_to_next_quarter_hour(time)
       array = time.to_a
       quarter = ((array[1] % 60) / 15.0).ceil
       array[1] = (quarter * 15) % 60
-      Time.local(*array) + (quarter == 4 ? 3600 : 0)
+      Time.zone.local(*array) + (quarter == 4 ? 3600 : 0)
     end
   end
 end
