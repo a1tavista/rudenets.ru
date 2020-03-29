@@ -17,6 +17,11 @@
     = active_link_to 'Посты', posts_path, class: 'categories-list__item', class_active: 'categories-list__item_active'
     = active_link_to 'Рекомендации', links_path, class: 'categories-list__item', class_active: 'categories-list__item_active'
 
+  .channel-link
+    | Подписывайтесь в Telegram: #{link_to "@rudenets_ru", "https://t-do.ru/rudenets_ru", target: "_blank"}
+
+
+
   - if @entries.present?
     section.entry-grid__section
       - @entries.each do |entry|
