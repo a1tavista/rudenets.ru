@@ -6,11 +6,12 @@ module Entries
     step :validate_entry
     map :prepare_taxonomy
     step :publish_entry
+    tee :publish_event
 
     def initialize_records(input)
       {
         entry: input[:entry] || Entry.find_by(input[:entry_find_by]),
-        publishing_time: input[:publishing_time].blank? ? Time.current : Time.parse(input[:publishing_time])
+        publishing_time: input[:publishing_time].blank? ? Time.current : Time.parse(input[:publishing_time]),
       }
     end
 
