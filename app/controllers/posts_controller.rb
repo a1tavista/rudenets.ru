@@ -2,17 +2,17 @@ class PostsController < ApplicationController
   include SeoHelper
   include Concerns::EntriesConcern
 
-  load_and_authorize_resource find_by: :slug, except: [:preview]
+  load_and_authorize_resource find_by: :slug, except: [:preview, :feed]
 
   def show
     set_meta_tags(post_tags(@post))
   end
 
   def feed
-    @posts = Post.published.joins(:entry).order('entries.published_at DESC').first(10)
+    @posts = Post.published.joins(:entry).order("entries.published_at DESC").first(10)
 
     respond_to do |format|
-      format.rss { render :layout => false }
+      format.rss { render layout: false }
     end
   end
 
