@@ -1,37 +1,9 @@
+# [rudenets.ru](https://rudenets.ru)
 
-# Rudenets ru
+Блог. Реализован на базе Ruby on Rails, а панель управления – на Vue. Умеет следующее:
 
-## Getting Started
+- Публиковать ссылки и считать статистику по ним;
+- Публиковать посты, составленные из блоков из Markdown и HTML;
+- Отправлять все новые публикации в Telegram-канал в прайм-тайм.
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
-
-    % ./bin/setup
-
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
-
-[this script]: https://github.com/thoughtbot/laptop
-
-After setting up, you can run the application using [Heroku Local]:
-
-    % heroku local
-
-[Heroku Local]: https://devcenter.heroku.com/articles/heroku-local
-
-## Guidelines
-
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
-
-## Deploying
-
-If you have previously run the `./bin/setup` script,
-you can deploy to staging and production with:
-
-    $ ./bin/deploy staging
-    $ ./bin/deploy production
+Требует для запуска PostgreSQL и Redis. Я разворачиваю его на сервере с помощью Dokku с Docker под капотом.
