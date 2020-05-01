@@ -1,9 +1,9 @@
 module Api
   class PostsController < BaseController
-    load_resource except: [:create]
+    load_resource except: [:create], class: Publication::Post
 
     def index
-      @posts = Post.joins(:entry).order("entries.published_at DESC").order(updated_at: :desc)
+      @posts = Publication::Post.sorted_by_publishing_time.order(updated_at: :desc)
       respond_with(@posts)
     end
 

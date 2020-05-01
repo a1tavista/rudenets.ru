@@ -4,15 +4,15 @@
       <h3 class="header__title">{{ formTitle }}</h3>
       <div class="header__actions">
         <button
-          v-if='!link.entry.published'
+          v-if='!link.published'
           @click='publishLink'
         >Опубликовать</button>
         <button
-          v-if='link.entry.published'
+          v-if='link.published'
           @click='unpublishLink'
         >Скрыть в черновики</button>
         <button
-          v-if='!link.entry.published'
+          v-if='!link.published'
           @click='remove'
         >Удалить</button>
       </div>

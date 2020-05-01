@@ -7,12 +7,12 @@ module Entries
 
     def initialize_records(input)
       {
-        entry: input[:entry] || Entry.find_by(input[:entry_find_by])
+        entry: input[:entry] || Publication.find_by(input[:entry_find_by]),
       }
     end
 
     def archive_entry(input)
-      input[:entry].update(published: false, published_at: nil)
+      input[:entry].update(published_at: nil)
 
       Success(input)
     end

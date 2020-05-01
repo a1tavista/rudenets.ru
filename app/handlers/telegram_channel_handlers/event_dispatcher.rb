@@ -17,29 +17,16 @@ module TelegramChannelHandlers
       "Events::LinkPublished" => [
         {handler: TelegramChannelHandlers::NotifyChannel::NewLink, when: ->(d) { d.prime_time }},
       ],
+      "Events::ChannelPostPublished" => [
+        {handler: TelegramChannelHandlers::NotifyChannel::NewChannelPost, when: ->(d) { Time.current }},
+      ],
+      "Events::ReactionReceived" => [
+        {handler: TelegramChannelHandlers::NotifyChannel::UpdateMessageButtons, when: ->(d) { Time.current }},
+      ],
     }.freeze
 
     def prime_time
-      publishing_time = time_to_next_quarter_hour(Time.current)
-      acceptable_time = acceptable_time_for(Time.current)
-
-      return publishing_time.beginning_of_minute if acceptable_time.include?(publishing_time)
-
-      # Если за границей текущего, то публикуем на следующий день
-      publishing_time > acceptable_time.end ? acceptable_time_for(Time.current, gap: 1.day).begin : acceptable_time.begin
-    end
-
-    private
-
-    def acceptable_time_for(time, gap: 0.days)
-      Range.new(*self.class::PRIME_TIME_INTERVALS[time.wday - 1].map { |t| Time.zone.parse(t) + gap })
-    end
-
-    def time_to_next_quarter_hour(time)
-      array = time.to_a
-      quarter = ((array[1] % 60) / 15.0).ceil
-      array[1] = (quarter * 15) % 60
-      Time.zone.local(*array) + (quarter == 4 ? 3600 : 0)
+      PrimeTime.prime_time(Time.current, schedule: self.class::PRIME_TIME_INTERVALS)
     end
   end
 end

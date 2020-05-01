@@ -1,8 +1,7 @@
 class PostSchema < Dry::Validation::Contract
   params do
     required(:title).value(:string)
-    optional(:summary).maybe(:string)
-    optional(:text).maybe(:string)
+    optional(:abstract).maybe(:string)
     optional(:render_settings).hash do
       optional(:cover).maybe(:hash)
     end
@@ -13,8 +12,7 @@ class PostSchema < Dry::Validation::Contract
   class Strict < Dry::Validation::Contract
     params do
       required(:title).filled(:string)
-      required(:summary).filled(:string)
-      required(:text).filled(:string)
+      required(:abstract).filled(:string)
       optional(:render_settings).hash do
         optional(:cover).value(:hash)
       end

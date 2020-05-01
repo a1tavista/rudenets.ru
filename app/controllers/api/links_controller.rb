@@ -1,6 +1,6 @@
 module Api
   class LinksController < BaseController
-    load_resource except: [:new, :create]
+    load_resource except: [:new, :create], class: Publication::Link
 
     def new
       ::Links::ParseLink.new.call(url: params[:url]) do |monad|

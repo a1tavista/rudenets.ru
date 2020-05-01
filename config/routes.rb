@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get :typography, to: "pages#typography"
 
+  post "telegram/:key", to: "webhooks/telegram#update"
+
   namespace :api do
     resources :links do
       resource :publication, module: :links

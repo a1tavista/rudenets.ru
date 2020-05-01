@@ -16,9 +16,9 @@ module Links
     def create_link(input)
       attributes = input[:attributes].transform_values { |v| v.presence }
 
-      link = Link.new(attributes.except(:image_url))
-      link.image = Down.open(attributes[:image_url]) unless attributes[:image_url].blank?
-      link.entry_attributes = {published: true, published_at: Time.current}
+      link = Publication::Link.new(attributes.except(:image_url))
+      link.cover_image = Down.open(attributes[:image_url]) unless attributes[:image_url].blank?
+      link.published_at = Time.current
       link.save!
 
       Success(input.merge(link: link))

@@ -13,10 +13,7 @@ module Concerns::EntriesConcern
   private
 
   def fetch_entries
-    Entry
-        .includes(:taxonomy)
-        .published
-        .sorted_by_publishing_time
+    Publication.published.sorted_by_publishing_time
   end
 
   def scoped_entries(all_entries)
@@ -24,7 +21,7 @@ module Concerns::EntriesConcern
   end
 
   def remove_highlighted_from(all_entries, post)
-    post&.featured? ? all_entries : all_entries.where.not(taxonomy: post)
+    post&.featured? ? all_entries : all_entries.where.not(id: post.id)
   end
 
   def fetch_entries_with_highlighted
@@ -35,7 +32,7 @@ module Concerns::EntriesConcern
   end
 
   def fetch_featured_from(entries)
-    entries.posts.joins("INNER JOIN posts ON entries.taxonomy_id = posts.id").where(posts: {featured: true}).first
+    entries.posts.where(featured: true).first
   end
 
   def highlight_new_post_from(entries)

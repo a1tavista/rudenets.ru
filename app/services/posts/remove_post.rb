@@ -7,8 +7,8 @@ module Posts
 
     def initialize_records(input)
       {
-        post: input[:post] || Post.find_by(input[:post_find_by]),
-        attributes: input[:attributes]
+        post: input[:post] || Publication::Post.find_by(input[:post_find_by]),
+        attributes: input[:attributes],
       }
     end
 

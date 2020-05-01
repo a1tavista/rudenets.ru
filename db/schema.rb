@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_183836) do
+ActiveRecord::Schema.define(version: 2020_04_26_105521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -104,6 +104,15 @@ ActiveRecord::Schema.define(version: 2020_02_13_183836) do
     t.string "content"
   end
 
+  create_table "post_aliases", force: :cascade do |t|
+    t.string "slug", null: false
+    t.bigint "publication_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publication_id"], name: "index_post_aliases_on_publication_id"
+    t.index ["slug"], name: "index_post_aliases_on_slug"
+  end
+
   create_table "posts", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "summary"
@@ -119,6 +128,35 @@ ActiveRecord::Schema.define(version: 2020_02_13_183836) do
     t.jsonb "content_blocks"
     t.text "prerendered_content"
     t.integer "reading_time"
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.string "type", null: false
+    t.string "slug"
+    t.string "title"
+    t.string "abstract"
+    t.string "source_name"
+    t.string "source_url"
+    t.jsonb "publication_data"
+    t.jsonb "cover_image_data"
+    t.jsonb "preview_image_data"
+    t.jsonb "preview_access_hash"
+    t.datetime "published_at"
+    t.datetime "presented_at"
+    t.boolean "featured", default: false, null: false
+    t.jsonb "content_blocks", default: [], null: false
+    t.string "prerendered_content"
+    t.integer "reactions_count", default: 0, null: false
+    t.integer "follows_count", default: 0, null: false
+    t.jsonb "meta_data", default: {}, null: false
+    t.jsonb "render_settings", default: {}, null: false
+    t.jsonb "seo_settings", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follows_count"], name: "index_publications_on_follows_count"
+    t.index ["presented_at"], name: "index_publications_on_presented_at"
+    t.index ["published_at"], name: "index_publications_on_published_at"
+    t.index ["reactions_count"], name: "index_publications_on_reactions_count"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

@@ -13,7 +13,7 @@
       <el-row>
         <el-input
           type="textarea"
-          :value='post.summary'
+          :value='post.abstract'
           @input="update('summary', $event)"
           :autosize="{ minRows: 2, maxRows: 6 }"
           placeholder="Описание поста"

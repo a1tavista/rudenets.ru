@@ -2,14 +2,20 @@ class PostsController < ApplicationController
   include SeoHelper
   include Concerns::EntriesConcern
 
-  load_and_authorize_resource find_by: :slug, except: [:preview, :feed]
+  authorize_resource except: [:preview, :feed]
 
   def show
-    set_meta_tags(post_tags(@post))
+    Posts::Operations::FindPostBySlug.new.call(slug: params[:id]) do |monad|
+      monad.success do |post|
+        @post = post
+        set_meta_tags(post_tags(@post))
+      end
+      monad.failure { raise ActiveRecord::RecordNotFound }
+    end
   end
 
   def feed
-    @posts = Post.published.joins(:entry).order("entries.published_at DESC").first(10)
+    @posts = Publication::Post.published.sorted_by_publishing_time.first(10)
 
     respond_to do |format|
       format.rss { render layout: false }
@@ -17,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def preview
-    @post = Post.find_by_preview_hash(params[:hash])
+    @post = Publication::Post.find_by_preview_access_hash(params[:hash])
     set_meta_tags(post_tags(@post))
     render :show
   end

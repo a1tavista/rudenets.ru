@@ -5,12 +5,13 @@ module Posts
     map :initialize_records
     step :validate
     step :update_post
+    map :update_slug
     step :prerender_post_content
 
     def initialize_records(input)
       {
         post: input[:post] || Post.find_by(input[:post_find_by]),
-        attributes: input[:attributes]
+        attributes: input[:attributes],
       }
     end
 
@@ -24,6 +25,11 @@ module Posts
     def update_post(input)
       input[:post].update!(input[:attributes])
       Success(input)
+    end
+
+    def update_slug(input)
+      Posts::Operations::UpdateSlug.new.call(input.merge(publishing_time: input[:post].published_at))
+      input
     end
 
     def prerender_post_content(input)

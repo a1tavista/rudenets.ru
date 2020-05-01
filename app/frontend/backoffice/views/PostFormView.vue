@@ -7,7 +7,7 @@
       <post-form-view-content class="view__content" />
     </el-row>
     <div>
-      <button v-if='!post.entry.published' @click='remove'>Удалить</button>
+      <button v-if='!post.published' @click='remove'>Удалить</button>
     </div>
   </div>
 </template>

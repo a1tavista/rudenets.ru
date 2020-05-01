@@ -20,13 +20,11 @@
   .channel-link
     | Подписывайтесь в Telegram: #{link_to "@rudenets_ru", "https://t-do.ru/rudenets_ru", target: "_blank"}
 
-
-
   - if @entries.present?
     section.entry-grid__section
       - @entries.each do |entry|
         = render partial: "entries/#{entry.taxonomy_type.underscore}",
-                locals: { post: entry.taxonomy, published_at: entry.published_at }
+                locals: { post: entry, published_at: entry.published_at }
       - if @entries.respond_to?(:total_pages)
         .entry-grid__pagination
           = paginate @entries

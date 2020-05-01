@@ -8,8 +8,8 @@ module Links
 
     def initialize_records(input)
       {
-        link: input[:post] || Link.find_by(input[:link_find_by]),
-        attributes: input[:attributes]
+        link: input[:post] || Publication::Link.find_by(input[:link_find_by]),
+        attributes: input[:attributes],
       }
     end
 

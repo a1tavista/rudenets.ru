@@ -4,9 +4,9 @@ class LinksController < ApplicationController
   def go
     return redirect_to root_path if params[:url].nil?
 
-    link = Link.find_by(url: params[:url])
+    link = Publication::Link.find_by(source_url: params[:url])
     link.increment!(:follows_count)
-    redirect_to link.url
+    redirect_to link.source_url
   end
 
   private

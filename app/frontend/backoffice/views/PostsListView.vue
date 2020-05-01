@@ -38,7 +38,7 @@
             <router-link class="widget__item" :to="'/posts/' + scope.row.id">
               {{ scope.row.title || unnamed }}
             </router-link>
-            <div style='font-size: 12px;'>Опубликовано {{ scope.row.entry.publishedAtLocalized }}</div>
+            <div style='font-size: 12px;'>Опубликовано {{ scope.row.publishedAtLocalized }}</div>
           </template>
         </el-table-column>
         <el-table-column align="right" width="200">

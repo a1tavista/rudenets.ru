@@ -13,11 +13,8 @@ module Posts
     end
 
     def create_post(input)
-      post = Post.create!(
-        input[:attributes].merge(
-          preview_hash: SecureRandom.uuid,
-          entry_attributes: {published: false}
-        )
+      post = Publication::Post.create!(
+        input[:attributes].merge(preview_access_hash: SecureRandom.uuid)
       )
       Success(input.merge(post: post))
     end

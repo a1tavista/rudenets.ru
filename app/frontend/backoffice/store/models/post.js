@@ -2,11 +2,12 @@ export default class Post {
   constructor() {
     this.id = null;
     this.title = null;
-    this.text = null;
-    this.summary = null;
-    this.entry = {};
+    this.abstract = null;
+    this.publishedAt = null;
+    this.published = null;
     this.coverImageUrl = null;
     this.previewUrl = null;
     this.contentBlocks = null;
+    this.slug = null;
   }
 }
