@@ -15,6 +15,12 @@ module PostsHelper
     to_styles(settings)
   end
 
+  def styles_for_page_preview(page)
+    cover_url = page.cover_image&.url
+
+    return if cover_url.nil?
+  end
+
   private
 
   def to_styles(settings)

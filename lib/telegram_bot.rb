@@ -17,15 +17,29 @@ class TelegramBot
     puts e
   end
 
-  def send_message(message, buttons_data:)
+  def send_message(message, buttons_data:, parse_mode: "HTML")
     result = bot.api.send_message(
       chat_id: chat_id,
       text: message,
       reply_markup: build_inline_keyboard_by(buttons_data),
-      parse_mode: "HTML"
+      parse_mode: parse_mode
     )
 
     result["ok"] ? Success(message_id: result.dig("result", "message_id"), chat_id: chat_id) : Failure(chat_id)
+  rescue => e
+    retry if e.respond_to?(:wrapped_exception) && e.wrapped_exception.is_a?(Net::HTTPRetriableError)
+    Raven.capture_exception(e)
+
+    Failure(chat_id: chat_id, exception: e)
+  end
+
+  def delete_message(message_id)
+    result = bot.api.delete_message(
+      chat_id: chat_id,
+      message_id: message_id,
+    )
+
+    result["ok"] ? Success(chat_id: chat_id) : Failure(chat_id)
   rescue => e
     retry if e.respond_to?(:wrapped_exception) && e.wrapped_exception.is_a?(Net::HTTPRetriableError)
     Raven.capture_exception(e)

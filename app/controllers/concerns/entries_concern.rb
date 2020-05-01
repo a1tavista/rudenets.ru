@@ -26,7 +26,7 @@ module Concerns::EntriesConcern
 
   def fetch_entries_with_highlighted
     all_entries = fetch_entries
-    highlighted_post = Maybe(fetch_featured_from(all_entries)).value_or { highlight_new_post_from(all_entries) }.taxonomy
+    highlighted_post = Maybe(fetch_featured_from(all_entries)).value_or { highlight_new_post_from(all_entries) }
 
     [scoped_entries(remove_highlighted_from(all_entries, highlighted_post)), highlighted_post]
   end

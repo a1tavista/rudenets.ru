@@ -9,6 +9,7 @@
           <div class="header__links">
             <nav class="header__navigation">
               <router-link class="header__navigation-link" to="/posts">Посты</router-link>
+              <router-link class="header__navigation-link" to="/channel">Канал</router-link>
               <router-link class="header__navigation-link" to="/links">Ссылки</router-link>
               <router-link class="header__navigation-link" to="/pages">Страницы</router-link>
               <router-link class="header__navigation-link" to="/images">Галерея</router-link>

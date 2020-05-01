@@ -2,10 +2,10 @@ class PostsController < ApplicationController
   include SeoHelper
   include Concerns::EntriesConcern
 
-  authorize_resource except: [:preview, :feed]
+  authorize_resource except: [:preview, :feed], class: Publication::Post
 
   def show
-    Posts::Operations::FindPostBySlug.new.call(slug: params[:id]) do |monad|
+    Posts::Operations::FindBySlug.new.call(slug: params[:id]) do |monad|
       monad.success do |post|
         @post = post
         set_meta_tags(post_tags(@post))

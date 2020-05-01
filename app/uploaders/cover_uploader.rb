@@ -2,13 +2,18 @@ class CoverUploader < Shrine
   plugin :derivatives
 
   Attacher.derivatives do |original, options|
-    shaped = Shapezator.new(original, options[:shapes_number], options[:mode]).call
-    optimized_shaped = Optimizer.new(shaped).call
+    def prepare_shaped_for(original, options: {})
+      return if options.compact.blank?
+
+      shaped = Shapezator.new(original, options[:shapes_number], options[:mode]).call
+      Optimizer.new(shaped).call
+    end
+
     optimized = Optimizer.new(original).call
 
     {
       optimized: optimized,
-      shaped: optimized_shaped,
-    }
+      shaped: prepare_shaped_for(original, options: options),
+    }.compact
   end
 end

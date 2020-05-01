@@ -94,9 +94,23 @@ export default {
     },
     saveLink() {
       this.status = "Сохранение...";
-      this.axios.post('/api/links.json', { link: this.opengraph })
+      this.axios.post('/api/links.json', { link: this.linkParams })
         .then((response) => { this.status = "Ссылка успешно опубликована!" })
         .catch((error) => { this.status = 'Ошибка! ' + error })
+    }
+  },
+  computed: {
+    linkParams() {
+      return {
+        title: this.opengraph.title,
+        sourceName: this.opengraph.siteName,
+        sourceUrl: this.opengraph.url,
+        abstract: this.opengraph.description,
+        coverImageUrl: this.opengraph.imageUrl,
+        contentBlocks: [
+          { type: "markdown", value: this.opengraph.summary }
+        ]
+      };
     }
   }
 }

@@ -1,3 +1,4 @@
+- content_for(:custom_css, @post.custom_css) unless @post.custom_css.blank?
 - content_for :heading do
   header.post-heading style=styles_for_post_preview(@post)
     .post-heading__image-filter
@@ -10,4 +11,4 @@
         p.post-heading__summary = @post.abstract
 
 article.post.grid-item_text(itemscope itemtype="http://schema.org/Blog")
-  = @post.prerendered_content&.html_safe
+  = @post.html_content&.html_safe

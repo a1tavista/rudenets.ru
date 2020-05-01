@@ -16,7 +16,6 @@
 import PostFormViewContent from "./PostFormView/PostFormViewContent";
 import {mapActions, mapGetters, mapState} from "vuex";
 
-
 export default {
   components: { PostFormViewContent },
   data() {

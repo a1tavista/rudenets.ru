@@ -1,8 +1,9 @@
-export default class Link {
+export default class Page {
   constructor() {
     this.id = null;
     this.url = null;
     this.title = null;
-    this.content = null;
+    this.contentBlocks = null;
+    this.customCss = null;
   }
 }

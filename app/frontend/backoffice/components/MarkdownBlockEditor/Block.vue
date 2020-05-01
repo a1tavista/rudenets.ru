@@ -10,7 +10,9 @@
       class=''
     />
     <div class='editor-block__infobar'>
-      Type: {{ type }}
+      Symbols: {{ value && value.length }}
+      <template v-if="!lockType">
+      | Type: {{ type }}
       <a
         v-for="type in otherTypes"
         :key="`editor-type-select-${idx}-${type}`"
@@ -18,6 +20,7 @@
       >
         | To {{ type }}
       </a>
+      </template>
     </div>
   </div>
 </template>
@@ -36,6 +39,11 @@ export default {
       validator: value => BLOCK_TYPES.indexOf(value) !== -1,
       required: false,
       default: 'markdown'
+    },
+    lockType: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     idx: {
       type: Number,

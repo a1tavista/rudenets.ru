@@ -3,8 +3,8 @@
   section.entry-grid__section.entry-grid__section_paddingless
     = render partial: "entries/post",
              locals: { \
-               post: @highlighted_post,
-               published_at: @highlighted_post.entry.published_at,
+               publication: @highlighted_post,
+               published_at: @highlighted_post.published_at,
                featured: @highlighted_post.featured \
              }
 
@@ -22,9 +22,9 @@
 
   - if @entries.present?
     section.entry-grid__section
-      - @entries.each do |entry|
-        = render partial: "entries/#{entry.taxonomy_type.underscore}",
-                locals: { post: entry, published_at: entry.published_at }
+      - @entries.each do |publication|
+        = render partial: "entries/#{publication.taxonomy_type.underscore}",
+                locals: { publication: publication, published_at: publication.published_at }
       - if @entries.respond_to?(:total_pages)
         .entry-grid__pagination
           = paginate @entries

@@ -1,4 +1,6 @@
 module SeoHelper
+  include ActionView::Helpers::AssetUrlHelper
+
   def default_tags
     {
       site: "A. Rudenets",
@@ -26,6 +28,13 @@ module SeoHelper
         description: :description,
         type: "website",
         url: root_url,
+        image: [
+          {
+            _: image_url("og_cover.png"),
+            width: 1200,
+            height: 630,
+          },
+        ],
       },
       twitter: {
         card: "summary",

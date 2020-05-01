@@ -51,6 +51,10 @@
     font-size: 1.1em;
     font-weight: normal;
 
+    &_large {
+      font-size: 1.1em;
+    }
+
     @media #{$mobile-screen-lg-max} {
       font-size: 0.9em;
     }

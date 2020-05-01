@@ -3,6 +3,7 @@ json.title @post.title
 json.abstract @post.abstract
 json.preview_url preview_posts_url(@post.preview_access_hash)
 json.content_blocks @post.content_blocks
+json.custom_css @post.custom_css
 json.slug @post.slug
 
 json.cover_image_url do

@@ -3,21 +3,21 @@ module Api
     load_resource except: [:new, :create], class: Publication::Link
 
     def new
-      ::Links::ParseLink.new.call(url: params[:url]) do |monad|
+      ::Links::Parse.new.call(url: params[:url]) do |monad|
         monad.success { |result| @opengraph = result[:opengraph] }
         monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
       end
     end
 
     def create
-      ::Links::CreateLink.new.call(attributes: link_params.to_h) do |monad|
+      ::Links::Create.new.call(attributes: link_params.to_h) do |monad|
         monad.success { |result| @link = result[:link] }
         monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
       end
     end
 
     def update
-      ::Links::UpdateLink.new.call(link: @link, attributes: link_params.to_h) do |monad|
+      ::Links::Update.new.call(link: @link, attributes: link_params.to_h) do |monad|
         monad.success { |result| @link = result[:link] }
         monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
       end

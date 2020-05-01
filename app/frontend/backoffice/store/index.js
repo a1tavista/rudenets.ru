@@ -9,12 +9,14 @@ const debug = process.env.NODE_ENV !== 'production';
 import links from './content/links';
 import posts from './content/posts';
 import pages from './content/pages';
+import channelPosts from './content/channelPosts';
 
 Vue.use(Vuex);
 
 const actions = {
   initializeApplicationData({dispatch}) {
     dispatch('fetchPosts');
+    dispatch('fetchChannelPosts');
     dispatch('fetchPages');
     dispatch('fetchLinks');
   },
@@ -54,6 +56,7 @@ const store = new Vuex.Store({
     links,
     posts,
     pages,
+    channelPosts
   },
   actions,
   mutations,

@@ -7,12 +7,14 @@ class PostSchema < Dry::Validation::Contract
     end
     optional(:featured).value(:bool)
     optional(:content_blocks).value(:array)
+    optional(:custom_css).maybe(:string)
   end
 
   class Strict < Dry::Validation::Contract
     params do
       required(:title).filled(:string)
       required(:abstract).filled(:string)
+      optional(:custom_css).maybe(:string)
       optional(:render_settings).hash do
         optional(:cover).value(:hash)
       end
