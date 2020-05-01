@@ -15,7 +15,6 @@ gem "dry-monads"
 gem "down"
 gem "fastimage"
 gem "fog-aws"
-gem "friendly_id"
 gem "jbuilder"
 gem "jquery-rails"
 gem "kaminari"
@@ -32,7 +31,7 @@ gem "pg"
 gem "puma"
 gem "rack-canonical-host"
 gem "rails", "~> 5.2.2"
-gem 'rails_event_store'
+gem "rails_event_store"
 gem "recipient_interceptor"
 gem "redcarpet"
 gem "redis"
@@ -41,9 +40,9 @@ gem "responders"
 gem "russian"
 gem "sassc-rails"
 gem "sentry-raven"
-gem 'sidekiq'
-gem 'sidekiq-scheduler'
-gem 'sitemap_generator'
+gem "sidekiq"
+gem "sidekiq-scheduler"
+gem "sitemap_generator"
 gem "slim-rails"
 gem "sprockets", ">= 3.0.0"
 gem "shrine"
@@ -72,8 +71,10 @@ group :test do
   gem "factory_bot_rails"
   gem "shoulda-matchers"
   gem "simplecov", require: false
-  gem "timecop"
   gem "webmock"
+  gem "fuubar"
+  gem "test-prof"
+  gem "faker"
 end
 
 group :production do

@@ -1,13 +1,13 @@
 article.post-preview.entry-grid__item
-  = link_to post_path(post), class: 'post-preview__wrapping-link' do
-    - if post.cover_image(:shaped)&.url.present? || post.cover_image&.url.present?
-      .post-preview__image style=styles_for_post_preview(post)
+  = link_to post_path(publication.slug), class: 'post-preview__wrapping-link' do
+    - if publication.cover_image(:shaped)&.url.present? || publication.cover_image&.url.present?
+      .post-preview__image style=styles_for_post_preview(publication)
     .post-preview__content
       header.post-preview__eyebrow
         - if local_assigns.has_key?(:featured)
           .post-preview__featured-label = featured ? 'featured' : 'new'
-        div #{time_ago_in_words(post.entry.published_at)} назад / ~#{reading_time(post.reading_time)}
+        div #{time_ago_in_words(publication.published_at)} назад / ~#{reading_time(publication.reading_time)}
       h4.post-preview__title
-        span = post.title
-      - if post.summary.present?
-        p.post-preview__summary = to_smarty(post.summary)
+        span = publication.title
+      - if publication.abstract.present?
+        p.post-preview__summary = to_smarty(publication.abstract)

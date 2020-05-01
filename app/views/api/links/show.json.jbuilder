@@ -1,10 +1,8 @@
 json.id @link.id
-json.url @link.url
+json.source_url @link.source_url
 json.title @link.title
-json.image @link.image
-json.description @link.description
-json.summary @link.summary
+json.cover_image @link.cover_image
+json.abstract @link.abstract
+json.content_blocks link.content_blocks
 
-json.entry do
-  json.published @link.entry.published
-end
+json.published @link.published_at.present?

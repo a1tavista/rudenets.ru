@@ -1,7 +1,4 @@
-- content_for :heading do
-  header.post-heading
-    .post-heading__content
-      h1.post-heading__title = title @page.title
+- content_for(:custom_css, @page.custom_css) unless @page.custom_css.blank?
 
 article.post
-  = from_markdown(@page.content)
+  = @page.html_content.html_safe

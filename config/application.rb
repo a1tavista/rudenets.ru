@@ -21,6 +21,7 @@ module RudenetsRu
       generate.routing_specs false
       generate.stylesheets false
       generate.test_framework :rspec
+      generate.factory_bot suffix: "factory", dir: "spec/factories"
       generate.view_specs false
     end
     config.autoload_paths << "#{Rails.root}/lib"

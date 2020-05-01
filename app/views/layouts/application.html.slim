@@ -10,6 +10,8 @@ html lang="ru"
     = auto_discovery_link_tag :rss, feed_url(format: :rss)
     link rel="icon" type="image/png" href="/favicon.png"
     = csrf_meta_tags
+    - if content_for?(:custom_css)
+      style = yield(:custom_css)
   body.flex-layout
     = render "shared/aside"
     - if content_for?(:heading)

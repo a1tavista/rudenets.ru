@@ -12,11 +12,16 @@ Rails.application.routes.draw do
 
   get :typography, to: "pages#typography"
 
+  post "telegram/:key", to: "webhooks/telegram#update"
+
   namespace :api do
     resources :links do
       resource :publication, module: :links
     end
     resources :images
+    resources :channel_posts do
+      resource :publication, module: :channel_posts
+    end
     resources :posts do
       resource :publication, module: :posts
       resource :cover_image, module: :posts, only: [:create] do

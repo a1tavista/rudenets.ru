@@ -1,29 +1,29 @@
 module Api
   class PostsController < BaseController
-    load_resource except: [:create]
+    load_resource except: [:create], class: Publication::Post
 
     def index
-      @posts = Post.joins(:entry).order("entries.published_at DESC").order(updated_at: :desc)
+      @posts = Publication::Post.sorted_by_publishing_time.order(updated_at: :desc)
       respond_with(@posts)
     end
 
     def create
-      ::Posts::CreatePost.new.call(attributes: post_params.to_h) do |monad|
-        monad.success { |result| @post = result[:post] }
+      ::Posts::Create.new.call(attributes: post_params.to_h) do |monad|
+        monad.success { |result| @post = result[:publication] }
         monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
       end
     end
 
     def update
-      ::Posts::UpdatePost.new.call(post: @post, attributes: post_params.to_h) do |monad|
-        monad.success { |result| @post = result[:post] }
+      ::Posts::Update.new.call(publication: @post, attributes: post_params.to_h) do |monad|
+        monad.success { |result| @post = result[:publication] }
         monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
       end
     end
 
     def destroy
-      ::Posts::RemovePost.new.call(post: @post) do |monad|
-        monad.success { |result| @post = result[:post] }
+      ::Posts::Remove.new.call(publication: @post) do |monad|
+        monad.success { |result| @post = result[:publication] }
         monad.failure { |result| respond_with_error(result, status: :unprocessable_entity) }
       end
     end

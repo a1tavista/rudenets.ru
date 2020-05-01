@@ -13,8 +13,8 @@
       <el-row>
         <el-input
           type="textarea"
-          :value='post.summary'
-          @input="update('summary', $event)"
+          :value='post.abstract'
+          @input="update('abstract', $event)"
           :autosize="{ minRows: 2, maxRows: 6 }"
           placeholder="Описание поста"
         />
@@ -30,6 +30,18 @@
         :value="post.contentBlocks"
         @input="update('contentBlocks', $event)"
       />
+    </el-card>
+
+    <el-card class='el-card_margin-bottom'>
+      <el-row>
+        <el-input
+            type="textarea"
+            :value='post.customCss'
+            @input="update('customCss', $event)"
+            :autosize="{ minRows: 2, maxRows: 6 }"
+            placeholder="Стили CSS"
+        />
+      </el-row>
     </el-card>
 
     <el-card class='el-card_margin-bottom'>

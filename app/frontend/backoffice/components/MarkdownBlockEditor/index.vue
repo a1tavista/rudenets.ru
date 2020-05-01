@@ -9,25 +9,28 @@
       <v-block
         :value='block.value'
         :type='block.type'
+        :lock-type="lockType"
         :idx="idx"
         @input='onBlockInput(idx, $event)'
         @change-type='changeBlockType(idx, $event)'
         class='markdown-block-editor__block'
       />
 
-      <el-dropdown
-        size="small"
-        split-button
-        type="primary"
-        @click="appendBlockOnIdx(idx)"
-        @command="executeCommand"
-      >
-        <i class='el-icon-plus' />  Block
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item :command="{ type: 'prepend', idx: idx }">Prepend block</el-dropdown-item>
-          <el-dropdown-item :command="{ type: 'remove', idx: idx }">Remove block</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <div>
+        <el-dropdown
+            size="small"
+            split-button
+            type="primary"
+            @click="appendBlockOnIdx(idx)"
+            @command="executeCommand"
+        >
+          <i class='el-icon-plus' />  Block
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item :command="{ type: 'prepend', idx: idx }">Prepend block</el-dropdown-item>
+            <el-dropdown-item :command="{ type: 'remove', idx: idx }">Remove block</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +51,11 @@ export default {
       default: () => ([
         {...defaultBlock}
       ])
+    },
+    lockType: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {

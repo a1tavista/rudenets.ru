@@ -28,15 +28,35 @@
       <el-collapse-item title="Настройки SEO" name="2">
         <el-row><el-input placeholder="Мета-теги через запятую" /></el-row>
       </el-collapse-item>
+
       <el-collapse-item title="Настройки публикации" name="3">
         <el-row>
           <el-input placeholder="Ссылка для предпросмотра" :value='post.previewUrl' disabled>
             <div slot='prepend'>Ссылка для предпросмотра</div>
           </el-input>
         </el-row>
-        <el-row>
-          <el-button v-if='!post.entry.published' type='primary' @click='publishPost'>Опубликовать</el-button>
-          <el-button v-if='post.entry.published' @click='unpublishPost'>Скрыть в черновики</el-button>
+        <el-row :gutter="16">
+          <el-col :span="10">
+            <el-date-picker
+                :value="post.publishedAt"
+                @input="publicationSettings.publishingTime = $event"
+                type="datetime"
+                style="width: 100%"
+                placeholder="Дата и время публикации" disabled>
+            </el-date-picker>
+          </el-col>
+          <el-col :span="10">
+            <el-input
+                placeholder="Ссылка на пост"
+                :value='post.slug'
+                @input="publicationSettings.slug = $event" disabled>
+              <div slot='prepend'>Ссылка на пост</div>
+            </el-input>
+          </el-col>
+          <el-col :span="4">
+            <el-button style="width: 100%" v-if='!post.published' type='primary' @click='publish'>Опубликовать</el-button>
+            <el-button style="width: 100%" v-if='post.published' @click='unpublishPost'>Скрыть в черновики</el-button>
+          </el-col>
         </el-row>
       </el-collapse-item>
     </el-collapse>
@@ -53,6 +73,11 @@ export default {
     shapezatorSettings: {
       shapesNumber: 600,
       mode: 0
+    },
+    publicationSettings: {
+      slug: '',
+      publishingTime: '',
+      skipTelegram: false
     },
     shapezatorOptions: [
       { value: 0, label: 'Комбинированный' },
@@ -82,12 +107,18 @@ export default {
         shapesNumber: this.shapezatorSettings.shapesNumber,
         mode: this.shapezatorSettings.mode
       }).then(() => this.isShapezatorWorking = false).catch(() => this.isShapezatorWorking = false)
+    },
+    publish() {
+      this.publishPost({
+        slug: this.publicationSettings.slug,
+        publishingTime: this.publicationSettings.publishingTime
+      })
     }
   },
   computed: {
     ...mapGetters({
       post: 'getCurrentPost'
-    }),
+    })
   }
 }
 </script>

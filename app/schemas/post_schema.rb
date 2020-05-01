@@ -1,20 +1,20 @@
 class PostSchema < Dry::Validation::Contract
   params do
     required(:title).value(:string)
-    optional(:summary).maybe(:string)
-    optional(:text).maybe(:string)
+    optional(:abstract).maybe(:string)
     optional(:render_settings).hash do
       optional(:cover).maybe(:hash)
     end
     optional(:featured).value(:bool)
     optional(:content_blocks).value(:array)
+    optional(:custom_css).maybe(:string)
   end
 
   class Strict < Dry::Validation::Contract
     params do
       required(:title).filled(:string)
-      required(:summary).filled(:string)
-      required(:text).filled(:string)
+      required(:abstract).filled(:string)
+      optional(:custom_css).maybe(:string)
       optional(:render_settings).hash do
         optional(:cover).value(:hash)
       end

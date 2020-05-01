@@ -1,0 +1,13 @@
+article.link.entry-grid__item
+  .link__content
+    = link_to publication.link, target: '_blank', class: 'link__anchor' do
+      = image_tag 'tg.svg', class: 'link__image'
+      header.link__heading
+        h4.link__title.link__title_large Telegram / #{publication.title}
+        .link__meta-line
+          .link__meta-data
+            = image_tag 'clock.svg', class: 'link__meta-icon'
+            | #{time_ago_in_words(publication.published_at).capitalize} назад
+          .link__meta-data
+            = image_tag 'star.svg', class: 'link__meta-icon'
+            = publication.reactions_count

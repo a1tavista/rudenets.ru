@@ -14,13 +14,13 @@ const getters = {
   getDrafts: ({items, isLoading}) => {
     return {
       isLoading: isLoading,
-      items: items.filter((post) => !post.entry.published)
+      items: items.filter((post) => !post.published)
     };
   },
   getPublished: ({items, isLoading}) => {
     return {
       isLoading: isLoading,
-      items: items.filter((post) => post.entry.published)
+      items: items.filter((post) => post.published)
     };
   },
 };
