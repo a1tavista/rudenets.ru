@@ -218,7 +218,6 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httpclient (2.8.3)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -306,7 +305,8 @@ GEM
     pry-rails (0.3.8)
       pry (>= 0.10.4)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (4.3.5)
+      nio4r (~> 2.0)
     raabro (1.1.6)
     rack (2.0.7)
     rack-canonical-host (0.2.3)
@@ -482,10 +482,6 @@ GEM
     standard (0.1.7)
       rubocop (~> 0.77.0)
       rubocop-performance (~> 1.5.1)
-    telegram-bot (0.14.4)
-      actionpack (>= 4.0, < 6.1)
-      activesupport (>= 4.0, < 6.1)
-      httpclient (~> 2.7)
     telegram-bot-ruby (0.12.0)
       faraday
       inflecto
@@ -587,7 +583,6 @@ DEPENDENCIES
   slim-rails
   sprockets (>= 3.0.0)
   standard
-  telegram-bot
   telegram-bot-ruby
   test-prof
   uglifier
