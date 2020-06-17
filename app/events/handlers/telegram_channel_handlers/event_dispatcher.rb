@@ -27,6 +27,8 @@ module Handlers
       }.freeze
 
       def prime_time
+        return Time.current if ENV["DISABLE_DELAYED_PUBLICATIONS"]
+
         PrimeTime.prime_time(Time.current, schedule: self.class::PRIME_TIME_INTERVALS)
       end
     end

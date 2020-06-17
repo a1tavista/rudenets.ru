@@ -1,7 +1,5 @@
 module PrimeTime
   def self.prime_time(current_time, schedule:)
-    return Time.current if ENV["DISABLE_DELAYED_PUBLICATIONS"]
-
     publishing_time = time_to_next_quarter_hour(current_time)
     acceptable_time = acceptable_time_for(current_time, schedule: schedule)
 
