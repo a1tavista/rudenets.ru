@@ -308,7 +308,7 @@ GEM
     puma (4.3.5)
       nio4r (~> 2.0)
     raabro (1.1.6)
-    rack (2.0.7)
+    rack (2.2.3)
     rack-canonical-host (0.2.3)
       addressable (> 0, < 3)
       rack (>= 1.0.0, < 3)
