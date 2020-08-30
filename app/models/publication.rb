@@ -5,7 +5,7 @@ class Publication < ApplicationRecord
     'Publication::ChannelPost': "Publication::ChannelPost",
   }
 
-  has_many :aliases, class_name: "Post::Alias", dependent: :destroy
+  has_many :aliases, class_name: "Publication::AlternateSlug", dependent: :destroy
   has_many :reactions, class_name: "Publication::Reaction"
 
   include ImageUploader::Attachment(:preview_image)
